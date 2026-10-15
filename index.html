@@ -7,23 +7,15 @@
 <meta name="author" content="陈冠宇">
 <meta name="description" content="UE 场景地编 / 灯光师 · 4 年 UE 场景制作 · 游戏 / 影视 / 文博三类场景">
 <!--
-=================================================================
- 作品集页面（空壳版）
- ─ 单文件、零依赖，可直接部署（GitHub Pages / Vercel / 任意静态托管）
- ─ 配色与简历一致：朱砂主题  --ink:#241713  --accent:#e0653c
- ─ 替换素材时搜「替换」两个字，就能定位所有占位处
-=================================================================
+  作品集页面 v2（真实图片版）
+  ─ 单文件 + assets/ 图片，零依赖
+  ─ 配色与简历一致：朱砂 --accent:#e0653c
+  ─ 图片放同目录 assets/ 下
 -->
 <style>
 :root{
-  --ink:#241713;
-  --ink-2:#3d241a;
-  --accent:#e0653c;
-  --accent-ink:#b8431f;
-  --text:#22282f;
-  --muted:#7b8794;
-  --line:#eae4df;
-  --paper:#fff;
+  --ink:#241713; --ink-2:#3d241a; --accent:#e0653c; --accent-ink:#b8431f;
+  --text:#22282f; --muted:#7b8794; --line:#eae4df; --paper:#fff;
   --f-serif:"Noto Serif SC","Songti SC","Microsoft YaHei",serif;
   --f-sans:"Microsoft YaHei","Noto Sans SC","DengXian","PingFang SC",sans-serif;
 }
@@ -31,13 +23,8 @@
 html,body{margin:0;padding:0}
 body{background:#f7f5f3;color:var(--text);font-family:var(--f-sans);line-height:1.75;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
+img{display:block}
 .wrap{max-width:1140px;margin:0 auto;padding:0 24px}
-
-.skel{background:#fff8f4;border-bottom:1px solid #f3ddd2;color:#8a4a30;font-size:12.5px}
-.skel .wrap{display:flex;align-items:center;gap:12px;padding:9px 24px}
-.skel b{color:var(--accent-ink)}
-.skel button{margin-left:auto;flex:0 0 auto;cursor:pointer;border:1px solid #edcbb9;background:#fff;color:#8a4a30;font:inherit;font-size:12px;padding:3px 12px;border-radius:999px}
-.skel button:hover{background:#fdeee7}
 
 .hero{position:relative;color:#fff;background:linear-gradient(115deg,var(--ink) 0%,var(--ink) 46%,var(--ink-2) 100%);padding:58px 0 54px}
 .hero::after{content:'';position:absolute;left:0;bottom:0;width:100%;height:3px;background:linear-gradient(90deg,var(--accent) 0%,var(--accent) 17%,rgba(255,255,255,.1) 17%,rgba(255,255,255,.1) 100%)}
@@ -54,10 +41,6 @@ h1{font-family:var(--f-serif);font-size:clamp(38px,6vw,56px);font-weight:700;let
 .btn:hover{border-color:rgba(255,255,255,.5);background:rgba(255,255,255,.06)}
 .btn.primary{border-color:var(--accent);background:rgba(224,101,60,.18);color:#ffb69c}
 .btn.primary:hover{background:rgba(224,101,60,.3)}
-.hero-side{display:flex;gap:16px;align-items:flex-start;flex:0 0 auto}
-.ph-avatar,.ph-qr{border-radius:16px;border:2px solid var(--accent);display:flex;align-items:center;justify-content:center;text-align:center;font-size:10.5px;line-height:1.5;color:rgba(255,255,255,.5);letter-spacing:.04em}
-.ph-avatar{width:124px;height:124px;background:linear-gradient(150deg,#3a231b,#5b3527)}
-.ph-qr{width:108px;height:108px;border-radius:14px;background:linear-gradient(150deg,#efeae6,#dcd5cf);color:#9a8f88}
 
 .block{margin:64px 0}
 body{counter-reset:sec}
@@ -65,16 +48,16 @@ body{counter-reset:sec}
 .sec-title em{font-style:normal;font-size:10.5px;font-weight:600;letter-spacing:.18em;color:var(--muted);text-transform:uppercase}
 .sec-title::after{counter-increment:sec;content:counter(sec,decimal-leading-zero);position:absolute;right:-2px;top:-18px;font-family:var(--f-serif);font-size:64px;font-weight:700;line-height:.8;color:var(--accent);opacity:.08}
 
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:26px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:26px}
 .card{background:var(--paper);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 10px 26px rgba(30,18,12,.055);transition:transform .25s ease,box-shadow .25s ease;display:flex;flex-direction:column}
 .card:hover{transform:translateY(-4px);box-shadow:0 18px 38px rgba(30,18,12,.1)}
-.media{position:relative;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.66);font-size:12px;letter-spacing:.08em}
-.media .play{position:absolute;width:52px;height:52px;border-radius:50%;border:1.5px solid rgba(255,255,255,.55);display:flex;align-items:center;justify-content:center;font-size:17px;color:rgba(255,255,255,.85);background:rgba(0,0,0,.12)}
-.media .hint{position:absolute;bottom:10px;left:0;right:0;text-align:center;font-size:10.5px;color:rgba(255,255,255,.5)}
-.ph-1{background:linear-gradient(135deg,#2b1b16 0%,#4a2a1e 45%,#7d4227 100%)}
-.ph-2{background:linear-gradient(135deg,#14262e 0%,#1d3b47 50%,#2b6472 100%)}
-.ph-3{background:linear-gradient(135deg,#241c2c 0%,#3a2a3f 50%,#5c4358 100%)}
-.ph-4{background:linear-gradient(135deg,#2d2416 0%,#4a3a1e 50%,#7a5f2c 100%)}
+.card.wide{grid-column:1/-1}
+.media{position:relative;background:#171417;overflow:hidden;cursor:zoom-in}
+.media img{width:100%;height:100%;object-fit:cover;aspect-ratio:16/9;transition:transform .5s ease}
+.card:hover .media img{transform:scale(1.035)}
+.media .count{position:absolute;right:10px;bottom:10px;background:rgba(0,0,0,.55);color:#fff;font-size:11px;padding:3px 10px;border-radius:999px;letter-spacing:.04em}
+.media .cap{position:absolute;left:0;right:0;bottom:0;padding:26px 16px 12px;background:linear-gradient(to top,rgba(0,0,0,.72),transparent);color:#fff;font-size:12px;letter-spacing:.04em}
+.media.wideimg img{aspect-ratio:64/26}
 .card-body{padding:20px 22px 22px;display:flex;flex-direction:column;flex:1}
 .card-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
 .card-title{font-size:15.5px;font-weight:700;color:#1c232a}
@@ -87,9 +70,15 @@ body{counter-reset:sec}
 .points b{color:#1c232a;font-weight:700}
 .tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:auto;padding-top:16px}
 .tag{font-size:11px;color:#6d5a52;background:#f7f2ef;border:1px solid #eee3dc;border-radius:6px;padding:3px 9px}
+.more{margin-top:14px;display:flex;gap:8px;flex-wrap:wrap}
+.thumbs{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap}
+.thumbs img{width:74px;height:46px;object-fit:cover;border-radius:6px;border:1px solid var(--line);cursor:zoom-in}
 .card.coming{border-style:dashed;background:#fdfcfb}
-.card.coming .media{background:repeating-linear-gradient(45deg,#f3efec,#f3efec 12px,#f8f5f3 12px,#f8f5f3 24px);color:#a89c95}
+.card.coming .media{background:repeating-linear-gradient(45deg,#f3efec,#f3efec 12px,#f8f5f3 12px,#f8f5f3 24px);aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;color:#a89c95;cursor:default}
 .card.coming .card-title{color:#8d817a;font-weight:600}
+
+.videobox{margin-top:14px;max-width:760px;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#000}
+.videobox video{width:100%;display:block;aspect-ratio:16/9;margin:0}
 
 .skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
 .skill{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px}
@@ -102,91 +91,57 @@ footer::before{content:'';position:absolute;left:0;top:0;width:100%;height:3px;b
 .foot-name{font-family:var(--f-serif);font-size:24px;font-weight:700;letter-spacing:.1em;color:#fff}
 .foot-lines{margin-top:10px;font-size:13px;line-height:2;color:rgba(255,255,255,.7)}
 .foot-lines b{color:#fff;font-weight:700}
-.foot-qr{width:104px;height:104px;border-radius:14px;border:2px solid var(--accent);background:linear-gradient(150deg,#efeae6,#dcd5cf);color:#9a8f88;display:flex;align-items:center;justify-content:center;text-align:center;font-size:10px;line-height:1.5;flex:0 0 auto}
 .copyright{margin-top:26px;padding-top:16px;border-top:1px solid rgba(255,255,255,.12);font-size:11.5px;color:rgba(255,255,255,.42);letter-spacing:.04em}
 
+#lb{position:fixed;inset:0;background:rgba(12,10,10,.94);display:none;align-items:center;justify-content:center;z-index:99}
+#lb.on{display:flex}
+#lb img{max-width:94vw;max-height:88vh;object-fit:contain;border-radius:6px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+#lb .nav{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;border-radius:50%;border:1px solid rgba(255,255,255,.35);background:rgba(0,0,0,.3);color:#fff;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+#lb .nav:hover{background:rgba(255,255,255,.15)}
+#lb .prev{left:22px}#lb .next{right:22px}
+#lb .close{position:absolute;top:20px;right:24px;font-size:26px;color:#fff;cursor:pointer;opacity:.8}
+#lb .idx{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.75);font-size:12.5px;letter-spacing:.1em}
+
 @media (max-width:720px){
-  .hero{padding:40px 0 36px}
-  .hero-in{gap:26px}
-  .hero-side{width:100%;justify-content:flex-start}
-  .ph-avatar{width:96px;height:96px}
-  .ph-qr{width:88px;height:88px}
-  .block{margin:44px 0}
-  .sec-title{font-size:15.5px}
-  .sec-title::after{font-size:48px;top:-12px}
-  .grid{gap:18px}
-  .card-title{font-size:14.5px}
-  .points li{font-size:12.5px}
+  .hero{padding:40px 0 36px}.hero-in{gap:26px}
+  .block{margin:44px 0}.grid{gap:18px;grid-template-columns:1fr}
+  .sec-title{font-size:15.5px}.sec-title::after{font-size:48px;top:-12px}
+  .card-title{font-size:14.5px}.points li{font-size:12.5px}
 }
 </style>
 </head>
 <body>
 
-
 <header class="hero">
   <div class="wrap hero-in">
     <div class="hero-main">
-      <div class="name-line">
-        <h1>陈 冠 宇</h1>
-        <span class="basic">男 · 1996 · 现居深圳</span>
-      </div>
+      <div class="name-line"><h1>陈 冠 宇</h1><span class="basic">男 · 1996 · 现居深圳</span></div>
       <div class="role">UE 场景地编 · 灯光与氛围</div>
-      <p class="lede">
-        4 年 UE 场景制作经验，做过 <b>游戏、影视、文博</b> 三类场景。
-        能把概念图变成能实时运行的世界 —— 从 <b>白盒搭建、资产整合、地形与植被</b>，
-        到 <b>灯光氛围、性能优化</b> 的完整流程。
-      </p>
+      <p class="lede">4 年 UE 场景制作经验，做过 <b>游戏、影视、文博</b> 三类场景。能把概念图变成能实时运行的世界 —— 从 <b>白盒搭建、资产整合、地形与植被</b>，到 <b>灯光氛围、性能优化</b> 的完整流程。</p>
       <div class="actions">
-        <a class="btn primary" href="https://www.bilibili.com/video/BV1qg4v147wJ/" target="_blank" rel="noopener">▶ B站作品集</a>
+        <a class="btn primary" href="#works">▼ 看作品</a>
         <a class="btn" href="mailto:guanyuchenscau@163.com">✉ 邮箱</a>
         <span class="btn">💬 微信 yxbk6991</span>
       </div>
     </div>
-    <div class="hero-side">
-      <!-- 替换：<img src="avatar.jpg" style="width:124px;height:124px;object-fit:cover;border-radius:16px;border:2px solid var(--accent)"> -->
-      <div class="ph-avatar">个人照片<br>124×124</div>
-      <!-- 替换：<img src="qr-work.png" style="width:108px;height:108px;object-fit:contain;background:#fff;padding:5px;border-radius:14px"> -->
-      <div class="ph-qr">作品集二维码<br>108×108</div>
-    </div>
   </div>
 </header>
 
-<section class="block wrap">
+<section class="block wrap" id="works">
   <h2 class="sec-title">作品 <em>Selected Works</em></h2>
   <div class="grid">
 
-    <article class="card">
-      <!-- 替换：<img src="work-1.jpg" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover"> 或 B站 iframe -->
-      <div class="media ph-1">
-        <div class="play">▶</div>
-        <div class="hint">作品主视觉 / 演示视频（16:9）</div>
-      </div>
-      <div class="card-body">
-        <div class="card-head">
-          <div class="card-title">古风山寺场景</div>
-          <div class="card-sub">个人全流程作品（UE5）</div>
-          <div class="card-date">2026.03 — 至今</div>
-        </div>
-        <div class="card-role">独立制作 · 建模 / 材质 / 地编 / 灯光</div>
-        <ul class="points">
-          <li>独立打通全流程：白盒 → Maya 建模 → UV 拆分 → ZBrush 雕刻 → SP 贴图 → SD 连续贴图 → UE 地编搭建。</li>
-          <li>完成灯光、雾效与后期盒子效果制作，持续迭代画面氛围。</li>
-        </ul>
-        <div class="tags">
-          <span class="tag">UE5</span><span class="tag">Lumen</span><span class="tag">Maya</span><span class="tag">ZBrush</span><span class="tag">Substance</span>
-        </div>
-      </div>
-    </article>
-
-    <article class="card">
-      <div class="media ph-2">
-        <div class="play">▶</div>
-        <div class="hint">作品主视觉 / 演示视频（16:9）</div>
+    <!-- 全职高手 -->
+    <article class="card wide">
+      <div class="media wideimg" data-gallery="g1" data-i="0">
+        <img src="assets/qz_hero.jpg" alt="《全职高手》场景">
+        <div class="cap">《全职高手》· 教堂废墟场景 · UE5 实机截图</div>
+        <div class="count">5 张图 + 视频</div>
       </div>
       <div class="card-body">
         <div class="card-head">
           <div class="card-title">《全职高手》</div>
-          <div class="card-sub">游戏向项目 · 已上线</div>
+          <div class="card-sub">阅文集团 IP · 游戏向项目</div>
           <div class="card-date">2023.04 — 2025.11</div>
         </div>
         <div class="card-role">深圳市元象科技有限公司 · 场景地编</div>
@@ -194,68 +149,83 @@ footer::before{content:'';position:absolute;left:0;top:0;width:100%;height:3px;b
           <li>负责场景地编全流程：资产替换、灯光布置、地形 / 雾效 / 后期盒子效果、过场动画输出与上传。</li>
           <li>与策划、主美共同规划<b>关卡动线与玩法节奏</b>并搭建白盒；协同建模师产出 PBR 资产并按命名规范导入。</li>
         </ul>
-        <div class="tags">
-          <span class="tag">UE5</span><span class="tag">关卡白盒</span><span class="tag">光照烘焙</span><span class="tag">PBR 规范</span>
+        <div class="thumbs">
+          <img src="assets/qz_chest.jpg" data-gallery="g1" data-i="1" alt="">
+          <img src="assets/qz_sky.jpg" data-gallery="g1" data-i="2" alt="">
+          <img src="assets/qz_hall.jpg" data-gallery="g1" data-i="3" alt="">
+          <img src="assets/ruins.jpg" data-gallery="g1" data-i="4" alt="">
         </div>
+        <div class="videobox"><video src="assets/showreel_720p.mp4" controls preload="metadata" playsinline></video></div>
+        <div class="tags"><span class="tag">UE5</span><span class="tag">关卡白盒</span><span class="tag">光照烘焙</span><span class="tag">体积光 / 雾效</span><span class="tag">PBR 规范</span></div>
       </div>
     </article>
 
+    <!-- 壁画那边是唐朝 -->
     <article class="card">
-      <div class="media ph-3">
-        <div class="play">▶</div>
-        <div class="hint">作品主视觉 / 演示视频（16:9）</div>
+      <div class="media" data-gallery="g2" data-i="0">
+        <img src="assets/hero_street.jpg" alt="《壁画那边是唐朝》场景">
+        <div class="cap">《壁画那边是唐朝》· 唐代街景夜雨</div>
+        <div class="count">2 张图</div>
       </div>
       <div class="card-body">
         <div class="card-head">
           <div class="card-title">《壁画那边是唐朝》</div>
-          <div class="card-sub">陕西历史博物馆</div>
+          <div class="card-sub">陕西历史博物馆 · 文博</div>
           <div class="card-date">2023.04 — 2025.11</div>
         </div>
         <div class="card-role">深圳市元象科技有限公司 · 场景地编</div>
         <ul class="points">
           <li>独立完成<b>唐代写实场景</b>从白盒到灯光后期的全流程制作。</li>
           <li>参与前期策划：与策划、主美、TA / 引擎、客户端评估效果落地与技术可行性，搭建 demo 验证方案。</li>
-          <li>在有限原画基础上做场景二次创作，整体把控场景与过场动画质量。</li>
         </ul>
-        <div class="tags">
-          <span class="tag">UE5</span><span class="tag">写实风格</span><span class="tag">Demo 验证</span><span class="tag">过场 Sequence</span>
-        </div>
+        <div class="thumbs"><img src="assets/sunset_lowres.jpg" data-gallery="g2" data-i="1" alt=""></div>
+        <div class="tags"><span class="tag">UE5</span><span class="tag">写实风格</span><span class="tag">Demo 验证</span><span class="tag">过场 Sequence</span></div>
       </div>
     </article>
 
+    <!-- 登月 -->
     <article class="card">
-      <div class="media ph-4">
-        <div class="play">▶</div>
-        <div class="hint">作品主视觉 / 演示视频（16:9）</div>
+      <div class="media" data-gallery="g3" data-i="0">
+        <img src="assets/icecave.jpg" alt="登月场景">
+        <div class="cap">登月 · 冰晶洞窟 / 基地平台</div>
+        <div class="count">1 张图</div>
       </div>
       <div class="card-body">
         <div class="card-head">
-          <div class="card-title">《星落凝成糖》《重紫》</div>
-          <div class="card-sub">影视剧 · UE 场景</div>
-          <div class="card-date">2022.05 — 2023.01</div>
+          <div class="card-title">登月</div>
+          <div class="card-sub">深圳市元象科技有限公司</div>
+          <div class="card-date">—</div>
         </div>
-        <div class="card-role">杭州时光新影科技有限公司 · UE 初级地编</div>
+        <div class="card-role">深圳市元象科技有限公司 · 场景地编</div>
         <ul class="points">
-          <li>参与 UE 场景搭建与定版，全流程跟进至最终画面输出。</li>
-          <li>负责<b>灯光布置与氛围还原</b>；用 Maya 完成摄像机匹配与镜头制作，实现实拍与 UE 场景的<b>实时合成</b>并输出 Sequence 渲染。</li>
+          <li>冰晶洞窟与基地平台场景，冷色调体积光与冰雪材质表现。</li>
         </ul>
-        <div class="tags">
-          <span class="tag">UE</span><span class="tag">灯光布光</span><span class="tag">摄像机匹配</span><span class="tag">实时合成</span>
-        </div>
+        <div class="tags"><span class="tag">UE</span><span class="tag">冰雪材质</span><span class="tag">体积光</span></div>
+      </div>
+    </article>
+
+    <!-- 待补 -->
+    <article class="card coming">
+      <div class="media">待补充（古风山寺）</div>
+      <div class="card-body">
+        <div class="card-head"><div class="card-title">古风山寺场景</div><div class="card-sub">个人全流程作品</div><div class="card-date">2026.03 — 至今</div></div>
+        <div class="card-role">独立制作 · 建模 / 材质 / 地编 / 灯光</div>
+        <ul class="points">
+          <li>独立打通全流程：白盒 → Maya 建模 → UV 拆分 → ZBrush 雕刻 → SP 贴图 → SD 连续贴图 → UE 地编搭建。</li>
+        </ul>
+        <div class="tags"><span class="tag">待补图</span></div>
       </div>
     </article>
 
     <article class="card coming">
-      <div class="media"><div class="hint" style="color:#a89c95">待补充作品</div></div>
+      <div class="media">待补充（影视剧）</div>
       <div class="card-body">
-        <div class="card-head">
-          <div class="card-title">更多作品</div>
-          <div class="card-date">—</div>
-        </div>
-        <div class="card-role">持续更新中</div>
+        <div class="card-head"><div class="card-title">《星落凝成糖》《重紫》</div><div class="card-sub">影视剧 · UE 场景</div><div class="card-date">2022.05 — 2023.01</div></div>
+        <div class="card-role">杭州时光新影科技有限公司 · UE 初级地编</div>
         <ul class="points">
+          <li>UE 场景搭建与定版；用 Maya 完成摄像机匹配与镜头制作，实现实拍与 UE 场景的<b>实时合成</b>并输出 Sequence 渲染。</li>
         </ul>
-        <div class="tags"><span class="tag">占位</span></div>
+        <div class="tags"><span class="tag">待补图</span></div>
       </div>
     </article>
 
@@ -267,7 +237,7 @@ footer::before{content:'';position:absolute;left:0;top:0;width:100%;height:3px;b
   <div class="skills">
     <div class="skill"><h3>场景搭建 / 地编</h3><p>UE4 / UE5 · 关卡白盒 · 场景布局与玩法动线 · 资产整合与替换</p></div>
     <div class="skill"><h3>灯光与氛围</h3><p>Lumen · 光照烘焙 / 实时光照 · 雾效与后期盒子 · 氛围还原</p></div>
-    <div class="skill"><h3>性能优化</h3><p>Nanite · LOD · 面数与 drawcall 控制 · 帧率稳定 · 头显端与 PC 端一致性</p></div>
+    <div class="skill"><h3>性能优化</h3><p>Nanite · LOD · 面数与 drawcall 控制 · 帧率稳定</p></div>
     <div class="skill"><h3>地形 / 植被</h3><p>地形编辑 · Gaea · SpeedTree · 植被分布与层次</p></div>
     <div class="skill"><h3>材质与贴图</h3><p>Substance Painter · Designer · Marmoset · PBR 流程</p></div>
     <div class="skill"><h3>建模与流程</h3><p>Maya · ZBrush · C4D · 过场 Sequence · 外包对接与美术规范制定</p></div>
@@ -284,10 +254,53 @@ footer::before{content:'';position:absolute;left:0;top:0;width:100%;height:3px;b
         微信 / WeChat：<b>yxbk6991</b> · 深圳 · 随时到岗
       </div>
     </div>
-    <div class="foot-qr">微信二维码</div>
   </div>
   <div class="wrap copyright">© 陈冠宇 · UE 场景地编 / 灯光 · 作品集持续更新</div>
 </footer>
 
+<div id="lb">
+  <span class="close" onclick="lbClose()">×</span>
+  <span class="nav prev" onclick="lbGo(-1)">‹</span>
+  <img id="lbimg" src="" alt="">
+  <span class="nav next" onclick="lbGo(1)">›</span>
+  <span class="idx" id="lbidx"></span>
+</div>
+
+<script>
+var G = {
+  g1: ['assets/qz_hero.jpg','assets/qz_chest.jpg','assets/qz_sky.jpg','assets/qz_hall.jpg','assets/ruins.jpg'],
+  g2: ['assets/hero_street.jpg','assets/sunset_lowres.jpg'],
+  g3: ['assets/icecave.jpg'],
+  g4: ['assets/room.jpg']
+};
+var cur = null, idx = 0;
+function lbOpen(g, i){
+  if (!G[g]) return;
+  cur = g; idx = i;
+  document.getElementById('lbimg').src = G[g][i];
+  document.getElementById('lbidx').textContent = (i + 1) + ' / ' + G[g].length;
+  document.getElementById('lb').classList.add('on');
+}
+function lbGo(d){
+  if (!cur) return;
+  var n = G[cur].length;
+  idx = (idx + d + n) % n;
+  lbOpen(cur, idx);
+}
+function lbClose(){
+  document.getElementById('lb').classList.remove('on');
+  cur = null;
+}
+document.addEventListener('click', function(e){
+  var t = e.target.closest('[data-gallery]');
+  if (t) { lbOpen(t.getAttribute('data-gallery'), parseInt(t.getAttribute('data-i') || '0', 10)); }
+});
+document.addEventListener('keydown', function(e){
+  if (!cur) return;
+  if (e.key === 'Escape') lbClose();
+  if (e.key === 'ArrowLeft') lbGo(-1);
+  if (e.key === 'ArrowRight') lbGo(1);
+});
+</script>
 </body>
 </html>
