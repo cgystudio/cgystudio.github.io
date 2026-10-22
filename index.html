@@ -111,6 +111,27 @@ footer::before{content:'';position:absolute;left:0;top:0;width:100%;height:3px;b
 
 .spec{ color:#b8431f; font-weight:600; letter-spacing:.01em; }
 .vnote{ margin-top:7px; font-size:11.5px; color:var(--muted); letter-spacing:.02em; }
+
+/* ===== 作品：图文竖向堆叠（2026-10-22 改版） ===== */
+.proj{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:22px 22px 24px;box-shadow:0 10px 26px rgba(30,18,12,.055);margin-bottom:26px}
+.proj-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.proj-title{font-size:17px;font-weight:700;color:#1c232a;letter-spacing:.02em}
+.proj-sub{font-size:12.5px;font-weight:600;color:var(--accent-ink)}
+.proj-date{margin-left:auto;font-size:11.5px;color:var(--muted);white-space:nowrap}
+.proj-role{margin-top:6px;font-size:12px;color:var(--muted)}
+.stack{display:flex;flex-direction:column;gap:14px;margin-top:18px}
+.shot{margin:0;border-radius:10px;overflow:hidden;border:1px solid var(--line);background:#141014}
+.shot img{width:100%;height:auto;display:block;cursor:zoom-in;transition:filter .22s ease}
+.shot img:hover{filter:brightness(1.07)}
+.shot figcaption{padding:8px 13px;font-size:11.5px;color:var(--muted);background:#faf8f6;border-top:1px solid var(--line);letter-spacing:.02em}
+.proj.coming{border-style:dashed;background:#fdfcfb}
+.ph{border:1px dashed #dfd6cf;border-radius:10px;background:repeating-linear-gradient(45deg,#f5f1ee,#f5f1ee 12px,#faf7f5 12px,#faf7f5 24px);color:#a89c95;font-size:12.5px;text-align:center;padding:40px 0;letter-spacing:.06em}
+.hint{margin:4px 0 0;font-size:11.5px;color:var(--muted);letter-spacing:.02em}
+.reel{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 10px 26px rgba(30,18,12,.08)}
+.reel video{width:100%;display:block;aspect-ratio:16/9;margin:0;background:#000}
+.reel .vnote{margin:0;padding:10px 14px;border-top:1px solid var(--line);font-size:11.5px;color:var(--muted);background:#fff}
+@media (max-width:720px){.proj{padding:16px 14px 18px;border-radius:12px}.stack{gap:10px}.proj-date{margin-left:0}}
+
 </style>
 </head>
 <body>
@@ -132,109 +153,96 @@ footer::before{content:'';position:absolute;left:0;top:0;width:100%;height:3px;b
 
 <section class="block wrap" id="works">
   <h2 class="sec-title">作品 <em>Selected Works</em></h2>
-  <div class="grid">
 
-    <!-- 全职高手 -->
-    <article class="card wide">
-      <div class="media wideimg" data-gallery="g1" data-i="0">
-        <img src="assets/qz_hero.jpg" alt="《全职高手》场景">
-        <div class="cap">《全职高手》· 教堂废墟 · 大殿内景（UE5 实机）</div>
-        <div class="count">5 张图 + 宣传片</div>
-      </div>
-      <div class="card-body">
-        <div class="card-head">
-          <div class="card-title">《全职高手》</div>
-          <div class="card-sub">阅文集团 IP · 游戏向项目</div>
-          <div class="card-date">2023.04 — 2025.11</div>
-        </div>
-        <div class="card-role">深圳市元象科技有限公司 · 场景地编</div>
-        <ul class="points">
-          <li class="spec"><b>森林 + 城堡</b>大场景 · <b>数十万平米</b> · 资产 <b>50+</b> · PC 端稳定 <b>30 帧</b></li>
-          <li>负责场景地编全流程：资产替换、灯光布置、地形 / 雾效 / 后期盒子效果、过场动画输出与上传。</li>
-          <li>与策划、主美共同规划<b>关卡动线与玩法节奏</b>并搭建白盒；协同建模师产出 PBR 资产并按命名规范导入。</li>
-        </ul>
-        <div class="thumbs">
-          <img src="assets/qz_02.jpg" data-gallery="g1" data-i="1" alt="">
-          <img src="assets/qz_03.jpg" data-gallery="g1" data-i="2" alt="">
-          <img src="assets/qz_04.jpg" data-gallery="g1" data-i="3" alt="">
-          <img src="assets/qz_05.jpg" data-gallery="g1" data-i="4" alt="">
-        </div>
-        <div class="videobox"><video src="assets/qz_showcase_1080p.mp4" poster="assets/qz_video_poster.jpg" controls preload="metadata" playsinline></video></div>
-        <div class="vnote">《全职高手》宣传片 · 1080p · 26 秒（点击播放，含内景动线与外景全景）</div>
-        <div class="tags"><span class="tag">阅文 IP</span><span class="tag">UE5</span><span class="tag">关卡白盒</span><span class="tag">光照烘焙</span><span class="tag">体积光 / 雾效</span><span class="tag">PBR 规范</span></div>
-      </div>
-    </article>
+  <!-- 01 全职高手 -->
+  <article class="proj">
+    <div class="proj-head">
+      <div class="proj-title">《全职高手》</div>
+      <div class="proj-sub">阅文集团 IP · 游戏向项目</div>
+      <div class="proj-date">2023.04 — 2025.11</div>
+    </div>
+    <div class="proj-role">深圳市元象科技有限公司 · 场景地编</div>
+    <ul class="points">
+      <li class="spec"><b>森林 + 城堡</b>大场景 · <b>数十万平米</b> · 资产 <b>50+</b> · PC 端稳定 <b>30 帧</b></li>
+      <li>负责场景地编全流程：资产替换、灯光布置、地形 / 雾效 / 后期盒子效果、过场动画输出与上传。</li>
+      <li>与策划、主美共同规划<b>关卡动线与玩法节奏</b>并搭建白盒；协同建模师产出 PBR 资产并按命名规范导入。</li>
+    </ul>
+    <div class="tags"><span class="tag">阅文 IP</span><span class="tag">UE5</span><span class="tag">关卡白盒</span><span class="tag">光照烘焙</span><span class="tag">体积光 / 雾效</span><span class="tag">PBR 规范</span></div>
+    <div class="stack">
+      <figure class="shot"><img src="assets/qz_hero.jpg" data-gallery="g1" data-i="0" loading="lazy" alt="《全职高手》教堂废墟大殿内景"><figcaption>教堂废墟 · 大殿内景（中央水池与断柱）</figcaption></figure>
+      <figure class="shot"><img src="assets/qz_02.jpg" data-gallery="g1" data-i="1" loading="lazy" alt="《全职高手》大殿中轴"><figcaption>大殿中轴 · 通往祭坛的阶梯与尖拱窗</figcaption></figure>
+      <figure class="shot"><img src="assets/qz_03.jpg" data-gallery="g1" data-i="2" loading="lazy" alt="《全职高手》倾倒石柱"><figcaption>内景 · 倾倒石柱与碎石地面</figcaption></figure>
+      <figure class="shot"><img src="assets/qz_04.jpg" data-gallery="g1" data-i="3" loading="lazy" alt="《全职高手》外景城堡"><figcaption>外景 · 城堡与月亮</figcaption></figure>
+      <figure class="shot"><img src="assets/qz_05.jpg" data-gallery="g1" data-i="4" loading="lazy" alt="《全职高手》长厅纵深"><figcaption>长厅纵深 · 破碎地面与祭坛方向</figcaption></figure>
+    </div>
+  </article>
 
-    <!-- 壁画那边是唐朝 -->
-    <article class="card">
-      <div class="media" data-gallery="g2" data-i="0">
-        <img src="assets/hero_street.jpg" alt="《壁画那边是唐朝》场景">
-        <div class="cap">《壁画那边是唐朝》· 唐代街景夜雨</div>
-        <div class="count">2 张图</div>
-      </div>
-      <div class="card-body">
-        <div class="card-head">
-          <div class="card-title">《壁画那边是唐朝》</div>
-          <div class="card-sub">陕西历史博物馆 · 文博</div>
-          <div class="card-date">2023.04 — 2025.11</div>
-        </div>
-        <div class="card-role">深圳市元象科技有限公司 · 场景地编</div>
-        <ul class="points">
-          <li class="spec"><b>唐代长安城级</b> · <b>平方公里级</b> · 资产 <b>100+</b> · 稳定 <b>30 帧</b></li>
-          <li><b>独立主导</b>：<b>唐代写实场景</b>从白盒到灯光后期全流程。</li>
-          <li>参与前期策划：与策划、主美、TA / 引擎、客户端评估效果落地与技术可行性，搭建 demo 验证方案。</li>
-        </ul>
-        <div class="thumbs"><img src="assets/sunset_lowres.jpg" data-gallery="g2" data-i="1" alt=""></div>
-        <div class="tags"><span class="tag">独立主导</span><span class="tag">UE5</span><span class="tag">写实风格</span><span class="tag">Demo 验证</span><span class="tag">过场 Sequence</span></div>
-      </div>
-    </article>
+  <!-- 02 壁画那边是唐朝 -->
+  <article class="proj">
+    <div class="proj-head">
+      <div class="proj-title">《壁画那边是唐朝》</div>
+      <div class="proj-sub">陕西历史博物馆 · 文博</div>
+      <div class="proj-date">2023.04 — 2025.11</div>
+    </div>
+    <div class="proj-role">深圳市元象科技有限公司 · 场景地编</div>
+    <ul class="points">
+      <li class="spec"><b>唐代长安城级</b> · <b>平方公里级</b> · 资产 <b>100+</b> · 稳定 <b>30 帧</b></li>
+      <li><b>独立主导</b>：<b>唐代写实场景</b>从白盒到灯光后期全流程。</li>
+      <li>参与前期策划：与策划、主美、TA / 引擎、客户端评估效果落地与技术可行性，搭建 demo 验证方案。</li>
+    </ul>
+    <div class="tags"><span class="tag">独立主导</span><span class="tag">UE5</span><span class="tag">写实风格</span><span class="tag">Demo 验证</span><span class="tag">过场 Sequence</span></div>
+    <div class="stack">
+      <figure class="shot"><img src="assets/hero_street.jpg" data-gallery="g2" data-i="0" loading="lazy" alt="《壁画那边是唐朝》唐代宫城夜景"><figcaption>唐代宫城夜景 · 楼阁长廊与灯笼</figcaption></figure>
+      <figure class="shot"><img src="assets/sunset_lowres.jpg" data-gallery="g2" data-i="1" loading="lazy" alt="《壁画那边是唐朝》黄昏长安"><figcaption>黄昏长安 · 孔明灯与远眺镜头</figcaption></figure>
+    </div>
+  </article>
 
-    <!-- 登月 -->
-    <article class="card">
-      <div class="media" data-gallery="g3" data-i="0">
-        <img src="assets/icecave.jpg" alt="登月场景">
-        <div class="cap">登月 · 冰晶洞窟 / 基地平台</div>
-        <div class="count">1 张图</div>
-      </div>
-      <div class="card-body">
-        <div class="card-head">
-          <div class="card-title">登月</div>
-          <div class="card-sub">深圳市元象科技有限公司</div>
-          <div class="card-date">—</div>
-        </div>
-        <div class="card-role">深圳市元象科技有限公司 · 场景地编</div>
-        <ul class="points">
-          <li>冰晶洞窟与基地平台场景，冷色调体积光与冰雪材质表现。</li>
-        </ul>
-        <div class="tags"><span class="tag">UE</span><span class="tag">冰雪材质</span><span class="tag">体积光</span></div>
-      </div>
-    </article>
+  <!-- 03 登月 -->
+  <article class="proj">
+    <div class="proj-head">
+      <div class="proj-title">登月</div>
+      <div class="proj-sub">深圳市元象科技有限公司</div>
+    </div>
+    <div class="proj-role">深圳市元象科技有限公司 · 场景地编</div>
+    <ul class="points">
+      <li>冰晶洞窟与基地平台场景，冷色调体积光与冰雪材质表现。</li>
+    </ul>
+    <div class="tags"><span class="tag">UE</span><span class="tag">冰雪材质</span><span class="tag">体积光</span></div>
+    <div class="stack">
+      <figure class="shot"><img src="assets/icecave.jpg" data-gallery="g3" data-i="0" loading="lazy" alt="登月冰晶洞窟与基地平台"><figcaption>冰晶洞窟 · 环形基地平台</figcaption></figure>
+    </div>
+  </article>
 
-    <!-- 待补 -->
-    <article class="card coming">
-      <div class="media">待补充（古风山寺）</div>
-      <div class="card-body">
-        <div class="card-head"><div class="card-title">古风山寺场景</div><div class="card-sub">个人全流程作品</div><div class="card-date">2026.03 — 至今</div></div>
-        <div class="card-role">独立制作 · 建模 / 材质 / 地编 / 灯光</div>
-        <ul class="points">
-          <li>独立打通全流程：白盒 → Maya 建模 → UV 拆分 → ZBrush 雕刻 → SP 贴图 → SD 连续贴图 → UE 地编搭建。</li>
-        </ul>
-        <div class="tags"><span class="tag">待补图</span></div>
-      </div>
-    </article>
+  <!-- 04 待补：古风山寺 -->
+  <article class="proj coming">
+    <div class="proj-head"><div class="proj-title">古风山寺场景</div><div class="proj-sub">个人全流程作品</div><div class="proj-date">2026.03 — 至今</div></div>
+    <div class="proj-role">独立制作 · 建模 / 材质 / 地编 / 灯光</div>
+    <ul class="points">
+      <li>独立打通全流程：白盒 → Maya 建模 → UV 拆分 → ZBrush 雕刻 → SP 贴图 → SD 连续贴图 → UE 地编搭建。</li>
+    </ul>
+    <div class="tags"><span class="tag">待补图</span></div>
+    <div class="stack"><div class="ph">截图待补充</div></div>
+  </article>
 
-    <article class="card coming">
-      <div class="media">待补充（影视剧）</div>
-      <div class="card-body">
-        <div class="card-head"><div class="card-title">《星落凝成糖》《重紫》</div><div class="card-sub">影视剧 · UE 场景</div><div class="card-date">2022.05 — 2023.01</div></div>
-        <div class="card-role">杭州时光新影科技有限公司 · UE 初级地编</div>
-        <ul class="points">
-          <li>UE 场景搭建与定版；用 Maya 完成摄像机匹配与镜头制作，实现实拍与 UE 场景的<b>实时合成</b>并输出 Sequence 渲染。</li>
-        </ul>
-        <div class="tags"><span class="tag">待补图</span></div>
-      </div>
-    </article>
+  <!-- 05 待补：影视剧 -->
+  <article class="proj coming">
+    <div class="proj-head"><div class="proj-title">《星落凝成糖》《重紫》</div><div class="proj-sub">影视剧 · UE 场景</div><div class="proj-date">2022.05 — 2023.01</div></div>
+    <div class="proj-role">杭州时光新影科技有限公司 · UE 初级地编</div>
+    <ul class="points">
+      <li>UE 场景搭建与定版；用 Maya 完成摄像机匹配与镜头制作，实现实拍与 UE 场景的<b>实时合成</b>并输出 Sequence 渲染。</li>
+    </ul>
+    <div class="tags"><span class="tag">待补图</span></div>
+    <div class="stack"><div class="ph">截图待补充</div></div>
+  </article>
 
+  <div class="hint">图片全部直接展开显示，点击任意图片可放大（方向键翻页）</div>
+</section>
+
+<section class="block wrap" id="reel">
+  <h2 class="sec-title">宣传片 <em>Showreel</em></h2>
+  <div class="reel">
+    <video src="assets/qz_showcase_1080p.mp4" poster="assets/qz_video_poster.jpg" controls preload="metadata" playsinline></video>
+    <div class="vnote">《全职高手》宣传片 · 1080p · 26 秒 · 内景动线 + 外景全景</div>
   </div>
 </section>
 
