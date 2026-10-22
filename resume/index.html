@@ -1,0 +1,1483 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="zhusha" data-tools="off" data-style="L"><head>
+<meta charset="UTF-8">
+<title>陈冠宇 · UE 场景地编｜灯光师 · 简历</title>
+<meta name="author" content="陈冠宇">
+<meta name="description" content="UE 场景地编 / 灯光师 · 4 年 UE 场景制作 · 6 个已上线项目">
+<style>
+/* ============================================================
+   简历编辑器 —— 所见即所得
+   · 点纸面任意文字即可直接修改
+   · 标题右侧 [+] 加条目，条目右上角 [×] 删除
+   · 改完点右上角「导出 PDF」
+   · 所有改动自动保存在本机浏览器，刷新不丢
+   ============================================================ */
+
+/* ---------- 1. 主题配色 ---------- */
+:root{
+  --ink:#0e1e26; --ink-2:#15323f;
+  --accent:#22b8cf; --accent-ink:#0b7e91;
+  --text:#22282f; --muted:#7b8794;
+  --line:#e4e9ee; --paper:#ffffff;
+  --side:#f1efeb;          /* 左侧栏底色（想再深/再浅就改这一处）*/
+}
+html[data-theme="zhusha"]{ --ink:#241713; --ink-2:#3d241a; --accent:#e0653c; --accent-ink:#b8431f; }
+html[data-theme="shimo"]{  --ink:#15171c; --ink-2:#252833; --accent:#7c96ff; --accent-ink:#4055cc; }
+html[data-theme="su"]{ --ink:#17171a; --ink-2:#26262b; --accent:#8d8577; --accent-ink:#5f584d; --text:#1a1a1d; --muted:#6d6d73; --line:#e0dedb; }
+
+/* ---------- 2. 基础 ---------- */
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --f-serif:"Noto Serif SC","Microsoft YaHei",serif;
+  --f-sans:"Microsoft YaHei","Noto Sans SC","DengXian",sans-serif;
+  --f-num:"DengXian","Microsoft YaHei",sans-serif;
+}
+body{
+  font-family:var(--f-sans);
+  background:#e9edf1;
+  padding:var(--toolbarH, 76px) 16px 40px;   /* --toolbarH 由 JS 按工具栏真实高度写入 */
+  display:flex; flex-direction:column; align-items:center;
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ---------- 3. 纸张 ---------- */
+.page{
+  width:210mm; height:297mm;
+  background:var(--paper);
+  display:flex; flex-direction:column;
+  position:relative;
+  /* overflow 保持 visible：加内容超出时，超出的部分仍可见（提示用户已超页） */
+  box-shadow:0 18px 50px rgba(15,30,40,.20), 0 2px 6px rgba(15,30,40,.08);
+}
+/* A4 底线提示（仅屏幕显示） */
+.page::after{
+  content:''; position:absolute; top:297mm; left:-10px; right:-10px;
+  height:0; border-top:1px dashed rgba(225,85,85,.55);
+  pointer-events:none;
+}
+
+/* ---------- 4a. 顶部通栏（杂志封面式） ---------- */
+.masthead{
+  flex-shrink:0;
+  background:linear-gradient(115deg,var(--ink) 0%,var(--ink) 46%,var(--ink-2) 100%);
+  padding:26px 30px 22px 21px;
+  display:flex; justify-content:space-between; align-items:center; gap:24px;
+  position:relative;
+}
+.masthead::after{
+  content:''; position:absolute; left:0; bottom:0; width:100%; height:3px;
+  background:linear-gradient(90deg,var(--accent) 0%,var(--accent) 17%,rgba(255,255,255,.10) 17%,rgba(255,255,255,.10) 100%);
+}
+.mh-name{
+  font-family:var(--f-serif); font-size:54px; font-weight:700;
+  letter-spacing:.07em; color:#fff; line-height:.95;
+} font-weight:700;
+  letter-spacing:.10em; color:#fff; line-height:1;
+}
+.mh-role{
+  font-size:14.5px; color:var(--accent); letter-spacing:.15em;
+  margin-top:16px; font-weight:600;
+}
+.mh-tag{
+  font-size:11px; color:rgba(255,255,255,.72); letter-spacing:.06em;
+  margin-top:10px; line-height:1.5;
+}
+.mh-nameline{ display:flex; align-items:baseline; gap:16px; flex-wrap:wrap; }
+.mh-basic{
+  font-size:12px; color:rgba(255,255,255,.62); letter-spacing:.06em;
+  font-weight:500; white-space:nowrap;
+}
+.mh-role{ font-size:14.5px; color:var(--accent); letter-spacing:.15em; margin-top:16px; font-weight:600; }
+.mh-photo{ flex-shrink:0; }
+.mh-photo .avatar-img{ margin:0; width:98px; height:98px; }
+
+/* 通栏下方的双栏容器 */
+.body{ flex:1; display:flex; min-height:0; }
+
+/* ---------- 4b. 左侧深色栏 ---------- */
+.sidebar{
+  width:213px; flex:0 0 213px;
+  background:var(--side);
+  color:var(--ink);
+  border-right:1px solid var(--line);
+  padding:22px 21px 20px;
+  display:flex; flex-direction:column;
+  position:relative; overflow:hidden;
+}
+.sidebar::before{ display:none; }
+.sidebar::after{
+  content:''; position:absolute; left:0; bottom:0;
+  width:100%; height:5px;
+  background:linear-gradient(90deg,var(--accent),transparent 85%);
+  opacity:.85;
+}
+.sidebar > *{position:relative; z-index:1; flex-shrink:0;}
+
+.avatar{
+  width:90px; height:90px; border-radius:20px;
+  margin:0 auto 20px;
+  display:grid; place-items:center;
+  font-size:27px; font-weight:700; letter-spacing:.06em; color:#fff;
+  background:linear-gradient(140deg,rgba(255,255,255,.16),rgba(255,255,255,.03));
+  border:2px solid var(--accent);
+  box-shadow:0 0 0 6px rgba(255,255,255,.055);
+  cursor:pointer;
+}
+.avatar:hover{ filter:brightness(1.25); }
+.avatar-img{
+  width:90px; height:90px; border-radius:20px; object-fit:cover;
+  margin:0 auto 20px; display:block; cursor:pointer;
+  border:2px solid var(--accent);
+  box-shadow:0 0 0 6px rgba(255,255,255,.055);
+}
+
+.s-name{
+  font-family:var(--f-serif); font-size:38px; font-weight:700;
+  letter-spacing:.08em; text-align:center; line-height:1.1;
+}
+.s-name::after{
+  content:''; display:block; width:34px; height:2.5px;
+  background:var(--accent); margin:11px auto 0; border-radius:2px;
+}
+.s-en{ text-align:center; font-size:9.5px; letter-spacing:.34em; color:rgba(255,255,255,.52); margin-top:8px; text-transform:uppercase; }
+/* 备用：姓名下方的基本信息行（性别/生日等） */
+.s-meta{ text-align:center; font-size:10.5px; letter-spacing:.14em; color:rgba(255,255,255,.63); margin-top:9px; }
+.s-role{ text-align:center; font-size:11.5px; color:var(--accent); letter-spacing:.12em; margin-top:8px; font-weight:600; }
+.s-rule{ height:1px; margin:24px 0 22px; background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent); }
+
+.s-title{
+  font-size:10px; font-weight:700; letter-spacing:.06em;
+  color:var(--accent-ink);
+  display:flex; align-items:baseline; gap:7px;
+  margin-bottom:11px; padding-bottom:5px;
+  border-bottom:1px solid var(--line);
+  position:relative;
+}
+.s-title::after{ display:none; }
+.title em, .s-title em{
+  font-style:normal; font-weight:700; letter-spacing:.16em;
+  text-transform:uppercase; opacity:.62;
+}
+.title em{ font-size:9px; }
+.s-title em{ font-size:8.5px; letter-spacing:.18em; }
+.s-block{margin-bottom:31px;}
+
+.contact li{
+  list-style:none; display:flex; align-items:flex-start; gap:9px;
+  font-size:10.5px; color:#3c4753;
+  margin-bottom:14px; line-height:1.45; word-break:break-all;
+  position:relative;
+}
+.contact li:last-child{margin-bottom:0;}
+.contact svg{
+  width:13px; height:13px; flex:0 0 13px; margin-top:1.5px;
+  stroke:var(--accent-ink); fill:none; stroke-width:1.9;
+  stroke-linecap:round; stroke-linejoin:round;
+}
+
+.skill{margin-bottom:11px; position:relative;}
+.skill:last-child{margin-bottom:0;}
+.skill-top{ display:flex; justify-content:space-between; align-items:baseline; font-size:10.5px; color:rgba(255,255,255,.87); margin-bottom:6px; }
+.skill-top b{font-weight:500; color:rgba(255,255,255,.66); font-size:10px; letter-spacing:.04em;}
+.skill-bar{height:4px; background:rgba(255,255,255,.14); border-radius:3px; overflow:hidden;}
+.skill-bar i{display:block; height:100%; border-radius:3px; background:var(--accent);}
+
+/* 技能·工具配对清单 */
+.skill2{counter-reset:sk;}
+.skill2 li{
+  list-style:none; display:grid; grid-template-columns:auto 1fr;
+  column-gap:9px; row-gap:2px; margin-bottom:18px;
+}
+.skill2 li::before{
+  content:'—';
+  grid-row:1 / span 2;
+  font-size:10.5px; color:var(--accent-ink); opacity:.75;
+  line-height:1.45;
+}
+.skill2 li span{ font-size:10.5px; color:var(--ink); line-height:1.3; }
+
+.skill2 li b{ font-weight:400; font-size:10px; color:var(--accent-ink); letter-spacing:.01em; line-height:1.35; }
+
+.nums{display:grid; grid-template-columns:1fr 1fr; gap:9px;}
+.num{ background:#fff; border:1px solid var(--line); border-radius:6px; padding:15px 8px 13px; text-align:center; }
+.num b{
+  display:block; font-family:var(--f-serif); font-size:26px;
+  color:var(--accent-ink); line-height:1.1; letter-spacing:.01em;
+}
+.num span{
+  display:block; margin-top:5px;
+  font-size:9px; color:#7b8794; letter-spacing:.04em;
+}
+
+.tags{display:flex; flex-wrap:wrap; gap:6px;}
+.tags span{
+  font-size:9.5px; padding:3.5px 8px; border-radius:3px;
+  color:rgba(255,255,255,.86);
+  background:rgba(255,255,255,.085);
+  border:1px solid rgba(255,255,255,.10);
+  letter-spacing:.02em; position:relative;
+}
+
+.lang li{ list-style:none; display:flex; justify-content:space-between; align-items:baseline; gap:8px; font-size:10.5px; color:var(--ink); margin-bottom:14px; position:relative; }
+.lang li:last-child{margin-bottom:0;}
+.lang li b{ font-weight:400; font-size:9.5px; color:#7b8794; }
+
+.s-foot{ margin-top:auto; padding-top:14px; font-size:9px; color:rgba(255,255,255,.3); letter-spacing:.1em; }
+
+/* ---------- 5. 右侧主内容 ---------- */
+.main{ flex:1; min-width:0; padding:28px 30px 22px; display:flex; flex-direction:column; counter-reset:sec; }
+.main > *{flex-shrink:0;}
+
+.intent{ border-left:3px solid var(--accent); padding:2px 0 2px 15px; margin-bottom:26px; }
+.intent h2{ font-family:var(--f-serif); font-size:15.5px; font-weight:700; letter-spacing:.05em; color:var(--ink); margin-bottom:9px; }
+.intent p{ font-size:11.4px; line-height:1.86; color:#3c4753; text-align:justify; }
+
+.title{
+  font-size:15px; font-weight:700; letter-spacing:.05em;
+  color:var(--accent-ink);
+  display:flex; align-items:baseline; gap:9px;
+  margin-bottom:20px; padding-bottom:11px; padding-top:6px;
+  border-bottom:1px solid var(--line);
+  position:relative;
+}
+.title::before{
+  counter-increment:sec;
+  content:counter(sec,decimal-leading-zero);
+  position:absolute; right:-2px; top:-20px;
+  font-family:var(--f-serif); font-size:76px; font-weight:700;
+  line-height:.8; color:var(--accent-ink); opacity:.075;
+  letter-spacing:-.05em; pointer-events:none; z-index:0;
+}
+.title::after{ display:none; }
+/* 宣言区（参考杂志人物页） */
+.statement{
+  margin-bottom:34px; padding-bottom:24px;
+  border-bottom:1px solid var(--line);
+}
+.statement p{
+  font-family:var(--f-serif); font-size:24px; font-weight:700;
+  line-height:1.44; color:var(--ink); letter-spacing:.01em;
+}
+
+.section{margin-bottom:38px;}
+
+.tl{position:relative; padding-left:19px;}
+.tl::before{
+  content:''; position:absolute; left:-0.5px; top:6px; bottom:8px;
+  width:1.5px;
+  background:linear-gradient(180deg,color-mix(in srgb,var(--accent) 55%,transparent),#ccd5de 22%,#ccd5de 88%,transparent);
+}
+/* 经历条目：两栏式 —— 左栏 时间 / 城市，右栏 公司 / 职位 / 要点 */
+.tl-item{
+  position:relative; margin-bottom:26px;
+  display:grid; grid-template-columns:96px 1fr; column-gap:12px;
+  align-items:start;
+}
+.tl-item:last-child{margin-bottom:0;}
+.tl-item::before{
+  content:''; position:absolute; left:-22px; top:4.5px;
+  width:6.5px; height:6.5px; background:var(--accent); border-radius:50%;
+}
+.tl-date{
+  grid-column:1; grid-row:1;
+  font-family:var(--f-num); font-size:10.2px; font-weight:600;
+  color:var(--ink); letter-spacing:.02em; line-height:1.5; white-space:nowrap;
+}
+.tl-city{ grid-column:1; grid-row:2; font-size:10.5px; color:var(--muted); letter-spacing:.08em; margin-top:8px; }
+.tl-co{
+  grid-column:2; grid-row:1;
+  font-size:13.5px; font-weight:700; color:var(--ink); letter-spacing:.01em; line-height:1.5;
+}
+.tl-role{ grid-column:2; grid-row:2; font-size:12.5px; font-weight:600; color:var(--accent-ink); letter-spacing:.03em; margin-top:8px; }
+.tl-item > ul.dash{ grid-column:2; grid-row:3; margin-top:9px; }
+
+ul.dash{margin-top:8px;}
+ul.dash li{
+  list-style:none; position:relative; padding-left:15px;
+  font-size:11.2px; line-height:1.78; color:#3c4753; margin-bottom:5px;
+}
+ul.dash li:last-child{margin-bottom:0;}
+ul.dash li::before{
+  content:''; position:absolute; left:3px; top:8.2px;
+  width:4.6px; height:4.6px; border-radius:50%;
+  background:var(--accent); opacity:.85;
+}
+ul.dash li b{color:var(--ink); font-weight:600;}
+
+.proj{ border-left:2px solid var(--accent); padding:0 0 0 13px; margin-bottom:17px; position:relative; }
+.proj:last-child{margin-bottom:0;}
+.proj-head{display:flex; justify-content:space-between; align-items:baseline; gap:10px;}
+.proj-name{font-size:12px; font-weight:700; color:var(--ink);}
+.proj-meta{font-family:var(--f-num); font-size:10px; color:var(--muted); white-space:nowrap;}
+.proj-tag{
+  display:inline-block; font-size:9.5px; color:var(--accent-ink);
+  background:color-mix(in srgb,var(--accent) 12%,transparent);
+  padding:2px 7px; border-radius:3px; margin:7px 5px 0 0; letter-spacing:.02em;
+  position:relative;
+}
+.proj p{font-size:11px; line-height:1.74; color:#3c4753; margin-top:7px;}
+
+.award li{ list-style:none; display:flex; gap:12px; align-items:baseline; font-size:11px; line-height:1.7; color:#3c4753; margin-bottom:5px; position:relative; }
+.award li:last-child{margin-bottom:0;}
+.award .aw-d{ flex:0 0 44px; font-family:var(--f-num); font-size:10px; font-weight:600; color:var(--accent-ink); letter-spacing:.03em; }
+
+.edu{ position:relative; padding-left:19px; display:grid; grid-template-columns:96px 1fr; column-gap:12px; align-items:start; }
+.edu::before{ content:''; position:absolute; left:-3px; top:4.5px; width:6.5px; height:6.5px; background:var(--accent); border-radius:50%; }
+.edu-l{ grid-column:2; grid-row:1; font-size:13.5px; font-weight:700; color:var(--ink); line-height:1.5; }
+.edu-detail{ grid-column:2; grid-row:2; font-size:11px; color:#5c6774; letter-spacing:.02em; margin-top:8px; }
+.edu-badge{
+  display:inline-block; margin-left:8px; padding:1.5px 7px; border-radius:3px;
+  font-size:9.5px; font-weight:600; letter-spacing:.04em; vertical-align:1px;
+  color:var(--accent-ink); background:color-mix(in srgb,var(--accent) 16%,transparent);
+}
+.edu-ico{ width:14px; height:14px; margin-right:7px; vertical-align:-2px; display:inline-block; background-size:contain; background-repeat:no-repeat; background-position:center; background-image:url(scau-moqing.png); }
+html[data-theme="zhusha"] .edu-ico{ background-image:url(scau-zhusha.png); }
+html[data-theme="shimo"]  .edu-ico{ background-image:url(scau-shimo.png); }
+
+/* ============================================================
+   6. 编辑层：hover 高亮 / 焦点高亮 / 增删按钮
+   ============================================================ */
+[contenteditable="true"]{
+  outline:none; border-radius:2px;
+  transition:background .15s, box-shadow .15s;
+  cursor:text;
+}
+[contenteditable="true"]:hover{
+  background:color-mix(in srgb,var(--accent) 16%,transparent);
+  box-shadow:0 0 0 2px color-mix(in srgb,var(--accent) 22%,transparent);
+}
+[contenteditable="true"]:focus{
+  background:color-mix(in srgb,var(--accent) 22%,transparent);
+  box-shadow:0 0 0 2px color-mix(in srgb,var(--accent) 60%,transparent);
+}
+
+/* 删除按钮：条目右上角 */
+.del-btn{
+  position:absolute; top:-5px; right:-5px; z-index:6;
+  width:16px; height:16px; border-radius:50%;
+  background:#e5484d; color:#fff; border:1.5px solid #fff;
+  font-size:11px; line-height:1; font-family:var(--f-sans);
+  display:grid; place-items:center; cursor:pointer;
+  opacity:0; transition:opacity .15s; padding:0;
+}
+.tl-item:hover > .del-btn, .proj:hover > .del-btn,
+.skill:hover > .del-btn, .award li:hover > .del-btn,
+.contact li:hover > .del-btn, .lang li:hover > .del-btn,
+.tags span:hover > .del-btn, .num:hover > .del-btn{ opacity:1; }
+
+/* 添加按钮：区块标题右侧 */
+.add-btn{
+  position:absolute; right:0; top:50%; transform:translateY(-50%);
+  width:18px; height:18px; border-radius:50%;
+  border:1px solid currentColor; background:transparent; color:inherit;
+  font-size:13px; line-height:1; font-family:var(--f-sans);
+  display:grid; place-items:center; cursor:pointer;
+  opacity:.4; transition:.15s; padding:0; z-index:6;
+}
+.add-btn:hover{ opacity:1; background:var(--accent); color:#fff; border-color:var(--accent); }
+.sidebar .add-btn:hover{ background:#fff; color:var(--ink); border-color:#fff; }
+
+/* ---------- 7. 工具栏（停在顶部） ---------- */
+.toolbar{
+  position:fixed; top:0; left:0; right:0; z-index:99;
+  display:flex; gap:8px; align-items:center; justify-content:center;
+  flex-wrap:wrap;
+  background:rgba(255,255,255,.94); backdrop-filter:blur(12px);
+  padding:10px 14px;
+  box-shadow:0 2px 18px rgba(15,30,40,.10);
+  border-bottom:1px solid rgba(15,30,40,.07);
+}
+.toolbar button{
+  font-family:var(--f-sans); font-size:12.5px; cursor:pointer;
+  border:1px solid var(--line); background:#fff; color:#2b3540;
+  padding:7px 13px; border-radius:8px; transition:.18s;
+}
+.toolbar button:hover{border-color:var(--accent); color:var(--accent-ink);}
+.toolbar button.on{background:var(--ink); color:#fff; border-color:var(--ink);}
+.toolbar .print{ background:var(--accent-ink); color:#fff; border-color:var(--accent-ink); font-weight:600; }
+.toolbar .print:hover{ filter:brightness(1.15); color:#fff; }
+.toolbar .sep{width:1px; height:20px; background:var(--line);}
+/* 提示独占一行并居中：窗口再窄也不会被挤掉/切掉 */
+.toolbar .tb-tip{ flex:0 0 100%; min-width:0; text-align:center; font-size:11.5px; color:#8a97a4; margin:5px 0 0; }
+
+/* 溢出警告 */
+#warn{
+  position:fixed; left:50%; transform:translateX(-50%); bottom:14px; z-index:99;
+  background:#fee; color:#b3261e; border:1px solid #f3b6b6;
+  padding:9px 16px; border-radius:9px; font-size:12.5px; font-weight:600;
+  box-shadow:0 6px 20px rgba(180,40,40,.18);
+}
+#stale{
+  position:fixed; left:50%; transform:translateX(-50%); top:calc(var(--toolbarH, 76px) + 10px);
+  z-index:98; display:flex; gap:10px; align-items:center;
+  background:#1f2b33; color:#fff; padding:8px 12px; border-radius:9px;
+  font-size:12px; box-shadow:0 6px 20px rgba(0,0,0,.22);
+}
+#stale button{
+  font-family:var(--f-sans); font-size:12px; cursor:pointer; padding:4px 10px; border-radius:6px;
+  border:1px solid rgba(255,255,255,.4); background:transparent; color:#fff;
+}
+#stale button:hover{ background:rgba(255,255,255,.16); }
+#stale #stale-restore{ background:var(--accent); border-color:var(--accent); font-weight:600; }
+@media print{ #stale{ display:none !important; } }
+#saved{
+  position:fixed; left:50%; transform:translateX(-50%); bottom:14px; z-index:98;
+  background:#1f2b33; color:#fff; padding:8px 16px; border-radius:9px;
+  font-size:12px; opacity:0; transition:opacity .3s; pointer-events:none;
+}
+#buildtag{ position:fixed; right:10px; bottom:8px; font-size:9.5px; color:#b9c0c8; font-family:ui-monospace,Consolas,monospace; z-index:99; pointer-events:none; }
+
+
+/* ---------- 8. 打印 ---------- */
+@page{size:A4; margin:0;}
+@media print{
+  body{background:#fff; padding:0; display:block;}
+  .toolbar, .add-btn, .del-btn, #warn, #saved, #buildtag{ display:none !important; }
+  .page{ width:210mm; height:297mm; min-height:0; overflow:hidden; box-shadow:none; margin:0; }
+  .page::after{ display:none; }
+  [contenteditable="true"]{ background:none !important; box-shadow:none !important; }
+  html,body{-webkit-print-color-adjust:exact; print-color-adjust:exact;}
+}
+
+/* ═══ 风格 A ═══ */
+html[data-style="A"]{ --accent:#1d1d1f; --accent-ink:#1d1d1f; --line:#ececf0; --muted:#86868b; }
+html[data-style="A"] .masthead{ background:#fff !important; padding:54px 58px 24px !important; display:block !important; }
+html[data-style="A"] .masthead::after{ display:none !important; }
+html[data-style="A"] .mh-name{ font-size:50px !important; font-weight:600 !important; color:#1d1d1f !important; letter-spacing:-.015em !important; }
+html[data-style="A"] .mh-role{ font-size:13px !important; color:#1d1d1f !important; letter-spacing:.05em !important; margin-top:15px !important; font-weight:500 !important; }
+html[data-style="A"] .mh-tag{ font-size:12px !important; color:#86868b !important; margin-top:8px !important; }
+html[data-style="A"] .mh-photo .avatar-img{ width:76px !important; height:76px !important; border-radius:50% !important; border:none !important; box-shadow:none !important; }
+html[data-style="A"] .body{ display:block !important; }
+html[data-style="A"] .sidebar{ background:#fff !important; border-right:none !important; width:auto !important; flex:none !important; display:flex !important; flex-direction:row !important; flex-wrap:wrap !important; gap:0 44px !important; padding:8px 58px 0 !important; }
+html[data-style="A"] .s-block{ margin-bottom:26px !important; }
+html[data-style="A"] .s-title{ border-bottom:none !important; padding-bottom:0 !important; font-size:11.5px !important; }
+html[data-style="A"] .s-title em{ display:none !important; }
+html[data-style="A"] .skill2 li{ border-bottom:none !important; margin-bottom:0 !important; padding:3px 0 !important; display:flex !important; gap:8px !important; }
+html[data-style="A"] .skill2 li::before{ display:none !important; }
+html[data-style="A"] .skill2 li b{ font-size:10.5px !important; }
+html[data-style="A"] .num{ background:transparent !important; border:none !important; text-align:left !important; padding:0 !important; }
+html[data-style="A"] .num b{ font-family:inherit !important; font-size:20px !important; }
+html[data-style="A"] .nums{ display:flex !important; gap:26px !important; }
+html[data-style="A"] .main{ padding:6px 58px 40px !important; }
+html[data-style="A"] .title{ border-bottom:none !important; font-size:15px !important; padding-bottom:0 !important; letter-spacing:.02em !important; }
+html[data-style="A"] .title::before{ display:none !important; }
+html[data-style="A"] .tl-item{ margin-bottom:34px !important; }
+
+/* ═══ 风格 B ═══ */
+html[data-style="B"]{ --accent:#9a7b4f; --accent-ink:#7d6238; --line:#ddd5c8; --muted:#8b8378; }
+html[data-style="B"] .page{ background:#faf7f2 !important; }
+html[data-style="B"] .masthead{ background:#1b1916 !important; padding:42px 46px 34px !important; }
+html[data-style="B"] .masthead::after{ background:linear-gradient(90deg,#c8a15a 0%,#c8a15a 17%,rgba(255,255,255,.12) 17%,rgba(255,255,255,.12) 100%) !important; height:4px !important; }
+html[data-style="B"] .mh-name{ font-size:44px !important; letter-spacing:.16em !important; font-weight:700 !important; }
+html[data-style="B"] .mh-role{ font-size:11.5px !important; letter-spacing:.32em !important; color:#c8a15a !important; }
+html[data-style="B"] .mh-tag{ font-size:11px !important; letter-spacing:.06em !important; color:rgba(255,255,255,.6) !important; }
+html[data-style="B"] .sidebar{ background:#f0eae0 !important; width:206px !important; flex:0 0 206px !important; border-right:none !important; }
+html[data-style="B"] .s-title{ font-family:var(--f-serif) !important; font-size:12.5px !important; letter-spacing:.12em !important; border-bottom:1px solid #cdc2ae !important; padding-bottom:7px !important; }
+html[data-style="B"] .s-title em{ letter-spacing:.1em !important; }
+html[data-style="B"] .main{ padding:32px 42px 26px !important; }
+html[data-style="B"] .sidebar .s-block{ margin-bottom:22px !important; }
+html[data-style="B"] .sidebar .skill2 li{ padding:4px 0 !important; }
+html[data-style="B"] .sidebar .s-title{ margin-bottom:10px !important; padding-bottom:6px !important; }
+html[data-style="B"] .sidebar .contact li{ margin-bottom:9px !important; }
+
+html[data-style="B"] .title{ font-family:var(--f-serif) !important; font-size:15px !important; letter-spacing:.1em !important; border-bottom:1.5px solid #cdc2ae !important; padding-bottom:9px !important; }
+html[data-style="B"] .title::before{ font-size:42px !important; opacity:.16 !important; top:-12px !important; right:0 !important; }
+html[data-style="B"] .tl-role{ font-size:14px !important; }
+html[data-style="B"] .statement p{ font-size:23px !important; font-family:var(--f-serif) !important; letter-spacing:.02em !important; }
+
+/* ═══ 风格 C ═══ */
+html[data-style="C"]{ --accent:#ff5c35; --accent-ink:#e04a24; --line:#e6e6e6; }
+html[data-style="C"] .masthead{ background:#0c0c0c !important; padding:58px 50px 46px !important; }
+html[data-style="C"] .masthead::after{ background:linear-gradient(90deg,#ff5c35 0%,#ff5c35 12%,rgba(255,255,255,.10) 12%,rgba(255,255,255,.10) 100%) !important; height:5px !important; }
+html[data-style="C"] .mh-name{ font-size:58px !important; font-weight:800 !important; letter-spacing:-.005em !important; }
+html[data-style="C"] .mh-role{ color:#ff5c35 !important; letter-spacing:.22em !important; font-size:13px !important; }
+html[data-style="C"] .sidebar{ background:#141414 !important; width:216px !important; flex:0 0 216px !important; border-right:none !important; }
+html[data-style="C"] .sidebar .s-title{ color:#ff5c35 !important; border-bottom:1px solid #2e2e2e !important; }
+html[data-style="C"] .sidebar .s-title::after{ display:none !important; }
+html[data-style="C"] .sidebar .contact li span{ color:#e8e8e8 !important; }
+html[data-style="C"] .sidebar .contact svg{ stroke:#ff5c35 !important; }
+html[data-style="C"] .sidebar .skill2 li{ border-bottom-color:#262626 !important; }
+html[data-style="C"] .sidebar .skill2 li span{ color:#ededed !important; }
+html[data-style="C"] .sidebar .skill2 li b{ color:#8a8a8a !important; }
+html[data-style="C"] .sidebar .skill2 li::before{ color:#ff5c35 !important; }
+html[data-style="C"] .sidebar .lang li span{ color:#ededed !important; }
+html[data-style="C"] .sidebar .lang li b{ color:#8a8a8a !important; }
+html[data-style="C"] .sidebar .num{ background:#1b1b1b !important; border:1px solid #2b2b2b !important; }
+html[data-style="C"] .sidebar .num b{ color:#ff5c35 !important; }
+html[data-style="C"] .sidebar .num span{ color:#9a9a9a !important; }
+html[data-style="C"] .main{ padding:38px 46px 30px !important; }
+html[data-style="C"] .sidebar .s-block{ margin-bottom:22px !important; }
+html[data-style="C"] .sidebar .skill2 li{ padding:4px 0 !important; }
+html[data-style="C"] .sidebar .s-title{ margin-bottom:10px !important; padding-bottom:6px !important; }
+html[data-style="C"] .sidebar .contact li{ margin-bottom:9px !important; }
+
+html[data-style="C"] .title::before{ color:#ff5c35 !important; opacity:.15 !important; font-size:62px !important; }
+html[data-style="C"] .tl-role{ font-size:14px !important; font-weight:800 !important; }
+html[data-style="C"] .statement p{ font-size:27px !important; font-weight:800 !important; }
+/* 风格 C 主栏较窄：两栏经历再压紧一点，保证仍是一页 */
+html[data-style="C"] ul.dash li{ line-height:1.72 !important; margin-bottom:3px !important; }
+html[data-style="C"] .tl-item{ margin-bottom:20px !important; }
+
+/* ═══ 风格 B/C 侧栏溢出修正 ═══ */
+html[data-style="B"] .sidebar .s-block{ margin-bottom:18px !important; }
+html[data-style="B"] .sidebar .skill2 li{ padding:2.5px 0 !important; }
+html[data-style="B"] .sidebar .s-title{ margin-bottom:8px !important; padding-bottom:5px !important; }
+html[data-style="B"] .sidebar .contact li{ margin-bottom:8px !important; }
+html[data-style="C"] .sidebar .s-block{ margin-bottom:15px !important; }
+html[data-style="C"] .sidebar .skill2 li{ padding:2px 0 !important; }
+html[data-style="C"] .sidebar .s-title{ margin-bottom:8px !important; padding-bottom:5px !important; }
+html[data-style="C"] .sidebar .contact li{ margin-bottom:7px !important; }
+html[data-style="C"] .sidebar .lang li{ margin-bottom:9px !important; }
+
+
+/* ═══ 风格 A（极简）排版优化：四列网格 + 大留白 ═══ */
+html[data-style="A"] .sidebar{
+  display:grid !important;
+  grid-template-columns:repeat(4, 1fr) !important;
+  gap:32px 34px !important;
+  padding:16px 58px 32px !important;
+  align-items:start !important;
+}
+html[data-style="A"] .s-block{ margin-bottom:0 !important; }
+html[data-style="A"] .s-title{ margin-bottom:13px !important; }
+html[data-style="A"] .skill2 li{ padding:4.5px 0 !important; }
+html[data-style="A"] .contact li{ margin-bottom:10px !important; }
+html[data-style="A"] .lang li{ margin-bottom:8px !important; }
+html[data-style="A"] .nums{ gap:16px !important; flex-wrap:wrap !important; }
+html[data-style="A"] .num{ min-width:62px !important; }
+html[data-style="A"] .main{ padding:10px 58px 48px !important; }
+html[data-style="A"] .section{ margin-bottom:46px !important; }
+html[data-style="A"] .statement{ margin-bottom:40px !important; padding-bottom:30px !important; }
+html[data-style="A"] .tl-item{ margin-bottom:40px !important; }
+html[data-style="A"] ul.dash li{ margin-bottom:9px !important; line-height:2 !important; }
+
+
+/* ═══ 风格 A（极简）第二轮：按内容量分配列宽 + 修断行 + 去噪音 ═══ */
+html[data-style="A"] .sidebar{ grid-template-columns:1.15fr 1.25fr 1.05fr .8fr !important; gap:30px 28px !important; }
+html[data-style="A"] .contact li{ font-size:10px !important; margin-bottom:11px !important; word-break:keep-all !important; }
+html[data-style="A"] .contact li span{ white-space:nowrap !important; }
+html[data-style="A"] .skill2 li{ padding:5px 0 !important; }
+html[data-style="A"] .skill2 li span{ font-size:10.5px !important; }
+html[data-style="A"] .skill2 li b{ font-size:9.5px !important; }
+html[data-style="A"] .num span{ white-space:nowrap !important; }
+html[data-style="A"] .add-btn{ opacity:.12 !important; }
+html[data-style="A"] ul.dash li{ margin-bottom:10px !important; line-height:2.05 !important; }
+html[data-style="A"] .tl-item{ margin-bottom:42px !important; }
+html[data-style="A"] .main{ padding:10px 58px 54px !important; }
+
+
+/* ═══ 风格 A（极简）第三轮：真·留白 ═══ */
+html[data-style="A"] .sidebar{ gap:46px 40px !important; padding:26px 58px 40px !important; }
+html[data-style="A"] .s-title{ margin-bottom:16px !important; font-size:10.5px !important; letter-spacing:.08em !important; }
+html[data-style="A"] .contact li{ margin-bottom:14px !important; font-size:10px !important; }
+html[data-style="A"] .skill2 li{ padding:7px 0 !important; }
+html[data-style="A"] .lang li{ margin-bottom:11px !important; }
+html[data-style="A"] .mh-photo .avatar-img{ width:62px !important; height:62px !important; }
+html[data-style="A"] .masthead{ padding:58px 58px 30px !important; }
+html[data-style="A"] .mh-name{ font-size:46px !important; }
+html[data-style="A"] .mh-role{ margin-top:18px !important; }
+html[data-style="A"] .main{ padding:18px 58px 62px !important; }
+html[data-style="A"] .section{ margin-bottom:56px !important; }
+html[data-style="A"] .statement{ margin-bottom:46px !important; padding-bottom:34px !important; }
+html[data-style="A"] .tl-item{ margin-bottom:48px !important; }
+html[data-style="A"] ul.dash li{ margin-bottom:11px !important; line-height:2.1 !important; }
+
+
+/* ═══ 风格 A（极简）第四轮：信息带溶解为文字行 ═══ */
+html[data-style="A"] .body{ display:flex !important; flex-direction:column !important; }
+html[data-style="A"] .main{ order:1 !important; }
+html[data-style="A"] .sidebar{ order:2 !important; }
+
+html[data-style="A"] .sidebar{
+  display:block !important; background:transparent !important;
+  border-right:none !important; border-top:1px solid var(--line) !important;
+  width:auto !important; flex:none !important;
+  padding:26px 58px 44px !important;
+}
+html[data-style="A"] .s-block{ margin-bottom:16px !important; display:block !important; }
+html[data-style="A"] .s-title{
+  display:inline !important; border:none !important; padding:0 !important;
+  margin:0 12px 0 0 !important; font-size:10px !important;
+  letter-spacing:.1em !important; opacity:.55 !important;
+}
+html[data-style="A"] .s-title::after{ display:none !important; }
+html[data-style="A"] .s-title em{ display:none !important; }
+
+html[data-style="A"] .contact, html[data-style="A"] .skill2, html[data-style="A"] .lang{
+  display:inline !important;
+}
+html[data-style="A"] .contact li{
+  display:inline !important; margin:0 !important; font-size:10.5px !important;
+  color:#4a5561 !important; word-break:normal !important;
+}
+html[data-style="A"] .contact li:not(:last-child)::after{ content:' · '; color:#c2c8cf !important; }
+html[data-style="A"] .contact svg{ display:none !important; }
+html[data-style="A"] .skill2 li{
+  display:inline !important; padding:0 !important; border:none !important;
+  margin:0 !important; font-size:10.5px !important;
+}
+html[data-style="A"] .skill2 li::before{ display:none !important; }
+html[data-style="A"] .skill2 li:not(:last-child)::after{ content:' · '; color:#c2c8cf !important; }
+html[data-style="A"] .lang li{ display:inline !important; margin:0 !important; }
+html[data-style="A"] .lang li:not(:last-child)::after{ content:' · '; color:#c2c8cf !important; }
+
+html[data-style="A"] .nums{ display:inline !important; }
+html[data-style="A"] .num{
+  display:inline !important; border:none !important; background:none !important;
+  padding:0 !important; text-align:left !important;
+}
+html[data-style="A"] .num b{ display:inline !important; font-size:11px !important; font-family:inherit !important; font-weight:700 !important; }
+html[data-style="A"] .num:not(:last-child)::after{ content:' · '; color:#c2c8cf !important; }
+
+html[data-style="A"] .main{ padding:16px 58px 30px !important; }
+
+
+/* ═══ 风格 A（极简）第五轮：精简到一页 ═══ */
+/* 单栏后内容超 A4 137px → 隐藏「关键数据」和「语言」两个装饰性块 */
+html[data-style="A"] .sidebar .s-block:nth-child(3),
+html[data-style="A"] .sidebar .s-block:nth-child(4){ display:none !important; }
+/* 联系方式再加一行：把微信/城市併入 */
+html[data-style="A"] .sidebar{ padding:22px 58px 40px !important; }
+html[data-style="A"] .s-block{ margin-bottom:13px !important; }
+
+
+/* ═══ 风格 A（极简）第六轮：头像右上 + 压缩到一页 ═══ */
+html[data-style="A"] .masthead{
+  display:flex !important; flex-direction:row !important;
+  justify-content:space-between !important; align-items:center !important;
+  padding:42px 58px 24px !important; gap:28px !important;
+}
+html[data-style="A"] .mh-main{ flex:1 !important; min-width:0 !important; }
+html[data-style="A"] .mh-photo{ order:2 !important; flex:0 0 auto !important; }
+html[data-style="A"] .mh-name{ font-size:44px !important; }
+html[data-style="A"] .mh-role{ margin-top:14px !important; font-size:12.5px !important; }
+html[data-style="A"] .mh-tag{ margin-top:7px !important; font-size:11px !important; }
+html[data-style="A"] .statement{ margin-bottom:34px !important; padding-bottom:26px !important; }
+html[data-style="A"] .statement p{ font-size:21px !important; line-height:1.4 !important; }
+html[data-style="A"] .main{ padding:14px 58px 26px !important; }
+html[data-style="A"] .section{ margin-bottom:36px !important; }
+html[data-style="A"] .title{ margin-bottom:14px !important; padding-bottom:9px !important; }
+html[data-style="A"] .tl-item{ margin-bottom:32px !important; }
+html[data-style="A"] ul.dash li{ margin-bottom:7px !important; line-height:1.85 !important; }
+html[data-style="A"] .sidebar{ padding:16px 58px 30px !important; }
+
+
+/* ═══ 风格 A（极简）第七轮：把溢出真正压回一页 ═══
+   1) 关键数据里的 .num span 原本是 display:block，每个数字都强制换行 → 变成行内，省下 ~110px
+   2) 通栏 / 主区 / 信息带 的留白各收一点，整页余量 ~58px */
+html[data-style="A"] .num span{ display:inline !important; margin:0 !important; font-size:9.5px !important; }
+html[data-style="A"] .sidebar{ padding:12px 58px 18px !important; }
+html[data-style="A"] .s-block{ margin-bottom:10px !important; }
+html[data-style="A"] .masthead{ padding:32px 58px 18px !important; }
+html[data-style="A"] .mh-name{ font-size:40px !important; }
+html[data-style="A"] .mh-role{ margin-top:10px !important; }
+html[data-style="A"] .mh-tag{ margin-top:5px !important; }
+html[data-style="A"] .mh-portfolio{ margin-top:6px !important; padding:6px 15px 6px 12px !important; }
+html[data-style="A"] .main{ padding:8px 58px 16px !important; }
+html[data-style="A"] .statement{ margin-bottom:20px !important; padding-bottom:16px !important; }
+html[data-style="A"] .statement p{ font-size:20px !important; line-height:1.36 !important; }
+html[data-style="A"] .section{ margin-bottom:18px !important; }
+html[data-style="A"] .title{ margin-bottom:10px !important; padding-bottom:7px !important; }
+html[data-style="A"] .tl-item{ margin-bottom:16px !important; }
+html[data-style="A"] ul.dash li{ margin-bottom:5px !important; line-height:1.7 !important; }
+
+
+/* ═══ 风格 C（作品集）：通栏信息移入左侧栏，改左右排版 ═══ */
+html[data-style="C"] .sidebar .masthead{
+  background:transparent !important; padding:0 0 22px !important;
+  display:block !important; position:relative !important;
+  border-bottom:1px solid rgba(255,255,255,.13) !important;
+  margin-bottom:20px !important;
+}
+html[data-style="C"] .sidebar .masthead::after{ display:none !important; }
+html[data-style="C"] .sidebar .mh-name{ font-size:28px !important; letter-spacing:.11em !important; color:#fff !important; }
+html[data-style="C"] .sidebar .mh-role{ font-size:10.5px !important; margin-top:12px !important; color:#ff5c35 !important; letter-spacing:.18em !important; }
+html[data-style="C"] .sidebar .mh-tag{ font-size:9.5px !important; margin-top:7px !important; color:rgba(255,255,255,.52) !important; line-height:1.55 !important; }
+html[data-style="C"] .sidebar .mh-photo{ margin:0 0 16px !important; }
+html[data-style="C"] .sidebar .mh-photo .avatar-img{ width:88px !important; height:88px !important; margin:0 !important; border-radius:14px !important; }
+html[data-style="C"] .sidebar{ justify-content:flex-start !important; }
+
+
+/* ═══ 风格 C：姓名与照片并排（display:contents 破格布局）═══ */
+html[data-style="C"] .sidebar .masthead{
+  display:grid !important;
+  grid-template-columns:1fr auto !important;
+  column-gap:12px !important; row-gap:9px !important;
+  align-items:center !important;
+  padding:0 0 20px !important;
+}
+html[data-style="C"] .sidebar .mh-main{ display:contents !important; }
+html[data-style="C"] .sidebar .mh-name{ grid-column:1 !important; grid-row:1 !important; }
+html[data-style="C"] .sidebar .mh-photo{
+  grid-column:2 !important; grid-row:1 !important;
+  margin:0 !important; align-self:center !important;
+}
+html[data-style="C"] .sidebar .mh-photo .avatar-img{
+  width:58px !important; height:58px !important; margin:0 !important; border-radius:12px !important;
+}
+html[data-style="C"] .sidebar .mh-role{
+  grid-column:1 / span 2 !important; grid-row:2 !important;
+  margin-top:2px !important; font-size:10px !important; letter-spacing:.12em !important;
+}
+html[data-style="C"] .sidebar .mh-tag{
+  grid-column:1 / span 2 !important; grid-row:3 !important;
+  margin-top:0 !important; font-size:9px !important; line-height:1.5 !important;
+}
+
+
+/* ═══ 风格 C：姓名强制单行 ═══ */
+html[data-style="C"] .sidebar .mh-name{
+  font-size:21px !important; letter-spacing:.05em !important;
+  white-space:nowrap !important; line-height:1.15 !important;
+}
+/* 名字改小后留了些空间，可以把照片缩一点，两侧更透气 */
+html[data-style="C"] .sidebar .mh-photo .avatar-img{
+  width:52px !important; height:52px !important;
+}
+html[data-style="C"] .sidebar .masthead{ column-gap:10px !important; }
+
+
+/* ═══ 风格 C：照片放大到 66px，姓名略收 ═══ */
+html[data-style="C"] .sidebar .mh-photo .avatar-img{
+  width:66px !important; height:66px !important; border-radius:14px !important;
+}
+html[data-style="C"] .sidebar .mh-name{
+  font-size:19.5px !important; letter-spacing:.04em !important;
+}
+html[data-style="C"] .sidebar .masthead{ column-gap:11px !important; }
+
+
+/* ═══ 风格 C：侧栏加宽 + 照片放大（216→272px，照片 66→98px）═══ */
+html[data-style="C"] .sidebar{
+  width:272px !important; flex:0 0 272px !important;
+}
+html[data-style="C"] .sidebar .mh-photo .avatar-img{
+  width:98px !important; height:98px !important; border-radius:16px !important;
+}
+html[data-style="C"] .sidebar .mh-name{
+  font-size:21px !important; letter-spacing:.05em !important;
+}
+html[data-style="C"] .sidebar .masthead{ column-gap:14px !important; }
+
+
+/* ═══ 风格 C：照片 98→88px、边框弱化 ═══ */
+html[data-style="C"] .sidebar .mh-photo .avatar-img{
+  width:88px !important; height:88px !important; border-radius:14px !important;
+  border:1px solid rgba(255,92,53,.55) !important;
+  box-shadow:0 0 0 3px rgba(255,255,255,.05) !important;
+}
+html[data-style="C"] .sidebar{ width:262px !important; flex:0 0 262px !important; }
+
+
+/* ═══ 风格 C：联系方式移入主内容 + 个人概况标题 ═══ */
+.stmt-label{
+  font-size:10px; font-weight:700; letter-spacing:.12em;
+  color:var(--accent-ink); margin-bottom:11px;
+  display:flex; align-items:baseline; gap:7px;
+}
+.stmt-label em{ font-style:normal; font-size:8.5px; letter-spacing:.16em; text-transform:uppercase; opacity:.5; }
+html[data-style="C"] .stmt-label{ color:#e04a24 !important; }
+html[data-style="C"] .main .contact-block{
+  margin-bottom:26px !important; padding-bottom:20px !important;
+  border-bottom:1px solid var(--line) !important;
+}
+html[data-style="C"] .main .contact-block .s-title{ display:inline !important; margin-right:12px !important; border:none !important; padding:0 !important; }
+html[data-style="C"] .main .contact-block .contact{ display:inline !important; }
+html[data-style="C"] .main .contact-block .contact li{ display:inline !important; margin:0 !important; font-size:10.5px !important; }
+html[data-style="C"] .main .contact-block .contact li:not(:last-child)::after{ content:' · '; color:#c2c8cf !important; }
+html[data-style="C"] .main .contact-block .contact svg{ display:none !important; }
+
+
+/* ═══ 风格 C：照片搬到右栏顶部左侧 ═══ */
+html[data-style="C"] .main-head{
+  display:flex !important; align-items:flex-start !important;
+  justify-content:space-between !important; gap:22px !important;
+  margin-bottom:24px !important; padding-bottom:18px !important;
+  border-bottom:1px solid var(--line) !important;
+}
+html[data-style="C"] .main-head .mh-photo{ margin:0 !important; order:1 !important; }
+html[data-style="C"] .main-head .mh-photo .avatar-img{
+  width:92px !important; height:92px !important; margin:0 !important; border-radius:14px !important;
+}
+html[data-style="C"] .main-head .contact-block{
+  margin:0 !important; padding:0 !important; border:none !important;
+  text-align:right !important; order:2 !important;
+}
+html[data-style="C"] .main-head .contact-block .s-title{ display:block !important; margin:0 0 9px 0 !important; border:none !important; padding:0 !important; }
+html[data-style="C"] .main-head .contact-block .contact{ display:block !important; }
+html[data-style="C"] .main-head .contact-block .contact li{
+  display:block !important; margin:0 0 5px 0 !important; font-size:10.5px !important; text-align:right !important;
+}
+html[data-style="C"] .main-head .contact-block .contact li:not(:last-child)::after{ content:'' !important; }
+html[data-style="C"] .main-head .contact-block .contact svg{ display:none !important; }
+
+
+/* ═══ 模块排序控件（编辑态可见，打印隐藏）═══ */
+.s-block, .main > .section, .main > .statement{ position:relative; }
+.blk-tools{
+  position:absolute; top:-9px; right:-7px; z-index:22;
+  display:flex; gap:3px; opacity:0; transition:opacity .15s;
+}
+.s-block:hover > .blk-tools,
+.main > .section:hover > .blk-tools,
+.main > .statement:hover > .blk-tools{ opacity:1; }
+.blk-tools button{
+  width:18px; height:18px; border-radius:4px;
+  border:1px solid var(--line); background:#fff; color:#5c6774;
+  font-size:11px; line-height:1; display:grid; place-items:center;
+  cursor:pointer; padding:0; box-shadow:0 1px 3px rgba(0,0,0,.1);
+}
+.blk-tools button:hover{ background:var(--accent-ink); color:#fff; border-color:var(--accent-ink); }
+@media print{ .blk-tools{ display:none !important; } }
+
+
+/* 侧栏块被移到主内容后的样式适配 */
+.main > .s-block{
+  background:#fff; padding:14px 0 0; margin-bottom:20px;
+  border-top:1px solid var(--line);
+}
+.main > .s-block .s-title{ color:var(--accent-ink); border-bottom:1px solid var(--line); padding-bottom:8px; }
+.main > .s-block .contact li span, .main > .s-block .skill2 li span,
+.main > .s-block .lang li span, .main > .s-block .num b{ color:var(--ink); }
+.main > .s-block .contact svg{ stroke:var(--accent-ink); }
+.main > .s-block .skill2 li b, .main > .s-block .lang li b{ color:var(--accent-ink); }
+.main > .s-block .skill2 li::before{ color:var(--accent-ink); }
+.main > .s-block .skill2 li{ border-bottom-color:var(--line); }
+.main > .s-block .num{ background:#fafaf9; border-color:var(--line); }
+.main > .s-block .contact li span{ color:var(--ink); }
+
+
+/* ═══ 自由拖拽：手柄 + 拖拽态 + 落点提示 ═══ */
+.drag-handle{
+  position:absolute; top:-9px; right:64px; z-index:24;
+  width:20px; height:18px; border-radius:4px;
+  display:grid; place-items:center; cursor:grab;
+  background:#fff; border:1px solid var(--line); color:#8a97a4;
+  font-size:12px; line-height:1; user-select:none;
+  box-shadow:0 1px 3px rgba(0,0,0,.1);
+  opacity:0; transition:opacity .15s;
+}
+.s-block:hover > .drag-handle,
+.main > .section:hover > .drag-handle,
+.main > .statement:hover > .drag-handle{ opacity:1; }
+.drag-handle:active{ cursor:grabbing; }
+.dragging{ opacity:.35 !important; }
+.drop-hint{
+  outline:2px dashed var(--accent-ink) !important;
+  outline-offset:4px; border-radius:3px;
+}
+.drop-hint-top{ box-shadow:0 -3px 0 0 var(--accent-ink); }
+.drop-hint-bottom{ box-shadow:0 3px 0 0 var(--accent-ink); }
+@media print{ .drag-handle{ display:none !important; } }
+
+
+/* 侧栏块移到主内容后的配色适配 */
+.main > .s-block .contact li, .main > .s-block .contact li span{ color:#3d4750 !important; }
+.main > .s-block .skill2 li span{ color:var(--ink) !important; }
+.main > .s-block .skill2 li b{ color:var(--accent-ink) !important; }
+.main > .s-block .skill2 li::before{ color:var(--accent-ink) !important; }
+.main > .s-block .skill2 li{ border-bottom-color:var(--line) !important; }
+.main > .s-block .lang li, .main > .s-block .lang li span{ color:var(--ink) !important; }
+.main > .s-block .lang li b{ color:var(--muted) !important; }
+.main > .s-block .num{ background:#fafaf9 !important; border-color:var(--line) !important; }
+.main > .s-block .num b{ color:var(--accent-ink) !important; }
+.main > .s-block .num span{ color:var(--muted) !important; }
+.main > .s-block .contact svg{ stroke:var(--accent-ink) !important; }
+.main > .s-block .s-title{ color:var(--accent-ink) !important; }
+
+
+/* ═══ 自由布局：模块并排 + 缩放 ═══ */
+.sidebar, .main{ display:flex !important; flex-direction:row !important; flex-wrap:wrap !important; align-content:flex-start !important; }
+.sidebar > .s-block, .main > .section, .main > .statement, .main > .s-block{
+  width:100%; flex:0 0 100%; box-sizing:border-box; position:relative;
+}
+/* 宽度档位：全宽 / 半宽 / 三分之一 —— 用于把模块并排在同一行 */
+.blk-w100{ flex:0 0 100% !important; width:100% !important; }
+.blk-w50{ flex:0 0 calc(50% - 7px) !important; width:calc(50% - 7px) !important; margin-right:14px !important; }
+.blk-w33{ flex:0 0 calc(33.333% - 10px) !important; width:calc(33.333% - 10px) !important; margin-right:15px !important; }
+.blk-w66{ flex:0 0 calc(66.666% - 7px) !important; width:calc(66.666% - 7px) !important; margin-right:14px !important; }
+/* 缩放档位 */
+.blk-s1{ font-size:.88em !important; }
+.blk-s2{ font-size:1em !important; }
+.blk-s3{ font-size:1.14em !important; }
+.blk-s4{ font-size:1.3em !important; }
+/* 控制按钮扩展 */
+.blk-tools button[data-w]{ font-size:9px; }
+
+
+/* 并排改造后的间距补偿（消除 31px 溢出） */
+.sidebar > .s-block, .main > .section, .main > .statement{
+  margin-bottom:20px !important; padding-bottom:2px;
+}
+.sidebar > .s-block{ margin-bottom:17px !important; }
+.blk-w50, .blk-w66, .blk-w33{ margin-bottom:17px !important; }
+
+
+/* 风格 C 首次进入时，自动把联系方式和个人概况并排（各半宽） */
+html[data-style="C"] .main > .contact-block.blk-auto-half{ flex:0 0 calc(50% - 7px) !important; width:calc(50% - 7px) !important; margin-right:14px !important; }
+html[data-style="C"] .main > .statement.blk-auto-half{ flex:0 0 calc(50% - 7px) !important; width:calc(50% - 7px) !important; margin-right:0 !important; }
+
+
+/* ═══ 修正：照片块独占一行，个人概况 + 联系方式并排在下一行 ═══ */
+html[data-style="C"] .main > .main-head{
+  flex:0 0 100% !important; width:100% !important; margin-right:0 !important;
+  margin-bottom:20px !important;
+}
+/* 并排的两个块（半宽，留出间隙，避免卡在临界值） */
+html[data-style="C"] .main > .statement.blk-auto-half{
+  flex:0 0 calc(50% - 10px) !important; width:calc(50% - 10px) !important; margin-right:20px !important;
+}
+html[data-style="C"] .main > .contact-block.blk-auto-half{
+  flex:0 0 calc(50% - 10px) !important; width:calc(50% - 10px) !important; margin-right:0 !important;
+}
+/* 联系方式在半宽容器内的排布：左对齐、行距紧凑 */
+html[data-style="C"] .main > .contact-block .s-title{ display:block !important; margin:0 0 9px 0 !important; }
+html[data-style="C"] .main > .contact-block .contact li{ display:block !important; margin:0 0 6px 0 !important; text-align:left !important; font-size:10px !important; }
+html[data-style="C"] .main > .contact-block .contact{ display:block !important; }
+
+
+/* ═══ 自由排布模式（F）：拆掉所有包装层，全部模块平铺到同一张纸 ═══ */
+html[data-style="F"] .page{
+  display:flex !important; flex-direction:row !important; flex-wrap:wrap !important;
+  align-content:flex-start !important; padding:30px 34px !important;
+}
+html[data-style="F"] .masthead,
+html[data-style="F"] .body,
+html[data-style="F"] .sidebar,
+html[data-style="F"] .main{ display:contents !important; }
+
+/* 全部模块默认整行，用 ▭ 按钮可切半宽/三分之一自由并排 */
+html[data-style="F"] .s-block,
+html[data-style="F"] .section,
+html[data-style="F"] .statement,
+html[data-style="F"] .mh-photo,
+html[data-style="F"] .mh-main{
+  flex:0 0 100%; width:100%; box-sizing:border-box; margin-bottom:18px !important;
+}
+
+/* 配色：自由模式下全部用浅色系（不再有深底侧栏） */
+html[data-style="F"] .mh-name{ color:var(--ink) !important; font-size:44px !important; letter-spacing:.06em !important; }
+html[data-style="F"] .mh-role{ color:var(--accent-ink) !important; }
+html[data-style="F"] .mh-tag{ color:var(--muted) !important; }
+html[data-style="F"] .contact li span{ color:#4a5561 !important; }
+html[data-style="F"] .contact svg{ stroke:var(--accent-ink) !important; }
+html[data-style="F"] .s-title{ color:var(--accent-ink) !important; border-bottom-color:var(--line) !important; }
+html[data-style="F"] .skill2 li{ border-bottom-color:var(--line) !important; }
+html[data-style="F"] .skill2 li::before{ color:var(--accent-ink) !important; }
+html[data-style="F"] .skill2 li span{ color:var(--ink) !important; }
+html[data-style="F"] .skill2 li b{ color:var(--accent-ink) !important; }
+html[data-style="F"] .lang li span{ color:var(--ink) !important; }
+html[data-style="F"] .lang li b{ color:var(--muted) !important; }
+html[data-style="F"] .num{ background:#fafaf9 !important; border-color:var(--line) !important; }
+html[data-style="F"] .num b{ color:var(--accent-ink) !important; }
+html[data-style="F"] .num span{ color:var(--muted) !important; }
+
+
+/* ═══ 修正：宽度档位留出余量，避免卡在临界值导致换行 ═══ */
+.blk-w50{ flex:0 0 calc(50% - 26px) !important; width:calc(50% - 26px) !important; margin-right:20px !important; }
+.blk-w33{ flex:0 0 calc(33.333% - 16px) !important; width:calc(33.333% - 16px) !important; margin-right:16px !important; }
+.blk-w66{ flex:0 0 calc(66.666% - 14px) !important; width:calc(66.666% - 14px) !important; margin-right:16px !important; }
+/* 自由模式下 page 内边距略收，多留横向空间 */
+html[data-style="F"] .page{ padding:26px 28px !important; }
+/* 自由模式下模块下间距收紧 */
+html[data-style="F"] .s-block,
+html[data-style="F"] .section,
+html[data-style="F"] .statement,
+html[data-style="F"] .mh-photo,
+html[data-style="F"] .mh-main{ margin-bottom:16px !important; }
+
+
+/* 自由模式 box-sizing 保险 */
+html[data-style="F"] .s-block,
+html[data-style="F"] .section,
+html[data-style="F"] .statement,
+html[data-style="F"] .mh-photo,
+html[data-style="F"] .mh-main{ box-sizing:border-box !important; }
+
+/* 通栏里的照片/姓名组不显示宽度按钮（它们由通栏 grid 控制） */
+.masthead .blk-tools [data-w="cycle"],
+.masthead .blk-tools [data-z="+"],
+.masthead .blk-tools [data-z="-"]{ display:none !important; }
+/* 自由模式：全部按钮可见 */
+html[data-style="F"] .blk-tools [data-w="cycle"],
+html[data-style="F"] .blk-tools [data-z="+"],
+html[data-style="F"] .blk-tools [data-z="-"]{ display:grid !important; }
+
+
+/* ═══ hover 显示规则补全：照片 / 姓名组 / 照片容器 也要能显示控件 ═══ */
+.mh-photo:hover > .blk-tools,
+.mh-main:hover > .blk-tools,
+.main-head:hover > .blk-tools,
+.mh-photo:hover > .drag-handle,
+.mh-main:hover > .drag-handle,
+.main-head:hover > .drag-handle{ opacity:1 !important; }
+/* 自由模式下照片/姓名组是 page 直接子级，同样要显示 */
+html[data-style="F"] .mh-photo > .blk-tools,
+html[data-style="F"] .mh-main > .blk-tools{ opacity:0; }
+html[data-style="F"] .mh-photo:hover > .blk-tools,
+html[data-style="F"] .mh-main:hover > .blk-tools{ opacity:1 !important; }
+
+
+/* ═══ 控件改为常驻淡显（15%），鼠标移到控件上才变实 ═══ */
+.blk-tools{ opacity:.15 !important; transition:opacity .15s; }
+.blk-tools:hover{ opacity:1 !important; }
+.drag-handle{ opacity:.15 !important; transition:opacity .15s; }
+.drag-handle:hover{ opacity:1 !important; }
+/* 打印时依然隐藏 */
+@media print{ .blk-tools, .drag-handle{ display:none !important; } }
+
+
+/* ═══ 常驻模块工具栏（大按钮 + 中文标签）═══ */
+.blk-tools{
+  display:flex !important; gap:5px; align-items:center; flex-wrap:wrap;
+  margin:0 0 9px 0 !important; padding:4px 7px !important;
+  background:rgba(0,0,0,.055) !important; border-radius:6px;
+  opacity:1 !important;
+}
+.blk-tools .bar-drag{
+  cursor:grab; font-size:11px; font-weight:700; color:#3c4753;
+  padding:3px 8px; border-radius:5px; background:#fff;
+  border:1px solid #d5dbe1; user-select:none;
+}
+.blk-tools .bar-drag:active{ cursor:grabbing; }
+.blk-tools button{
+  font-size:11px !important; line-height:1.2 !important;
+  padding:3px 9px !important; border-radius:5px !important;
+  border:1px solid #d5dbe1 !important; background:#fff !important;
+  color:#3d4750 !important; cursor:pointer; width:auto !important;
+  height:auto !important; font-weight:600;
+}
+.blk-tools button:hover{ background:#22b8cf !important; color:#fff !important; border-color:#22b8cf !important; }
+/* 深色底（作品集风格侧栏）里反色 */
+html[data-style="C"] .sidebar .blk-tools{ background:rgba(255,255,255,.1) !important; }
+html[data-style="C"] .sidebar .blk-tools .bar-drag{ background:rgba(255,255,255,.14); color:#e8e8e8; border-color:rgba(255,255,255,.2); }
+html[data-style="C"] .sidebar .blk-tools button{ background:rgba(255,255,255,.12) !important; color:#e8e8e8 !important; border-color:rgba(255,255,255,.2) !important; }
+@media print{ .blk-tools{ display:none !important; } }
+
+
+/* 隐藏旧的独立手柄（已并入工具栏） */
+.drag-handle{ display:none !important; }
+
+/* 自由悬浮的模块 */
+.free-floating{
+  box-shadow:0 6px 20px rgba(0,0,0,.14); border-radius:5px;
+  background:rgba(255,255,255,.96); padding:8px 10px !important;
+}
+html[data-style="C"] .sidebar .free-floating{ background:rgba(20,20,20,.96); }
+
+
+/* 模块容器需为相对定位（工具栏绝对定位的参照） */
+.s-block, .main > .section, .main > .statement, .mh-photo, .mh-main, .main-head{ position:relative !important; }
+
+
+/* ═══ 通栏里的作品集按钮（美术岗第一优先）═══ */
+.mh-portfolio{
+  display:inline-flex; align-items:center; gap:6px;
+  margin-top:13px; padding:5px 12px 5px 10px;
+  border:1px solid rgba(255,255,255,.24); border-radius:18px;
+  text-decoration:none; width:fit-content;
+  transition:.18s; cursor:pointer;
+}
+.mh-portfolio:hover{
+  border-color:var(--accent); background:rgba(255,255,255,.09); transform:translateY(-1px);
+}
+.mh-portfolio .pf-icon{ font-size:8px; color:var(--accent); }
+.mh-portfolio .pf-label{
+  font-size:9.5px; letter-spacing:.16em; color:rgba(255,255,255,.5); font-weight:600;
+}
+.mh-portfolio .pf-link{
+  font-size:11px; color:var(--accent); font-weight:700; letter-spacing:.03em;
+}
+.mh-portfolio .pf-arrow{ font-size:11px; color:var(--accent); }
+/* 打印时保持可见（作品集链接要印在纸上） */
+@media print{ .mh-portfolio{ border-color:#999 !important; } }
+
+
+/* ═══ 作品集按钮：强制胶囊样式（通栏是 grid，需指定占位）═══ */
+.mh-portfolio,
+.masthead .mh-portfolio,
+html[data-style="C"] .mh-portfolio{
+  grid-column:1 / -1 !important;
+  justify-self:start !important;
+  align-self:start !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  gap:7px !important;
+  margin:14px 0 0 0 !important;
+  padding:7px 15px 7px 12px !important;
+  border:1.5px solid var(--accent) !important;
+  border-radius:20px !important;
+  background:rgba(255,255,255,.07) !important;
+  text-decoration:none !important;
+  width:auto !important;
+  max-width:fit-content !important;
+  box-sizing:border-box !important;
+  transition:.18s;
+}
+.mh-portfolio:hover{
+  background:var(--accent) !important;
+  transform:translateY(-1px);
+}
+.mh-portfolio:hover .pf-icon,
+.mh-portfolio:hover .pf-label,
+.mh-portfolio:hover .pf-link,
+.mh-portfolio:hover .pf-arrow{ color:#fff !important; }
+.mh-portfolio .pf-icon{ font-size:8px !important; color:var(--accent) !important; }
+.mh-portfolio .pf-label{
+  font-size:9.5px !important; letter-spacing:.16em !important;
+  color:rgba(255,255,255,.55) !important; font-weight:600 !important;
+}
+.mh-portfolio .pf-link{
+  font-size:11.5px !important; color:var(--accent) !important;
+  font-weight:700 !important; letter-spacing:.03em !important;
+  border-bottom:none !important; text-decoration:none !important;
+}
+.mh-portfolio .pf-arrow{ font-size:11px !important; color:var(--accent) !important; }
+@media print{ .mh-portfolio{ background:none !important; border-color:#8a8a8a !important; } }
+
+
+/* ═══ 通栏优化：照片放大 + 垂直居中 ═══ */
+html[data-style="C"] .masthead{ align-items:center !important; }
+html[data-style="C"] .mh-photo .avatar-img{ width:108px !important; height:108px !important; }
+.masthead{ align-items:center !important; }
+.mh-photo .avatar-img{ width:108px !important; height:108px !important; }
+
+
+/* ═══ 「本块操作」工具条默认隐藏，避免遮挡正文（顶部「工具条」按钮可显示）═══ */
+html:not([data-tools="on"]) .blk-tools,
+html:not([data-tools="on"]) .drag-handle{
+  visibility:hidden !important;
+  opacity:0 !important;
+  pointer-events:none !important;
+}
+html[data-tools="on"] .blk-tools,
+html[data-tools="on"] .drag-handle{
+  visibility:visible !important;
+  opacity:1 !important;
+  pointer-events:auto !important;
+}
+@media print{ .blk-tools, .drag-handle{ visibility:hidden !important; display:none !important; } }
+
+/* ═══ 删掉「个人概况」后：把省下的空间还给可读性 ═══
+   正文不再压到 10.8px / 行距 1.5；主区还留 ~50px 给后续补充的量化数据 */
+.sidebar{ width:196px !important; flex:0 0 196px !important; }
+ul.dash li{ font-size:13px !important; line-height:1.6 !important; margin-bottom:4px !important; }
+.tl-item{ margin-bottom:16px !important; }
+.section{ margin-bottom:8px !important; }
+.title{ margin-bottom:11px !important; }
+.main{ padding-bottom:10px !important; }
+
+html[data-style="A"] ul.dash li{ font-size:13px !important; line-height:1.6 !important; margin-bottom:3px !important; }
+html[data-style="A"] .tl-item{ margin-bottom:5px !important; }
+html[data-style="A"] .section{ margin-bottom:7px !important; }
+html[data-style="A"] .main{ padding-bottom:8px !important; }
+
+html[data-style="B"] ul.dash li{ font-size:13px !important; line-height:1.6 !important; margin-bottom:3px !important; }
+html[data-style="B"] .tl-item{ margin-bottom:5px !important; }
+html[data-style="B"] .section{ margin-bottom:7px !important; }
+html[data-style="B"] .main{ padding-bottom:10px !important; }
+
+html[data-style="C"] ul.dash li{ font-size:13px !important; line-height:1.6 !important; margin-bottom:2px !important; }
+html[data-style="C"] .tl-item{ margin-bottom:4px !important; }
+html[data-style="C"] .section{ margin-bottom:4px !important; }
+html[data-style="C"] .title{ margin-bottom:6px !important; }
+html[data-style="C"] .main{ padding:14px 24px 6px !important; }
+
+/* ===== 参考式排版（对照稿）：公司 · 岗位 …… 日期右对齐、正文占满整行 ===== */
+.tl-item, .edu{ display:flex; flex-wrap:wrap; align-items:baseline; column-gap:8px; }
+.tl-meta, .edu-meta{ order:3; margin-left:auto; display:inline-flex; align-items:baseline;
+  white-space:nowrap; }
+.tl-item > .tl-date, .edu > .tl-date, .tl-meta > .tl-date, .edu-meta > .tl-date{
+  order:3; margin-left:auto; white-space:nowrap; font-size:10px; color:#7a848f;
+  grid-column:auto !important; grid-row:auto !important; }
+.tl-meta > .tl-date, .edu-meta > .tl-date{ margin-left:0; }
+.tl-item > .tl-city, .edu > .tl-city, .tl-meta > .tl-city, .edu-meta > .tl-city{
+  order:4; white-space:nowrap; font-size:10px; color:#7a848f;
+  grid-column:auto !important; grid-row:auto !important; }
+.tl-city::before{ content:'·'; margin:0 5px; color:#b9c1c9; }
+.tl-item > .tl-co, .edu > .edu-l{ order:1; grid-column:auto !important; grid-row:auto !important; }
+.tl-item > .tl-role, .edu > .edu-detail{ order:2; margin-top:0;
+  grid-column:auto !important; grid-row:auto !important; }
+.tl-item > .tl-role::before{ content:'｜'; color:#c3c9d0; font-weight:400; margin-right:5px; letter-spacing:0; }
+.tl-item > ul.dash{ order:5; flex:0 0 100%; margin-top:7px;
+  grid-column:auto !important; grid-row:auto !important; }
+ul.dash li{ font-size:13px !important; line-height:1.6 !important; margin-bottom:4px !important; }
+
+
+/* ===== 精简版 data-style=L：排版不变，只减少文字量并放大字号 ===== */
+/* ===== 双变体：默认只显示完整版，L 样式只显示精简版（两份都是文件里的真实内容）===== */
+html:not([data-style="L"]) .v-lite{ display:none !important; }
+html[data-style="L"] .v-full{ display:none !important; }
+html[data-style="L"] .tl-co, html[data-style="L"] .edu-l{ font-size:14.5px !important; }
+html[data-style="L"] .tl-role{ font-size:13.5px !important; }
+html[data-style="L"] ul.dash li{ font-size:14.2px !important; line-height:1.78 !important; margin-bottom:5px !important; }
+html[data-style="L"] .tl-item{ margin-bottom:14px !important; }
+html[data-style="L"] .skill2 li{ padding:7px 0 !important; }
+html[data-style="L"] .skill2 li span, html[data-style="L"] .skill2 li b{ font-size:12.5px !important; }
+html[data-style="L"] .num b{ font-size:23px !important; }
+html[data-style="L"] .sidebar .s-block{ margin-bottom:20px !important; }
+
+/* ================= 作品集简历（导出用） ================= */
+@page{ size:A4; margin:0; }
+html, body{ background:#fff !important; }
+body{ padding:0 !important; display:block !important; }
+.toolbar, .add-btn, .del-btn, .drag-handle, .blk-tools,
+#warn, #saved, #buildtag, #tip, #toast, .tipbar{ display:none !important; }
+.page{ margin:0 auto !important; box-shadow:none !important; page-break-after:always; break-after:page; }
+.page::after{ display:none !important; }
+
+.wpage{ width:210mm; height:297mm; padding:14mm; box-sizing:border-box; background:#fff;
+        display:flex; flex-direction:column; page-break-after:always; break-after:page; }
+.wpage:last-child{ page-break-after:auto; break-after:auto; }
+.wtitle{ font-family:var(--f-serif); font-size:16pt; font-weight:700; color:#241713; letter-spacing:.02em;
+         padding-bottom:3mm; margin-bottom:4mm; border-bottom:1.5px solid #e0653c; display:flex; align-items:baseline; gap:4mm; }
+.wtitle span{ font-family:var(--f-sans); font-size:8pt; font-weight:600; color:#b8431f; letter-spacing:.02em; border:0; }
+.wpage figure{ margin:0 0 5mm; break-inside:avoid; }
+.wpage figure img{ width:100%; display:block; border-radius:2mm; }
+.wpage figcaption{ margin-top:1.6mm; font-size:8pt; color:#7b8794; letter-spacing:.04em; }
+.wpage .head-note{ margin-top:auto; padding-top:6mm; font-size:7.5pt; color:#a89c95; border-top:1px solid #eae4df; letter-spacing:.03em; }
+*{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+</style>
+</head>
+<body>
+
+<!-- ===== 工具栏 ===== -->
+<div class="toolbar">
+  <button data-set-theme="moqing" class="">墨青</button>
+  <button data-set-theme="zhusha" class="on">朱砂</button>
+  <button data-set-theme="shimo">石墨</button>
+  <button data-set-theme="su">素</button>
+  <span class="sep"></span>
+  <button data-set-style="">默认</button>
+  <button data-set-style="A">极简</button>
+  <button data-set-style="B">杂志</button>
+  <button data-set-style="C">作品集</button>
+  <button data-set-style="F">自由</button>
+  <button data-set-style="L" title="同样排版：工作经历只留项目与主要工作，2026.03 起简写为个人作品 · 接单外包">精简</button>
+  <span class="sep"></span>
+  <button id="btnAvatar">换头像</button>
+  <button id="btnSaveAvatar" title="把当前头像导出成一个图片文件存起来">存头像</button>
+  <button id="btnTools" title="显示 / 隐藏每个区块的「本块操作」工具条（默认隐藏，不遮挡正文）">工具条</button>
+  <button id="btnAddAll" hidden="">+</button>
+  <span class="sep"></span>
+  <button id="btnSave" title="立即保存到本机浏览器（快捷键 Ctrl / ⌘ + S）">保存</button>
+  <button id="btnSaveFile" title="把当前内容直接写回本机 index.html（Chrome / Edge；第一次会让你选一次文件，之后一键写入）">保存到文件</button>
+  <button id="btnReset">重置为模板</button>
+  <button class="print" id="btnPdf">导出 PDF</button>
+  <span class="tb-tip">← 点纸面文字直接改 · 鼠标移到条目上，右上角出现 × 可删 · 标题右侧的 + 可加一条 · Ctrl+Z 撤销 / Ctrl+Y 前进</span>
+</div>
+
+<input type="file" id="fileAvatar" accept="image/*" hidden="">
+
+<div id="warn" style="display:none"></div>
+<div id="buildtag">BUILD 20261022-173248</div>
+<div id="saved" style="opacity: 1;">已保存</div>
+<div id="stale" style="display:none">
+  <span>检测到简历文件更新过 —— 你上一版在本机的修改已备份。</span>
+  <button id="stale-restore">取回我的修改</button>
+  <button id="stale-drop">用新版本</button>
+</div>
+
+<!-- ===== 简历纸张 ===== -->
+<div class="page"><!--PAGE:START-->
+<header class="masthead" style="align-items: center;">
+    <div class="mh-main" style="padding-right: 8px;">
+      <div class="mh-nameline"><div class="mh-name">陈 冠 宇</div><div class="mh-basic">男 · 1996 · 现居深圳</div></div>
+      <div class="mh-role">意向岗位：UE 场景地编 / 灯光师</div>
+      <div class="mh-tag">4 年 UE 场景地编 · 游戏 / 影视 / 文博&nbsp;</div>
+      <a class="mh-portfolio" href="https://cgystudio.github.io/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:7px;margin:14px 0 0 0;padding:9px 18px 9px 15px;border:1.5px solid #22b8cf;border-radius:20px;background:rgba(34,184,207,.20);text-decoration:none;width:auto;box-sizing:border-box;align-self:flex-start;grid-column:1/-1;"><span style="font-size:9px;color:#22b8cf;">▶</span><span style="font-size:10px;letter-spacing:.16em;color:rgba(255,255,255,.66);font-weight:600;">作品集</span><span style="font-size:12.5px;color:#5fd8ea;font-weight:700;letter-spacing:.03em;">cgystudio.github.io</span><span style="font-size:11px;color:#22b8cf;">↗</span></a>
+    </div>
+    <div class="mh-photo" style="display: flex; flex-direction: column; align-items: flex-end; justify-self: end;">
+      <div class="ph-row" style="display:flex;gap:11px;align-items:flex-start;justify-content:flex-end;"><img style="width:124px !important;height:124px !important;border-radius:16px !important;object-fit:cover;border:2px solid var(--accent);display:block;" src="../assets/avatar.jpg" class="avatar-img" id="avatarBox" title="点击更换头像" alt="陈冠宇"><div style="text-align:center;"><img src="../assets/wechat-qr.jpg" class="wechat-qr" alt="微信二维码" style="width:108px !important;height:108px !important;border-radius:14px !important;display:block;background:#fff;padding:4px;box-sizing:border-box;border:2px solid var(--accent);object-fit:contain;"><div style="font-size:8.5px;color:rgba(255,255,255,.42);margin-top:4px;letter-spacing:.1em;text-align:center;">微信</div></div></div>
+    <div class="s-block" style="text-align: right; margin: 7px 0px 0px; padding: 0px; background: none; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; box-shadow: none; width: auto; max-width: none;">
+      <div class="s-title" style="display: none; font-size: 9.5px; letter-spacing: 0.14em; color: rgba(255, 255, 255, 0.5); margin: 0px 10px 0px 0px; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; padding: 0px; font-weight: 600; white-space: nowrap;">联系方式 <em>Contact</em></div>
+      <ul class="contact" style="padding: 0px; margin: 0px; list-style: none; line-height: 1.62;"><div class="ct-line" style="display: block; text-align: right; white-space: nowrap;"><span class="ct-label" style="display: inline-block; width: 78px; font-size: 9.5px; color: rgba(255, 255, 255, 0.46); letter-spacing: 0.02em; font-weight: 600; white-space: nowrap; margin-right: 4px; vertical-align: baseline;">电话&nbsp;/&nbsp;Tel：</span><li style="display: inline; margin: 0px; padding: 0px; font-size: 9.8px; color: rgba(255, 255, 255, 0.84); white-space: nowrap;"><svg viewBox="0 0 24 24" style="display: none;"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"></path></svg><span style="font-weight:700;color:#fff">195 1387 9660</span></li><span class="ct-sep" style="color: rgba(255, 255, 255, 0.32); white-space: nowrap;">&nbsp;·&nbsp;</span><li style="display: inline; margin: 0px; padding: 0px; font-size: 9.8px; color: rgba(255, 255, 255, 0.84); white-space: nowrap;"><svg viewBox="0 0 24 24" style="display: none;"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.9 8.9 0 0 1-4-.9L3 21l1.9-4.8A8.4 8.4 0 0 1 12 3.1a8.4 8.4 0 0 1 9 8.4z"></path></svg><span>微信 yxbk6991</span></li></div><div class="ct-line" style="display: block; text-align: right; white-space: nowrap;"><span class="ct-label" style="display: inline-block; width: 78px; font-size: 9.5px; color: rgba(255, 255, 255, 0.46); letter-spacing: 0.02em; font-weight: 600; white-space: nowrap; margin-right: 4px; vertical-align: baseline;">邮箱&nbsp;/&nbsp;Email：</span><li style="display: inline; margin: 0px; padding: 0px; font-size: 9.8px; color: rgba(255, 255, 255, 0.84); white-space: nowrap;"><svg viewBox="0 0 24 24" style="display: none;"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 6-10 7L2 6"></path></svg><span>guanyuchenscau@163.com</span></li><span class="ct-sep" style="color: rgba(255, 255, 255, 0.32); white-space: nowrap;">&nbsp;&nbsp;</span></div></ul>
+    </div></div>
+  </header>
+
+  <div class="body">
+
+  <!-- ================= 左：侧栏 ================= -->
+  <aside class="sidebar">
+    
+
+    <div class="s-block">
+      <div class="s-title">技能 <em>Skills</em></div>
+      <ul class="skill2">
+        <li class="v-full"><span>场景搭建 / 地编</span><b>UE4 / UE5</b></li>
+        <li class="v-full"><span>关卡白盒 / 动线</span><b>场景布局 · 玩法节奏</b></li>
+        <li class="v-full"><span>地形 / 植被</span><b>地形编辑 · Gaea · SpeedTree</b></li>
+        <li class="v-full"><span>灯光与氛围</span><b>Lumen · 光照烘焙 / 实时</b></li>
+        <li class="v-full"><span>场景性能优化</span><b>Nanite · LOD · 面数 · drawcall</b></li>
+        <li class="v-full"><span>材质与贴图</span><b>SP · SD · Marmoset</b></li>
+        <li class="v-full"><span>建模 / 雕刻</span><b>Maya · C4D · ZBrush</b></li>
+        <li class="v-full"><span>流程 / 协作</span><b>PBR 规范 · 外包对接</b></li>
+        <li class="v-full"><span>AI 辅助流程</span><b>参考图 · 高模 · 白盒 · PBR 工具</b></li>
+        <li class="v-lite"><span>场景搭建 / 地编</span><b>UE4 / UE5 · 白盒</b></li>
+        <li class="v-lite"><span>关卡白盒 / 动线</span><b>场景布局 · 玩法节奏</b></li>
+        <li class="v-lite"><span>灯光与氛围</span><b>Lumen · 烘焙 / 实时</b></li>
+        <li class="v-lite"><span>性能优化</span><b>Nanite · drawcall</b></li>
+        <li class="v-lite"><span>地形 / 植被</span><b>Gaea · SpeedTree</b></li>
+        <li class="v-lite"><span>材质与贴图</span><b>SP · SD · Marmoset</b></li>
+      </ul>
+    </div>
+
+    <div class="s-block">
+      <div class="s-title">关键数据 <em>Highlights</em></div>
+      <div class="nums">
+        <div class="num"><b>4</b><span>年 UE 场景</span></div>
+        <div class="num"><b>7个</b><span>已上线项目</span></div>
+        <div class="num"><b>UE5</b><span>独立全流程</span></div>
+        <div class="num"><b>2 部</b><span>影视剧项目</span></div>
+      </div>
+    </div>
+
+    <div class="s-block v-full">
+
+
+      <div class="s-title">语言 <em>Languages</em></div>
+
+
+      <ul class="lang">
+
+
+        <li><span>普通话</span><b>母语</b></li>
+
+
+        <li><span>粤语</span><b>母语</b></li>
+
+
+      </ul>
+
+
+    </div>
+
+
+    <div class="s-block v-lite">
+
+
+      <div class="s-title">AI 辅助 <em>AI</em></div>
+
+
+      <ul class="lang">
+        <li><span>参考图筛选</span><b>AI 辅助</b></li>
+        <li><span>高模 / 贴图</span><b>AI 辅助</b></li>
+        <li><span>场景白盒</span><b>AI 辅助</b></li>
+        <li><span>PBR 贴图工具</span><b>自研网页</b></li>
+      </ul>
+
+
+    </div>
+  </aside>
+
+  <!-- ================= 右：主内容 ================= -->
+  <section class="main">
+
+    <div class="section">
+      <div class="title">工作经历 <em>Experience</em></div>
+      <div class="tl">
+        <div class="tl-item">
+          <span class="tl-meta"><div class="tl-date">2026.03 — 至今</div>
+          <div class="tl-city">深圳</div></span>
+          <div class="tl-co"><span class="v-full">&nbsp;个人全流程作品（UE5）</span><span class="v-lite">个人作品 · 接单外包</span></div>
+          <div class="tl-role"><span class="v-full">独立制作 ·&nbsp;场景全流程</span><span class="v-lite">独立制作</span></div>
+          <ul class="dash">
+            <li class="v-full">独立打通全流程：白盒 → Maya 建模 → UV 拆分 → ZBrush 雕刻 → SP 贴图 → SD 四方 / 二方连续贴图 → 八猴渲染 → UE 地编搭建。</li>
+            <li class="v-full">赴南京、西安实地采风收集素材，用 <b>AI 辅助筛选、优化参考图</b>，确定场景美术风格。</li>
+            <li class="v-full">完成场景灯光、雾效与后期盒子等效果制作，并持续迭代优化。</li>
+            <li class="v-lite"><b>古风山寺</b>：独立打通<b>建模 → 贴图 → 地编 → 灯光</b>全流程（UE5）。</li>
+            <li class="v-lite"><b>自研 PBR 贴图工具</b>（网页版 · 可共享）：用 <b>AI</b> 辅助生成，加速 PBR 贴图产出。</li>
+            <li class="v-lite">用 <b>AI</b> 辅助生成或优化参考图、生成高模与<font color="#241713"><b>白模</b></font>；承接 <b>UE 地编外包</b>。</li>
+          </ul>
+        </div>
+
+        <div class="tl-item">
+          <span class="tl-meta"><div class="tl-date">2023.04 — 2025.11</div>
+          <div class="tl-city">深圳</div></span>
+          <div class="tl-co">深圳市元象科技有限公司</div>
+          <div class="tl-role">场景地编</div>
+          <ul class="dash">
+            <li class="v-full">参与<b>游戏向项目《全职高手》（阅文 IP · 已上线）</b>、《X调查局》：负责场景地编全流程 —— 资产替换、灯光布置、地形 / 雾效 / 后期盒子效果、过场动画输出与上传。</li>
+            <li class="v-full">主导陕西历史博物馆《壁画那边是唐朝》：独立完成<b>唐代写实场景</b>从白盒到灯光后期的全流程制作，并参与前期策划 —— 与策划、主美、TA / 引擎、客户端评估效果落地与技术可行性，搭建 demo 验证方案。</li>
+            <li class="v-full">与策划、主美共同规划<b>关卡动线与玩法节奏</b>并搭建白盒；协同建模师产出 PBR 资产，按命名规范导入 UE 完成白盒替换；按项目方案选用<b>光照烘焙或实时光照</b>。</li>
+            <li class="v-full">在有限原画基础上对场景二次创作，整体把控场景与过场动画质量；面向 <b>VR 头显端的算力约束</b>，在<b>不损失画面效果的前提下</b>优化 drawcall、光照与面数并稳定帧率，协同引擎完成终版优化，经多轮测试使<b>头显端与 PC 端效果最大程度一致</b>。</li>
+            <li class="v-full">制定<b>外包技术文档及美术规范文档</b>（配色方案、材质参考、风格指南等），对接和管理外包团队，负责场景效果审核监修与风格统一把控，<b>返工率明显下降</b>。</li>
+            <li class="v-lite"><b>《壁画那边是唐朝》</b>（陕历博）：<b>独立主导</b> —— <b>唐代长安城级</b>写实场景（<b>平方公里级</b>，资产 <b>100+</b>），从白盒到灯光后期全流程；参与前期策划，与策划 / 主美 / TA / 引擎评估可行性并搭 demo 验证。</li>
+            <li class="v-lite"><b>《全职高手》</b>（<b>阅文 IP</b> · 已上线）：<b>森林 + 城堡</b>大场景（<b>数十万平米</b>，资产 <b>50+</b>），场景地编全流程 —— 资产替换、灯光、地形雾效、过场动画；参与<b>关卡动线与玩法白盒</b>规划。</li>
+            <li class="v-lite"><b>《X调查局》</b>：单体场景（<b>数万平米</b>，资产 <b>30+</b>），负责场景地编与灯光氛围。</li>
+            
+            <li class="v-lite"><b>技术与流程</b>：Lumen / 烘焙光照 · Nanite / drawcall 优化（<b>VR 头显端</b>算力约束下保持画质，<b>PC 端稳定 30 帧</b>）· 制定美术规范、对接外包，<b>返工率明显下降</b>。</li>
+          </ul>
+        </div>
+
+        <div class="tl-item">
+          <span class="tl-meta"><div class="tl-date">2022.05 — 2023.01</div>
+          <div class="tl-city">杭州</div></span>
+          <div class="tl-co">杭州时光新影科技有限公司</div>
+          <div class="tl-role">UE 初级地编</div>
+          <ul class="dash">
+            <li class="v-full">参与<b>《星落凝成糖》《重紫》</b>的 UE 场景搭建与定版，全流程跟进至最终画面输出。</li>
+            <li class="v-full">负责<b>灯光布置与氛围还原</b>；用 Maya 完成摄像机匹配与镜头制作，实现实拍与 UE 场景的<b>实时合成</b>并输出 Sequence 渲染。</li>
+            <li class="v-lite"><b>《星落凝成糖》《重紫》</b>（影视剧）：UE 场景搭建与定版，跟进至成片输出。</li>
+            <li class="v-lite">负责灯光氛围；Maya 做<b>摄像机匹配</b>，实现实拍与 UE <b>实时合成</b>，输出 Sequence。</li>
+          </ul>
+        </div>
+
+        <div class="tl-item">
+          <span class="tl-meta"><div class="tl-date">2021.02 — 2022.03</div>
+          <div class="tl-city">河源</div></span>
+          <div class="tl-co">春沐源旅游文化有限公司</div>
+          <div class="tl-role">室内设计师</div>
+          <ul class="dash">
+            <li class="v-full">转入 3D 行业前：独立负责酒店、样板房、展厅等 <b>5 类项目</b>的方案与落地跟进。</li>
+            <li class="v-lite">转入 3D 前：独立负责<b>酒店 / 样板房 / 展厅</b>等 5 类项目的方案与落地。</li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" style="margin-bottom:0">
+      <div class="title">教育背景 <em>Education</em></div>
+      <div class="edu">
+        <span class="edu-meta"><div class="tl-date">2016.09 — 2020.06</div>
+        <div class="tl-city">广州</div></span>
+        <div class="edu-l"><span class="edu-ico" role="img" aria-label="华南农业大学"></span>华南农业大学<em class="edu-badge">双一流</em></div>
+        <div class="edu-detail">环境艺术设计 · 本科</div>
+      </div>
+    </div>
+
+  </section>  </div>
+<!--PAGE:END--></div>
+
+
+
+
+
+<!-- ===== 旧草稿找回 ===== -->
+
+
+<!-- ===== 作品图片合集 ===== -->
+  <div class="wpage">
+    <div class="wtitle">《全职高手》 <span>阅文 IP · 游戏 · 森林 + 城堡 · 数十万平米 · 资产 50+ · PC 稳定 30 帧</span></div>
+      <figure><img src="../assets/qz_hero.jpg" alt="大殿内景"><figcaption>大殿内景</figcaption></figure>
+      <figure><img src="../assets/qz_02.jpg" alt="祭坛阶梯"><figcaption>祭坛阶梯</figcaption></figure>
+      <figure><img src="../assets/qz_03.jpg" alt="断柱碎石"><figcaption>断柱碎石</figcaption></figure>
+  </div>
+  <div class="wpage">
+    <div class="wtitle">《全职高手》 <span>场景地编 / 灯光</span></div>
+      <figure><img src="../assets/qz_04.jpg" alt="外景城堡"><figcaption>外景城堡</figcaption></figure>
+      <figure><img src="../assets/qz_05.jpg" alt="长厅纵深"><figcaption>长厅纵深</figcaption></figure>
+  </div>
+  <div class="wpage">
+    <div class="wtitle">《壁画那边是唐朝》 <span>文博 · 独立主导 · 唐代长安城级 · 平方公里级 · 资产 100+</span></div>
+      <figure><img src="../assets/hero_street.jpg" alt="夜景长廊"><figcaption>夜景长廊</figcaption></figure>
+      <figure><img src="../assets/sunset_lowres.jpg" alt="黄昏长安"><figcaption>黄昏长安</figcaption></figure>
+  </div>
+  <div class="wpage">
+    <div class="wtitle">登月 <span>场景地编</span></div>
+      <figure><img src="../assets/icecave.jpg" alt="冰晶洞窟"><figcaption>冰晶洞窟</figcaption></figure>
+    <div class="head-note">《全职高手》《壁画那边是唐朝》《X调查局》动态影像见作品集网站 cgystudio.github.io</div>
+  </div>
+</body></html>
