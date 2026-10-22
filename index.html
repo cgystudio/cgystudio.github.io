@@ -120,11 +120,20 @@ footer::before{content:'';position:absolute;left:0;top:0;width:100%;height:3px;b
 .proj-date{margin-left:auto;font-size:11.5px;color:var(--muted);white-space:nowrap}
 .proj-role{margin-top:6px;font-size:12px;color:var(--muted)}
 .proj-line{margin-top:7px;font-size:12.5px;font-weight:600;color:var(--accent-ink);letter-spacing:.01em}
-.stack{display:flex;flex-direction:column;gap:14px;margin-top:18px}
-.shot{margin:0;border-radius:10px;overflow:hidden;border:1px solid var(--line);background:#141014}
-.shot img{width:100%;height:auto;display:block;cursor:zoom-in;transition:filter .22s ease}
-.shot img:hover{filter:brightness(1.07)}
-.shot figcaption{padding:8px 13px;font-size:11.5px;color:var(--muted);background:#faf8f6;border-top:1px solid var(--line);letter-spacing:.02em}
+/* 作品图：每 4 张一排，拼成一整块 */
+.stack{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:18px}
+.shot{margin:0;border-radius:8px;overflow:hidden;border:1px solid var(--line);background:#141014;position:relative}
+.shot img{width:100%;aspect-ratio:3/2;object-fit:cover;display:block;cursor:zoom-in;transition:transform .4s ease,filter .22s ease}
+.shot:hover img{transform:scale(1.04);filter:brightness(1.06)}
+.shot figcaption{position:absolute;left:0;right:0;bottom:0;padding:14px 8px 5px;font-size:10.5px;color:rgba(255,255,255,.9);
+  background:linear-gradient(to top,rgba(0,0,0,.62),transparent);letter-spacing:.06em}
+
+/* 排不满 4 张的项目：图片均分整行，避免留空 */
+.stack.c2{grid-template-columns:repeat(2,1fr)}
+.stack.c1{grid-template-columns:1fr}
+.stack .shot.full{grid-column:1/-1}
+.stack .shot.full img{aspect-ratio:21/9}
+
 .proj.coming{border-style:dashed;background:#fdfcfb}
 .ph{border:1px dashed #dfd6cf;border-radius:10px;background:repeating-linear-gradient(45deg,#f5f1ee,#f5f1ee 12px,#faf7f5 12px,#faf7f5 24px);color:#a89c95;font-size:12.5px;text-align:center;padding:40px 0;letter-spacing:.06em}
 .hint{margin:4px 0 0;font-size:11.5px;color:var(--muted);letter-spacing:.02em}
@@ -132,7 +141,8 @@ footer::before{content:'';position:absolute;left:0;top:0;width:100%;height:3px;b
 .reel + .reel{margin-top:18px}
 .reel video{width:100%;display:block;aspect-ratio:16/9;margin:0;background:#000}
 .reel .vnote{margin:0;padding:10px 14px;border-top:1px solid var(--line);font-size:11.5px;color:var(--muted);background:#fff}
-@media (max-width:720px){.proj{padding:16px 14px 18px;border-radius:12px}.stack{gap:10px}.proj-date{margin-left:0}}
+@media (max-width:900px){.stack{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:720px){.proj{padding:16px 14px 18px;border-radius:12px}.stack{grid-template-columns:repeat(2,1fr);gap:8px}.proj-date{margin-left:0}}
 
 </style>
 </head>
@@ -163,12 +173,12 @@ footer::before{content:'';position:absolute;left:0;top:0;width:100%;height:3px;b
       <div class="proj-sub">阅文 IP · 游戏</div>
     </div>
     <div class="proj-line">森林 + 城堡 · 数十万平米 · 资产 50+ · PC 稳定 30 帧</div>
-    <div class="stack">
+    <div class="stack c4">
       <figure class="shot"><img src="assets/qz_hero.jpg" data-gallery="g1" data-i="0" loading="lazy" alt="大殿内景"><figcaption>大殿内景</figcaption></figure>
       <figure class="shot"><img src="assets/qz_02.jpg" data-gallery="g1" data-i="1" loading="lazy" alt="祭坛阶梯"><figcaption>祭坛阶梯</figcaption></figure>
       <figure class="shot"><img src="assets/qz_03.jpg" data-gallery="g1" data-i="2" loading="lazy" alt="断柱碎石"><figcaption>断柱碎石</figcaption></figure>
       <figure class="shot"><img src="assets/qz_04.jpg" data-gallery="g1" data-i="3" loading="lazy" alt="外景城堡"><figcaption>外景城堡</figcaption></figure>
-      <figure class="shot"><img src="assets/qz_05.jpg" data-gallery="g1" data-i="4" loading="lazy" alt="长厅纵深"><figcaption>长厅纵深</figcaption></figure>
+      <figure class="shot full"><img src="assets/qz_05.jpg" data-gallery="g1" data-i="4" loading="lazy" alt="长厅纵深"><figcaption>长厅纵深</figcaption></figure>
     </div>
   </article>
 
@@ -178,7 +188,7 @@ footer::before{content:'';position:absolute;left:0;top:0;width:100%;height:3px;b
       <div class="proj-sub">文博 · 独立主导</div>
     </div>
     <div class="proj-line">唐代长安城级 · 平方公里级 · 资产 100+ · 稳定 30 帧</div>
-    <div class="stack">
+    <div class="stack c2">
       <figure class="shot"><img src="assets/hero_street.jpg" data-gallery="g2" data-i="0" loading="lazy" alt="夜景长廊"><figcaption>夜景长廊</figcaption></figure>
       <figure class="shot"><img src="assets/sunset_lowres.jpg" data-gallery="g2" data-i="1" loading="lazy" alt="黄昏长安"><figcaption>黄昏长安</figcaption></figure>
     </div>
@@ -188,7 +198,7 @@ footer::before{content:'';position:absolute;left:0;top:0;width:100%;height:3px;b
     <div class="proj-head">
       <div class="proj-title">登月</div>
     </div>
-    <div class="stack">
+    <div class="stack c1">
       <figure class="shot"><img src="assets/icecave.jpg" data-gallery="g3" data-i="0" loading="lazy" alt="冰晶洞窟"><figcaption>冰晶洞窟</figcaption></figure>
     </div>
   </article>
@@ -198,7 +208,7 @@ footer::before{content:'';position:absolute;left:0;top:0;width:100%;height:3px;b
       <div class="proj-title">古风山寺场景</div>
       <div class="proj-sub">个人全流程</div>
     </div>
-    <div class="stack"><div class="ph">截图待补充</div></div>
+    <div class="stack c1"><div class="ph">截图待补充</div></div>
   </article>
 
   <div class="hint">点击图片可放大（方向键翻页）</div>
