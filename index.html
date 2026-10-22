@@ -128,6 +128,7 @@ footer::before{content:'';position:absolute;left:0;top:0;width:100%;height:3px;b
 .ph{border:1px dashed #dfd6cf;border-radius:10px;background:repeating-linear-gradient(45deg,#f5f1ee,#f5f1ee 12px,#faf7f5 12px,#faf7f5 24px);color:#a89c95;font-size:12.5px;text-align:center;padding:40px 0;letter-spacing:.06em}
 .hint{margin:4px 0 0;font-size:11.5px;color:var(--muted);letter-spacing:.02em}
 .reel{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 10px 26px rgba(30,18,12,.08)}
+.reel + .reel{margin-top:18px}
 .reel video{width:100%;display:block;aspect-ratio:16/9;margin:0;background:#000}
 .reel .vnote{margin:0;padding:10px 14px;border-top:1px solid var(--line);font-size:11.5px;color:var(--muted);background:#fff}
 @media (max-width:720px){.proj{padding:16px 14px 18px;border-radius:12px}.stack{gap:10px}.proj-date{margin-left:0}}
@@ -231,7 +232,11 @@ footer::before{content:'';position:absolute;left:0;top:0;width:100%;height:3px;b
   <h2 class="sec-title">影像 <em>Footage</em></h2>
   <div class="reel">
     <video src="assets/qz_showcase_1080p.mp4" poster="assets/qz_video_poster.jpg" controls preload="metadata" playsinline></video>
-    <div class="vnote">《全职高手》· 实机演示（1080p · 26 秒）· 内景动线与外景全景</div>
+    <div class="vnote">《全职高手》· 实机演示 · 26 秒</div>
+  </div>
+  <div class="reel">
+    <video src="assets/xdcj_1440.mp4" poster="assets/xdcj_poster.jpg" controls preload="metadata" playsinline></video>
+    <div class="vnote">《X调查局》· 场景片段 · 43 秒</div>
   </div>
 </section>
 
