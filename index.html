@@ -120,6 +120,13 @@ footer::before{content:'';position:absolute;left:0;top:0;width:100%;height:3px;b
 .proj-date{margin-left:auto;font-size:11.5px;color:var(--muted);white-space:nowrap}
 .proj-role{margin-top:6px;font-size:12px;color:var(--muted)}
 .proj-line{margin-top:7px;font-size:12.5px;font-weight:600;color:var(--accent-ink);letter-spacing:.01em}
+
+/* ===== 简历（A4 纸）嵌入 ===== */
+.sheetwrap{position:relative;width:100%;overflow:hidden}
+.sheetwrap iframe{position:absolute;left:50%;top:0;width:794px;height:1123px;margin-left:-397px;border:0;background:#fff;border-radius:4px;box-shadow:0 14px 40px rgba(30,18,12,.16);transform-origin:top center}
+.sheet-hint{margin-top:12px;font-size:11.5px;color:var(--muted);letter-spacing:.02em}
+.sheet-hint a{color:var(--accent-ink);font-weight:600;border-bottom:1px solid rgba(184,67,31,.35)}
+
 .stack{display:flex;flex-direction:column;gap:14px;margin-top:18px}
 .shot{margin:0;border-radius:10px;overflow:hidden;border:1px solid var(--line);background:#141014}
 .shot img{width:100%;height:auto;display:block;cursor:zoom-in;transition:filter .22s ease}
@@ -152,6 +159,12 @@ footer::before{content:'';position:absolute;left:0;top:0;width:100%;height:3px;b
     </div>
   </div>
 </header>
+
+<section class="block wrap" id="resume">
+  <h2 class="sec-title">简历 <em>Resume</em></h2>
+  <div class="sheetwrap" id="sheetWrap"><iframe id="sheetFrame" src="assets/resume.html" title="陈冠宇 简历" loading="lazy"></iframe></div>
+  <div class="sheet-hint">手机上字小可 <a href="assets/resume.html" target="_blank" rel="noopener">单独打开简历 ↗</a> · <a href="assets/陈冠宇_UE场景地编_简历.pdf" target="_blank" rel="noopener">下载 PDF ↓</a></div>
+</section>
 
 <section class="block wrap" id="works">
   <h2 class="sec-title">作品 <em>Works</em></h2>
@@ -272,6 +285,19 @@ document.addEventListener('keydown', function(e){
   if (e.key === 'ArrowLeft') lbGo(-1);
   if (e.key === 'ArrowRight') lbGo(1);
 });
+
+function fitSheet(){
+  var wrap = document.getElementById('sheetWrap'), fr = document.getElementById('sheetFrame');
+  if (!wrap || !fr) return;
+  var s = wrap.clientWidth / 794;
+  if (s > 1.45) s = 1.45;
+  fr.style.transform = 'scale(' + s + ')';
+  wrap.style.height = Math.round(1123 * s) + 'px';
+}
+window.addEventListener('resize', fitSheet);
+window.addEventListener('load', fitSheet);
+document.addEventListener('DOMContentLoaded', fitSheet);
+fitSheet();
 </script>
 </body>
 </html>
