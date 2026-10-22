@@ -133,8 +133,8 @@ footer::before{content:'';position:absolute;left:0;top:0;width:100%;height:3px;b
 .stack.c1 .shot{border-radius:0}
 .stack.c2 .shot{aspect-ratio:1.778}
 .stack.c1 .shot{aspect-ratio:2.056}
-.stack.c4{grid-template-columns:repeat(3,1fr)}   /* 小图三张一排，尺寸完全一致 */
-.stack.c4 .shot{aspect-ratio:2.471}
+.stack.cx{grid-template-columns:1fr}              /* 四张拼成的一张整图 */
+.stack.cx .shot{aspect-ratio:1.4296;border-radius:10px;overflow:hidden}
 .shot.cover img{object-fit:cover}                  /* 长厅纵深裁切填满，与其它两张同尺寸 */
 .stack .shot.full{grid-column:1/-1;margin-top:6px;border-radius:10px;overflow:hidden;aspect-ratio:1.778}
 
@@ -176,11 +176,8 @@ footer::before{content:'';position:absolute;left:0;top:0;width:100%;height:3px;b
       <div class="proj-sub">阅文 IP · 游戏</div>
     </div>
     <div class="proj-line">森林 + 城堡 · 数十万平米 · 资产 50+ · PC 稳定 30 帧</div>
-    <div class="stack c4">
-      <figure class="shot"><img src="assets/qz_hero.jpg" data-gallery="g1" data-i="0" loading="lazy" alt="大殿内景"><figcaption>大殿内景</figcaption></figure>
-      <figure class="shot"><img src="assets/qz_02.jpg" data-gallery="g1" data-i="1" loading="lazy" alt="祭坛阶梯"><figcaption>祭坛阶梯</figcaption></figure>
-      <figure class="shot cover"><img src="assets/qz_05.jpg" data-gallery="g1" data-i="2" loading="lazy" alt="长厅纵深"><figcaption>长厅纵深</figcaption></figure>
-      <figure class="shot full"><img src="assets/qz_04.jpg" data-gallery="g1" data-i="3" loading="lazy" alt="外景城堡"><figcaption>外景城堡</figcaption></figure>
+    <div class="stack cx">
+      <figure class="shot"><img src="assets/qz_grid.jpg" data-gallery="g1" data-i="0" loading="lazy" alt="《全职高手》教堂废墟：大殿内景 / 祭坛阶梯 / 长厅纵深 / 外景城堡"><figcaption>大殿内景 · 祭坛阶梯 · 长厅纵深 · 外景城堡</figcaption></figure>
     </div>
   </article>
 
@@ -252,7 +249,7 @@ footer::before{content:'';position:absolute;left:0;top:0;width:100%;height:3px;b
 
 <script>
 var G = {
-  g1: ['assets/qz_hero.jpg','assets/qz_02.jpg','assets/qz_05.jpg','assets/qz_04.jpg'],
+  g1: ['assets/qz_grid.jpg'],
   g2: ['assets/hero_street.jpg','assets/sunset_lowres.jpg'],
   g3: ['assets/icecave.jpg'],
   g4: ['assets/room.jpg']
