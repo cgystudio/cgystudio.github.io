@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="zhusha" data-tools="off" data-style="L"><head>
+<html lang="zh-CN" data-theme="zhusha" data-tools="off" data-style="L" data-works="on"><head>
 <meta charset="UTF-8">
 <title>陈冠宇 · UE 场景地编｜灯光师 · 简历</title>
 <meta name="author" content="陈冠宇">
@@ -437,6 +437,10 @@ html[data-theme="shimo"]  .edu-ico{ background-image:url(scau-shimo.png); }
   .page{ width:210mm; height:297mm; min-height:0; overflow:hidden; box-shadow:none; margin:0; }
   .page::after{ display:none; }
   [contenteditable="true"]{ background:none !important; box-shadow:none !important; }
+  .wpage{ width:210mm; height:297mm; margin:0 !important; box-shadow:none !important; overflow:hidden; }
+  .works-lite{ display:none !important; }
+  html[data-style="L"]:not([data-works="off"]) .works-lite{ display:block !important; }
+  .wpage figure img{ border-radius:0; }
   html,body{-webkit-print-color-adjust:exact; print-color-adjust:exact;}
 }
 
@@ -1218,26 +1222,27 @@ html[data-style="L"] .skill2 li span, html[data-style="L"] .skill2 li b{ font-si
 html[data-style="L"] .num b{ font-size:23px !important; }
 html[data-style="L"] .sidebar .s-block{ margin-bottom:20px !important; }
 
-/* ================= 作品集简历（导出用） ================= */
-@page{ size:A4; margin:0; }
-html, body{ background:#fff !important; }
-body{ padding:0 !important; display:block !important; }
-.toolbar, .add-btn, .del-btn, .drag-handle, .blk-tools,
-#warn, #saved, #buildtag, #tip, #toast, .tipbar{ display:none !important; }
-.page{ margin:0 auto !important; box-shadow:none !important; page-break-after:always; break-after:page; }
-.page::after{ display:none !important; }
-
+/* ===== 作品图片合集（附在简历后的 A4 页） ===== */
 .wpage{ width:210mm; height:297mm; padding:14mm; box-sizing:border-box; background:#fff;
-        display:flex; flex-direction:column; page-break-after:always; break-after:page; }
+        display:flex; flex-direction:column; page-break-after:always; break-after:page;
+        box-shadow:0 18px 50px rgba(15,30,40,.20), 0 2px 6px rgba(15,30,40,.08); margin:0 auto 26px; }
 .wpage:last-child{ page-break-after:auto; break-after:auto; }
 .wtitle{ font-family:var(--f-serif); font-size:16pt; font-weight:700; color:#241713; letter-spacing:.02em;
          padding-bottom:3mm; margin-bottom:4mm; border-bottom:1.5px solid #e0653c; display:flex; align-items:baseline; gap:4mm; }
-.wtitle span{ font-family:var(--f-sans); font-size:8pt; font-weight:600; color:#b8431f; letter-spacing:.02em; border:0; }
+.wtitle span{ font-family:var(--f-sans); font-size:8pt; font-weight:600; color:#b8431f; letter-spacing:.02em; }
 .wpage figure{ margin:0 0 5mm; break-inside:avoid; }
 .wpage figure img{ width:100%; display:block; border-radius:2mm; }
 .wpage figcaption{ margin-top:1.6mm; font-size:8pt; color:#7b8794; letter-spacing:.04em; }
 .wpage .head-note{ margin-top:auto; padding-top:6mm; font-size:7.5pt; color:#a89c95; border-top:1px solid #eae4df; letter-spacing:.03em; }
-*{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+/* 作品页开关：仅「作品集版」(data-style=L 且 data-works!=off) 输出作品页 */
+.works-lite{ display:none; }
+html[data-style="L"]:not([data-works="off"]) .works-lite{ display:block; }
+
+/* ===== 线上只读版 ===== */
+body{padding:0 !important; background:#fff !important; display:block !important;}
+.page{box-shadow:none !important; margin:0 auto !important;}
+.page::after{display:none !important;}
+.toolbar,.add-btn,.del-btn,.drag-handle,.blk-tools,#warn,#saved,#buildtag,#tip,#toast,.tipbar{display:none !important;}
 </style>
 </head>
 <body>
@@ -1252,9 +1257,10 @@ body{ padding:0 !important; display:block !important; }
   <button data-set-style="">默认</button>
   <button data-set-style="A">极简</button>
   <button data-set-style="B">杂志</button>
-  <button data-set-style="C">作品集</button>
+  <button data-set-style="C">深色</button>
   <button data-set-style="F">自由</button>
-  <button data-set-style="L" title="同样排版：工作经历只留项目与主要工作，2026.03 起简写为个人作品 · 接单外包">精简</button>
+  <button data-set-style="L" data-set-works="on" title="精简排版 + 后面 4 页作品图，导出共 5 页 A4">作品集版</button>
+  <button data-set-style="L" data-set-works="off" title="同样的精简排版，只出 1 页 A4（不含作品图）">精简</button>
   <span class="sep"></span>
   <button id="btnAvatar">换头像</button>
   <button id="btnSaveAvatar" title="把当前头像导出成一个图片文件存起来">存头像</button>
@@ -1450,25 +1456,12 @@ body{ padding:0 !important; display:block !important; }
 
   </section>  </div>
 <!--PAGE:END--></div>
-
-
-
-
-
-<!-- ===== 旧草稿找回 ===== -->
-
-
-<!-- ===== 作品图片合集 ===== -->
+<div class="works-lite">
+<!-- ===== 作品图片合集（新增页） ===== -->
   <div class="wpage">
     <div class="wtitle">《全职高手》 <span>阅文 IP · 游戏 · 森林 + 城堡 · 数十万平米 · 资产 50+ · PC 稳定 30 帧</span></div>
-      <figure><img src="../assets/qz_hero.jpg" alt="大殿内景"><figcaption>大殿内景</figcaption></figure>
-      <figure><img src="../assets/qz_02.jpg" alt="祭坛阶梯"><figcaption>祭坛阶梯</figcaption></figure>
-      <figure><img src="../assets/qz_03.jpg" alt="断柱碎石"><figcaption>断柱碎石</figcaption></figure>
-  </div>
-  <div class="wpage">
-    <div class="wtitle">《全职高手》 <span>场景地编 / 灯光</span></div>
-      <figure><img src="../assets/qz_04.jpg" alt="外景城堡"><figcaption>外景城堡</figcaption></figure>
-      <figure><img src="../assets/qz_05.jpg" alt="长厅纵深"><figcaption>长厅纵深</figcaption></figure>
+      <figure><img src="../assets/qz_pair1.jpg" alt="大殿内景 / 祭坛阶梯"><figcaption>大殿内景 · 祭坛阶梯</figcaption></figure>
+      <figure><img src="../assets/qz_pair2.jpg" alt="长厅纵深 / 外景城堡"><figcaption>长厅纵深 · 外景城堡</figcaption></figure>
   </div>
   <div class="wpage">
     <div class="wtitle">《壁画那边是唐朝》 <span>文博 · 独立主导 · 唐代长安城级 · 平方公里级 · 资产 100+</span></div>
@@ -1480,4 +1473,12 @@ body{ padding:0 !important; display:block !important; }
       <figure><img src="../assets/icecave.jpg" alt="冰晶洞窟"><figcaption>冰晶洞窟</figcaption></figure>
     <div class="head-note">《全职高手》《壁画那边是唐朝》《X调查局》动态影像见作品集网站 cgystudio.github.io</div>
   </div>
+  </div>
+
+
+
+
+
+<!-- ===== 旧草稿找回 ===== -->
+
 </body></html>
