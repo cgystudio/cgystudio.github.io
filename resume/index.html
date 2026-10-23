@@ -1237,11 +1237,13 @@ html[data-style="L"] .sidebar .s-block{ margin-bottom:20px !important; }
         display:block; page-break-after:auto; break-after:auto; }
 .wpage + .wpage{ margin-top:5mm; }   /* 项目之间的间隔（比图片间距大一点，形成分组节奏） */
 .wgroup{ position:relative; display:flex; align-items:baseline; gap:2.5mm;
-         border-bottom:.28mm solid var(--line); padding-bottom:2.4mm; margin-bottom:4.5mm;
+         border-bottom:.28mm solid var(--line); padding:3.4mm 0 2.6mm; margin-bottom:4.5mm;
          font-size:13pt; font-weight:700; letter-spacing:.05em; color:var(--accent-ink); }
-.wgroup::after{ content:attr(data-n); position:absolute; right:0; top:-2.6mm;
-         font-family:var(--f-serif,"Songti SC",serif); font-size:24pt; font-weight:700; line-height:.8;
-         color:var(--accent); opacity:.12; }
+.wgroup::before{ content:''; position:absolute; left:0; top:0; width:100%; height:.5mm;
+         background:linear-gradient(90deg,var(--accent) 0%,var(--accent) 15%,var(--line) 15%,var(--line) 100%); }
+.wgroup::after{ content:attr(data-n); position:absolute; right:0; top:1.6mm;
+         font-family:var(--f-serif,"Songti SC",serif); font-size:21pt; font-weight:700; line-height:.8;
+         color:var(--accent); opacity:.13; }
 .wp-personal{ margin-top:8mm; }   /* 个人作品单独起一组，间距更大 */
 
 /* 抬头条 */
