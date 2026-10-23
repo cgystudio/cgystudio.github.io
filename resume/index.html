@@ -1222,18 +1222,26 @@ html[data-style="L"] .skill2 li span, html[data-style="L"] .skill2 li b{ font-si
 html[data-style="L"] .num b{ font-size:23px !important; }
 html[data-style="L"] .sidebar .s-block{ margin-bottom:20px !important; }
 
-/* ===== 作品图片合集：满版铺开、零间隙、页面无缝相接 ===== */
+/* ===== 作品图片合集：满宽 + 细缝排版 ===== */
 .wpage{ width:210mm; height:auto; min-height:0; padding:0; margin:0 auto; box-sizing:border-box;
-        background:#fff; position:relative; overflow:hidden; page-break-after:auto; break-after:auto; }
+        background:#fff; position:relative; page-break-after:auto; break-after:auto; }
+.wpage + .wpage{ margin-top:6mm; }
 .pgroup{ position:relative; }
-.plabel{ position:absolute; top:0; left:0; right:0; z-index:2; padding:8mm 8mm 22mm;
-         font-family:var(--f-serif); font-size:15pt; font-weight:700; letter-spacing:.03em; color:#fff;
-         background:linear-gradient(to bottom, rgba(0,0,0,.62), rgba(0,0,0,0)); }
-.plabel span{ display:block; margin-top:2mm; font-family:var(--f-sans); font-size:8.5pt; font-weight:600;
-         color:rgba(255,255,255,.92); letter-spacing:.02em; }
-.wpage figure{ margin:0 !important; padding:0; }
+
+/* 项目抬头条：深色底 + 朱砂细线，压满整宽 */
+.plabel{ display:flex; align-items:baseline; gap:5mm; padding:4.5mm 7mm 4mm;
+         background:#241713; color:#fff; border-bottom:2.5px solid var(--accent);
+         font-family:var(--f-serif); font-size:13pt; font-weight:700; letter-spacing:.03em; }
+.plabel span{ font-family:var(--f-sans); font-size:7.8pt; font-weight:600; letter-spacing:.02em;
+              color:rgba(255,255,255,.72); }
+
+/* 图片：满宽，图与图之间留 4mm 细缝 */
+.wpage figure{ margin:0; padding:0; break-inside:avoid; }
+.wpage figure + figure{ margin-top:4mm; }
 .wpage figure img{ width:100%; display:block; border-radius:0 !important; }
 .wpage figcaption{ display:none; }
+
+/* 组与组之间的细缝已由 .wpage + .wpage 提供 */
 .works-lite{ display:none; }
 html[data-style="L"]:not([data-works="off"]) .works-lite{ display:block; }
 
