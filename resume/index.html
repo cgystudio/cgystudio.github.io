@@ -1236,8 +1236,12 @@ html[data-style="L"] .sidebar .s-block{ margin-bottom:20px !important; }
 .wpage{ width:210mm; height:auto; padding:0; margin:0 auto; box-sizing:border-box; background:#fff;
         display:block; page-break-after:auto; break-after:auto; }
 .wpage + .wpage{ margin-top:5mm; }   /* 项目之间的间隔（比图片间距大一点，形成分组节奏） */
-.wgroup{ background:var(--accent-ink); border:0; border-radius:1mm; padding:2.4mm 5mm;
-         font-size:9pt; font-weight:700; letter-spacing:.2em; color:#fff; margin-bottom:3mm; }
+.wgroup{ position:relative; display:flex; align-items:baseline; gap:2.5mm;
+         border-bottom:.28mm solid var(--line); padding-bottom:2.4mm; margin-bottom:4.5mm;
+         font-size:13pt; font-weight:700; letter-spacing:.05em; color:var(--accent-ink); }
+.wgroup::after{ content:attr(data-n); position:absolute; right:0; top:-2.6mm;
+         font-family:var(--f-serif,"Songti SC",serif); font-size:24pt; font-weight:700; line-height:.8;
+         color:var(--accent); opacity:.12; }
 .wp-personal{ margin-top:8mm; }   /* 个人作品单独起一组，间距更大 */
 
 /* 抬头条 */
@@ -1490,7 +1494,7 @@ body{padding:0 !important; background:#fff !important; display:block !important;
 <!--PAGE:END--></div>
 <div class="works-lite">
 <!-- ===== 作品页（速览版） ===== -->
-  <div class="wgroup">工作项目作品</div>
+  <div class="wgroup" data-n="01">工作项目作品</div>
   <div class="wpage">
     <div class="ph"><div class="ph-row"><span class="ph-n">01</span><span class="ph-t">《全职高手》</span><span class="ph-m">阅文 IP · 游戏 · 数十万平米 · 资产 50+ · PC 稳定 30 帧</span></div>
       <div class="ph-resp">场景地编全流程：资产替换 · 灯光 · 地形雾效 · 过场动画；参与关卡动线与白盒搭建。</div></div>
