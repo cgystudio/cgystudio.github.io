@@ -1256,142 +1256,6 @@ html[data-style="L"] .sidebar .s-block{ margin-bottom:20px !important; }
 .row img.fit{ aspect-ratio:2.473; object-fit:cover; height:auto; }
 
 /* 说明块：贴底，撑满剩余空白 */
-.pnote{ margin-top:auto; padding:5mm 7mm 7mm; font-size:8.6pt; line-height:1.72; color:#3f4a55; }
-.pnote b{ display:block; margin-bottom:1.6mm; font-size:9pt; font-weight:700; color:#b8431f; letter-spacing:.08em; }
-.pnote i{ font-style:normal; color:#241713; font-weight:600; }
-
-/* 末页联系方式 */
-.pfoot{ display:flex; align-items:center; gap:7mm; padding:6mm 7mm 8mm; margin-top:6mm;
-        border-top:2.5px solid var(--accent); background:#241713; color:#fff; }
-.pfoot-qr{ width:26mm; height:26mm; object-fit:contain; background:#fff; padding:1.5mm; border-radius:2mm; }
-.pfoot-txt{ display:flex; flex-direction:column; gap:1.4mm; font-size:8.4pt; line-height:1.5; color:rgba(255,255,255,.82); }
-.pfoot-txt b{ font-family:var(--f-serif); font-size:13pt; letter-spacing:.06em; color:#fff; }
-.pfoot-txt span:first-of-type{ color:var(--accent); font-weight:600; letter-spacing:.06em; }
-
-/* 末页影像区 */
-.pvideo{ margin-top:5mm; }
-.pvideo-h{ padding:3mm 7mm; font-size:9pt; font-weight:700; letter-spacing:.1em; color:#b8431f;
-           border-top:2.5px solid var(--accent); }
-.pvideo .row{ margin:0; padding:0 7mm; }
-.pvideo figcaption{ display:block; margin-top:1.5mm; font-size:7.6pt; color:#7b8794; letter-spacing:.02em; }
-
-.wpage.solo .hero{ margin:auto 0; }   /* 单图页：图片垂直居中 */
-/* 页脚（细线 + 页码），把底部留白变成版面留白 */
-.pfolio{ margin-top:auto; display:flex; justify-content:space-between; align-items:baseline;
-         padding:3.5mm 7mm 4.5mm; border-top:1px solid #eae4df;
-         font-size:7.4pt; color:#9aa3ad; letter-spacing:.04em; }
-.wpage.solo .pfolio{ margin-top:0; }
-
-.wpage figure{ margin:0; }
-.wpage figcaption{ display:none; }
-.works-lite{ display:none; }
-html[data-style="L"]:not([data-works="off"]) .works-lite{ display:block; }
-
-body{padding:0 !important; background:#fff !important; display:block !important;}
-.page{box-shadow:none !important; margin:0 auto !important;}
-.page::after{display:none !important;}
-.toolbar,.add-btn,.del-btn,.drag-handle,.blk-tools,#warn,#saved,#buildtag,#tip,#toast,.tipbar{display:none !important;}
-</style>
-</head>
-<body>
-
-<!-- ===== 工具栏 ===== -->
-<div class="toolbar">
-  <button data-set-theme="moqing" class="">墨青</button>
-  <button data-set-theme="zhusha" class="on">朱砂</button>
-  <button data-set-theme="shimo">石墨</button>
-  <button data-set-theme="su">素</button>
-  <span class="sep"></span>
-  <button data-set-style="">默认</button>
-  <button data-set-style="A">极简</button>
-  <button data-set-style="B">杂志</button>
-  <button data-set-style="C">深色</button>
-  <button data-set-style="F">自由</button>
-  <button data-set-style="L" data-set-works="on" title="精简排版 + 后面 4 页作品图，导出共 5 页 A4">作品集版</button>
-  <button data-set-style="L" data-set-works="off" title="同样的精简排版，只出 1 页 A4（不含作品图）">精简</button>
-  <span class="sep"></span>
-  <button id="btnAvatar">换头像</button>
-  <button id="btnSaveAvatar" title="把当前头像导出成一个图片文件存起来">存头像</button>
-  <button id="btnTools" title="显示 / 隐藏每个区块的「本块操作」工具条（默认隐藏，不遮挡正文）">工具条</button>
-  <button id="btnAddAll" hidden="">+</button>
-  <span class="sep"></span>
-  <button id="btnSave" title="立即保存到本机浏览器（快捷键 Ctrl / ⌘ + S）">保存</button>
-  <button id="btnSaveFile" title="把当前内容直接写回本机 index.html（Chrome / Edge；第一次会让你选一次文件，之后一键写入）">保存到文件</button>
-  <button id="btnReset">重置为模板</button>
-  <button class="print" id="btnPdf">导出 PDF</button>
-  <span class="tb-tip">← 点纸面文字直接改 · 鼠标移到条目上，右上角出现 × 可删 · 标题右侧的 + 可加一条 · Ctrl+Z 撤销 / Ctrl+Y 前进</span>
-</div>
-
-<input type="file" id="fileAvatar" accept="image/*" hidden="">
-
-<div id="warn" style="display:none"></div>
-<div id="buildtag">BUILD 20261022-173248</div>
-<div id="saved" style="opacity: 1;">已保存</div>
-<div id="stale" style="display:none">
-  <span>检测到简历文件更新过 —— 你上一版在本机的修改已备份。</span>
-  <button id="stale-restore">取回我的修改</button>
-  <button id="stale-drop">用新版本</button>
-</div>
-
-<!-- ===== 简历纸张 ===== -->
-<div class="page"><!--PAGE:START-->
-<header class="masthead" style="align-items: center;">
-    <div class="mh-main" style="padding-right: 8px;">
-      <div class="mh-nameline"><div class="mh-name">陈 冠 宇</div><div class="mh-basic">男 · 1996 · 现居深圳</div></div>
-      <div class="mh-role">意向岗位：UE 场景地编 / 灯光师</div>
-      <div class="mh-tag">4 年 UE 场景地编 · 游戏 / 影视 / 文博&nbsp;</div>
-      <a class="mh-portfolio" href="https://cgystudio.github.io/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:7px;margin:14px 0 0 0;padding:9px 18px 9px 15px;border:1.5px solid #22b8cf;border-radius:20px;background:rgba(34,184,207,.20);text-decoration:none;width:auto;box-sizing:border-box;align-self:flex-start;grid-column:1/-1;"><span style="font-size:9px;color:#22b8cf;">▶</span><span style="font-size:10px;letter-spacing:.16em;color:rgba(255,255,255,.66);font-weight:600;">作品集</span><span style="font-size:12.5px;color:#5fd8ea;font-weight:700;letter-spacing:.03em;">cgystudio.github.io</span><span style="font-size:11px;color:#22b8cf;">↗</span></a>
-    </div>
-    <div class="mh-photo" style="display: flex; flex-direction: column; align-items: flex-end; justify-self: end;">
-      <div class="ph-row" style="display:flex;gap:11px;align-items:flex-start;justify-content:flex-end;"><img style="width:124px !important;height:124px !important;border-radius:16px !important;object-fit:cover;border:2px solid var(--accent);display:block;" src="../assets/avatar.jpg" class="avatar-img" id="avatarBox" title="点击更换头像" alt="陈冠宇"><div style="text-align:center;"><img src="../assets/wechat-qr.jpg" class="wechat-qr" alt="微信二维码" style="width:108px !important;height:108px !important;border-radius:14px !important;display:block;background:#fff;padding:4px;box-sizing:border-box;border:2px solid var(--accent);object-fit:contain;"><div style="font-size:8.5px;color:rgba(255,255,255,.42);margin-top:4px;letter-spacing:.1em;text-align:center;">微信</div></div></div>
-    <div class="s-block" style="text-align: right; margin: 7px 0px 0px; padding: 0px; background: none; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; box-shadow: none; width: auto; max-width: none;">
-      <div class="s-title" style="display: none; font-size: 9.5px; letter-spacing: 0.14em; color: rgba(255, 255, 255, 0.5); margin: 0px 10px 0px 0px; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; padding: 0px; font-weight: 600; white-space: nowrap;">联系方式 <em>Contact</em></div>
-      <ul class="contact" style="padding: 0px; margin: 0px; list-style: none; line-height: 1.62;"><div class="ct-line" style="display: block; text-align: right; white-space: nowrap;"><span class="ct-label" style="display: inline-block; width: 78px; font-size: 9.5px; color: rgba(255, 255, 255, 0.46); letter-spacing: 0.02em; font-weight: 600; white-space: nowrap; margin-right: 4px; vertical-align: baseline;">电话&nbsp;/&nbsp;Tel：</span><li style="display: inline; margin: 0px; padding: 0px; font-size: 9.8px; color: rgba(255, 255, 255, 0.84); white-space: nowrap;"><svg viewBox="0 0 24 24" style="display: none;"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"></path></svg><span style="font-weight:700;color:#fff">195 1387 9660</span></li><span class="ct-sep" style="color: rgba(255, 255, 255, 0.32); white-space: nowrap;">&nbsp;·&nbsp;</span><li style="display: inline; margin: 0px; padding: 0px; font-size: 9.8px; color: rgba(255, 255, 255, 0.84); white-space: nowrap;"><svg viewBox="0 0 24 24" style="display: none;"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.9 8.9 0 0 1-4-.9L3 21l1.9-4.8A8.4 8.4 0 0 1 12 3.1a8.4 8.4 0 0 1 9 8.4z"></path></svg><span>微信 yxbk6991</span></li></div><div class="ct-line" style="display: block; text-align: right; white-space: nowrap;"><span class="ct-label" style="display: inline-block; width: 78px; font-size: 9.5px; color: rgba(255, 255, 255, 0.46); letter-spacing: 0.02em; font-weight: 600; white-space: nowrap; margin-right: 4px; vertical-align: baseline;">邮箱&nbsp;/&nbsp;Email：</span><li style="display: inline; margin: 0px; padding: 0px; font-size: 9.8px; color: rgba(255, 255, 255, 0.84); white-space: nowrap;"><svg viewBox="0 0 24 24" style="display: none;"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 6-10 7L2 6"></path></svg><span>guanyuchenscau@163.com</span></li><span class="ct-sep" style="color: rgba(255, 255, 255, 0.32); white-space: nowrap;">&nbsp;&nbsp;</span></div></ul>
-    </div></div>
-  </header>
-
-  <div class="body">
-
-  <!-- ================= 左：侧栏 ================= -->
-  <aside class="sidebar">
-    
-
-    <div class="s-block">
-      <div class="s-title">技能 <em>Skills</em></div>
-      <ul class="skill2">
-        <li class="v-full"><span>场景搭建 / 地编</span><b>UE4 / UE5</b></li>
-        <li class="v-full"><span>关卡白盒 / 动线</span><b>场景布局 · 玩法节奏</b></li>
-        <li class="v-full"><span>地形 / 植被</span><b>地形编辑 · Gaea · SpeedTree</b></li>
-        <li class="v-full"><span>灯光与氛围</span><b>Lumen · 光照烘焙 / 实时</b></li>
-        <li class="v-full"><span>场景性能优化</span><b>Nanite · LOD · 面数 · drawcall</b></li>
-        <li class="v-full"><span>材质与贴图</span><b>SP · SD · Marmoset</b></li>
-        <li class="v-full"><span>建模 / 雕刻</span><b>Maya · C4D · ZBrush</b></li>
-        <li class="v-full"><span>流程 / 协作</span><b>PBR 规范 · 外包对接</b></li>
-        <li class="v-full"><span>AI 辅助流程</span><b>参考图 · 高模 · 白盒 · PBR 工具</b></li>
-        <li class="v-lite"><span>场景搭建 / 地编</span><b>UE4 / UE5 · 白盒</b></li>
-        <li class="v-lite"><span>关卡白盒 / 动线</span><b>场景布局 · 玩法节奏</b></li>
-        <li class="v-lite"><span>灯光与氛围</span><b>Lumen · 烘焙 / 实时</b></li>
-        <li class="v-lite"><span>性能优化</span><b>Nanite · drawcall</b></li>
-        <li class="v-lite"><span>地形 / 植被</span><b>Gaea · SpeedTree</b></li>
-        <li class="v-lite"><span>材质与贴图</span><b>SP · SD · Marmoset</b></li>
-      </ul>
-    </div>
-
-    <div class="s-block">
-      <div class="s-title">关键数据 <em>Highlights</em></div>
-      <div class="nums">
-        <div class="num"><b>4</b><span>年 UE 场景</span></div>
-        <div class="num"><b>7个</b><span>已上线项目</span></div>
-        <div class="num"><b>UE5</b><span>独立全流程</span></div>
-        <div class="num"><b>2 部</b><span>影视剧项目</span></div>
-      </div>
-    </div>
-
-    <div class="s-block v-full">
-
-
-      <div class="s-title">语言 <em>Languages</em></div>
-
 
       <ul class="lang">
 
@@ -1547,4 +1411,9 @@ body{padding:0 !important; background:#fff !important; display:block !important;
 
 <!-- ===== 旧草稿找回 ===== -->
 
-</body></html>
+</body></html
+body{padding:0 !important; background:#fff !important; display:block !important;}
+.page{box-shadow:none !important; margin:0 auto !important;}
+.page::after{display:none !important;}
+.toolbar,.add-btn,.del-btn,.drag-handle,.blk-tools,#warn,#saved,#buildtag,#tip,#toast,.tipbar{display:none !important;}
+>
