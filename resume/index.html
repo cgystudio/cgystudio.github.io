@@ -1222,26 +1222,35 @@ html[data-style="L"] .skill2 li span, html[data-style="L"] .skill2 li b{ font-si
 html[data-style="L"] .num b{ font-size:23px !important; }
 html[data-style="L"] .sidebar .s-block{ margin-bottom:20px !important; }
 
-/* ===== 作品图片合集：满宽 + 细缝排版 ===== */
-.wpage{ width:210mm; height:auto; min-height:0; padding:0; margin:0 auto; box-sizing:border-box;
-        background:#fff; position:relative; page-break-after:auto; break-after:auto; }
-.wpage + .wpage{ margin-top:6mm; }
-.pgroup{ position:relative; }
+/* ===== 作品图片合集：一项目一页 · 主图/配图/说明 ===== */
+.wpage{ width:210mm; height:297mm; padding:0; margin:0 auto; box-sizing:border-box; background:#fff;
+        display:flex; flex-direction:column; overflow:hidden; page-break-after:always; break-after:page; }
+.wpage:last-child{ page-break-after:auto; break-after:auto; }
 
-/* 项目抬头条：深色底 + 朱砂细线，压满整宽 */
-.plabel{ display:flex; align-items:baseline; gap:5mm; padding:4.5mm 7mm 4mm;
-         background:#241713; color:#fff; border-bottom:2.5px solid var(--accent);
-         font-family:var(--f-serif); font-size:13pt; font-weight:700; letter-spacing:.03em; }
-.plabel span{ font-family:var(--f-sans); font-size:7.8pt; font-weight:600; letter-spacing:.02em;
-              color:rgba(255,255,255,.72); }
+/* 抬头条 */
+.ph{ display:flex; align-items:baseline; gap:4mm; padding:4.5mm 7mm 4mm; background:#241713; color:#fff;
+     border-bottom:2.5px solid var(--accent); }
+.ph-n{ font-family:var(--f-serif); font-size:9pt; font-weight:700; color:var(--accent); letter-spacing:.08em; }
+.ph-t{ font-family:var(--f-serif); font-size:13.5pt; font-weight:700; letter-spacing:.03em; }
+.ph-m{ margin-left:auto; font-size:7.6pt; font-weight:600; color:rgba(255,255,255,.72); letter-spacing:.02em; }
 
-/* 图片：满宽，图与图之间留 4mm 细缝 */
-.wpage figure{ margin:0; padding:0; break-inside:avoid; }
-.wpage figure + figure{ margin-top:4mm; }
-.wpage figure img{ width:100%; display:block; border-radius:0 !important; }
+/* 图块 */
+.band{ margin:4mm 0 0; }
+.band img{ width:100%; height:var(--h,78mm); object-fit:cover; display:block; }
+.hero{ margin:0; }
+.hero img{ width:100%; height:var(--hh,86mm); object-fit:cover; display:block; }
+.row{ display:grid; gap:4mm; margin:4mm 0 0; }
+.row.c3{ grid-template-columns:repeat(3,1fr); }
+.row.c2{ grid-template-columns:repeat(2,1fr); }
+.row img{ width:100%; height:var(--rh,42mm); object-fit:cover; display:block; }
+
+/* 说明块：贴底，撑满剩余空白 */
+.pnote{ margin-top:auto; padding:5mm 7mm 7mm; font-size:8.6pt; line-height:1.72; color:#3f4a55; }
+.pnote b{ display:block; margin-bottom:1.6mm; font-size:9pt; font-weight:700; color:#b8431f; letter-spacing:.08em; }
+.pnote i{ font-style:normal; color:#241713; font-weight:600; }
+
+.wpage figure{ margin:0; }
 .wpage figcaption{ display:none; }
-
-/* 组与组之间的细缝已由 .wpage + .wpage 提供 */
 .works-lite{ display:none; }
 html[data-style="L"]:not([data-works="off"]) .works-lite{ display:block; }
 
@@ -1463,31 +1472,32 @@ body{padding:0 !important; background:#fff !important; display:block !important;
   </section>  </div>
 <!--PAGE:END--></div>
 <div class="works-lite">
-<!-- ===== 作品图片合集（满版） ===== -->
-  <div class="wpage"><div class="pgroup">
-    <div class="plabel">《全职高手》<span>阅文 IP · 游戏 · 森林 + 城堡 · 数十万平米 · 资产 50+ · PC 稳定 30 帧</span></div>
-    <figure><img src="../assets/qz_hero.jpg" alt="《全职高手》"></figure>
-    <figure><img src="../assets/qz_02.jpg" alt="《全职高手》"></figure>
-    <figure><img src="../assets/qz_03.jpg" alt="《全职高手》"></figure>
-    <figure><img src="../assets/qz_04.jpg" alt="《全职高手》"></figure>
-    <figure><img src="../assets/qz_05.jpg" alt="《全职高手》"></figure>
-  </div></div>
-  <div class="wpage"><div class="pgroup">
-    <div class="plabel">《X调查局》<span>游戏 · 单体场景 · 数万平米 · 资产 30+ · 场景地编与灯光</span></div>
-    <figure><img src="../assets/xdcj_1.jpg" alt="《X调查局》"></figure>
-    <figure><img src="../assets/xdcj_2.jpg" alt="《X调查局》"></figure>
-    <figure><img src="../assets/xdcj_3.jpg" alt="《X调查局》"></figure>
-    <figure><img src="../assets/xdcj_4.jpg" alt="《X调查局》"></figure>
-  </div></div>
-  <div class="wpage"><div class="pgroup">
-    <div class="plabel">《壁画那边是唐朝》<span>文博 · 独立主导 · 唐代长安城级 · 平方公里级 · 资产 100+</span></div>
-    <figure><img src="../assets/hero_street.jpg" alt="《壁画那边是唐朝》"></figure>
-    <figure><img src="../assets/sunset_lowres.jpg" alt="《壁画那边是唐朝》"></figure>
-  </div></div>
-  <div class="wpage"><div class="pgroup">
-    <div class="plabel">登月<span>场景地编</span></div>
-    <figure><img src="../assets/icecave.jpg" alt="登月"></figure>
-  </div></div>
+<!-- ===== 作品页：一项目一页 ===== -->
+  <div class="wpage">
+    <div class="ph"><span class="ph-n">01</span><span class="ph-t">《全职高手》</span><span class="ph-m">阅文 IP · 游戏 · 数十万平米 · 资产 50+ · PC 稳定 30 帧</span></div>
+    <div class="hero" style="--hh:100mm"><img src="../assets/qz_04.jpg" alt="外景城堡"></div>
+    <div class="band" style="--h:95mm"><img src="../assets/qz_hero.jpg" alt="大殿内景"></div>
+    <div class="row c3" style="--rh:47mm"><img src="../assets/qz_02.jpg" alt="祭坛阶梯"><img src="../assets/qz_05.jpg" alt="长厅纵深"><img src="../assets/qz_03.jpg" alt="断柱碎石"></div>
+    <div class="pnote"><b>职责与产出</b>负责场景地编全流程：<i>资产替换、灯光布置、地形 / 雾效 / 后期盒子效果、过场动画输出与上传</i>；与策划、主美共同规划关卡动线与玩法节奏并搭建白盒；协同建模师产出 PBR 资产，按命名规范导入 UE 完成白盒替换。</div>
+  </div>
+  <div class="wpage">
+    <div class="ph"><span class="ph-n">02</span><span class="ph-t">《X调查局》</span><span class="ph-m">游戏 · 单体场景 · 数万平米 · 资产 30+</span></div>
+    <div class="hero" style="--hh:100mm"><img src="../assets/xdcj_1.jpg" alt="X调查局场景"></div>
+    <div class="band" style="--h:95mm"><img src="../assets/xdcj_2.jpg" alt="X调查局场景"></div>
+    <div class="row c2" style="--rh:47mm"><img src="../assets/xdcj_3.jpg" alt="X调查局场景"><img src="../assets/xdcj_4.jpg" alt="X调查局场景"></div>
+    <div class="pnote"><b>职责与产出</b>负责场景地编全流程 —— <i>资产替换、灯光布置、地形 / 雾效 / 后期盒子效果、过场动画输出与上传</i>；单体场景规模数万平米、资产 30+。</div>
+  </div>
+  <div class="wpage">
+    <div class="ph"><span class="ph-n">03</span><span class="ph-t">《壁画那边是唐朝》</span><span class="ph-m">文博 · 独立主导 · 唐代长安城级 · 平方公里级 · 资产 100+</span></div>
+    <div class="hero" style="--hh:125mm"><img src="../assets/hero_street.jpg" alt="夜景长廊"></div>
+    <div class="band" style="--h:120mm"><img src="../assets/sunset_lowres.jpg" alt="黄昏长安"></div>
+    <div class="pnote"><b>职责与产出</b><i>独立主导</i> 唐代长安城级写实场景，从白盒到灯光后期全流程；参与前期策划，与策划、主美、TA / 引擎、客户端评估效果落地与技术可行性，搭建 demo 验证方案。</div>
+  </div>
+  <div class="wpage">
+    <div class="ph"><span class="ph-n">04</span><span class="ph-t">登月</span><span class="ph-m">游戏 · 场景地编</span></div>
+    <div class="hero" style="--hh:245mm"><img src="../assets/icecave.jpg" alt="冰晶洞窟"></div>
+    <div class="pnote"><b>职责与产出</b>冰晶洞窟与环形基地平台场景，UE 实机截图。</div>
+  </div>
 </div>
 
 
