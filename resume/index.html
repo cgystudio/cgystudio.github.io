@@ -1250,6 +1250,10 @@ html[data-style="L"] .sidebar .s-block{ margin-bottom:20px !important; }
 .grid2x2{ display:grid; grid-template-columns:1fr 1fr; gap:2.5mm; margin:2.5mm 0 0; }
 .grid2x2 img{ width:100%; height:58mm; object-fit:cover; display:block; }
 .grid2x2.auto img{ height:auto; object-fit:contain; }   /* 不裁切，按原比例 */
+.grid2x2.fix img{ height:auto; object-fit:cover; }   /* 同一行画幅统一，仅微裁 */
+.grid2x2.r187 img{ aspect-ratio:1.87; }
+.grid2x2.r247 img{ aspect-ratio:2.47; }
+.grid2x2.r192 img{ aspect-ratio:1.92; }
 
 /* 通栏补图 / 单图 */
 .band{ margin:2.5mm 0 0; }
@@ -1486,8 +1490,10 @@ body{padding:0 !important; background:#fff !important; display:block !important;
   <div class="wpage">
     <div class="ph"><div class="ph-row"><span class="ph-n">01</span><span class="ph-t">《全职高手》</span><span class="ph-m">阅文 IP · 游戏 · 数十万平米 · 资产 50+ · PC 稳定 30 帧</span></div>
       <div class="ph-resp">场景地编全流程：资产替换 · 灯光 · 地形雾效 · 过场动画；参与关卡动线与白盒搭建。</div></div>
-    <div class="grid2x2 auto">
+    <div class="grid2x2 fix r187">
       <img src="../assets/qz_04.jpg" alt="外景城堡"><img src="../assets/qz_05.jpg" alt="长厅纵深">
+    </div>
+    <div class="grid2x2 fix r247">
       <img src="../assets/qz_hero.jpg" alt="大殿内景"><img src="../assets/qz_02.jpg" alt="祭坛阶梯">
     </div>
     <div class="band"><img src="../assets/qz_03.jpg" alt="断柱碎石"></div>
@@ -1509,7 +1515,7 @@ body{padding:0 !important; background:#fff !important; display:block !important;
   <div class="wpage">
     <div class="ph"><div class="ph-row"><span class="ph-n">04</span><span class="ph-t">个人作品</span><span class="ph-m">个人全流程 · 场景 / 材质 / 灯光</span></div>
       <div class="ph-resp">古风山寺 / 登月场景，个人全流程制作。</div></div>
-    <div class="grid2x2 auto">
+    <div class="grid2x2 fix r192">
       <img src="../assets/shenshe.jpg" alt="场景渲染"><img src="../assets/icecave.jpg" alt="冰晶洞窟">
     </div>
     <div class="band"><img src="../assets/moon_2.jpg" alt="登月场景"></div>

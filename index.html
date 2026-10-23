@@ -133,6 +133,7 @@ footer::before{content:'';position:absolute;left:0;top:0;width:100%;height:3px;b
 .stack.auto .shot{aspect-ratio:auto}
 .stack.auto .shot img{height:auto}
 .stack.nocap .shot figcaption{display:none}   /* 个人作品：不显示图片说明 */
+.stack.uniform .shot img{aspect-ratio:2.05;object-fit:cover;height:auto}   /* 个人作品：三张画幅统一 */
 .stack.c1{grid-template-columns:1fr}
 .stack.c1 .shot{border-radius:0}
 .stack.c2 .shot{aspect-ratio:1.778}
@@ -215,7 +216,7 @@ footer::before{content:'';position:absolute;left:0;top:0;width:100%;height:3px;b
       <div class="proj-title">个人作品</div>
       <div class="proj-sub">个人全流程 · 场景 / 材质 / 灯光</div>
     </div>
-    <div class="stack auto nocap">
+    <div class="stack auto nocap uniform">
       <figure class="shot"><img src="assets/shenshe.jpg" data-gallery="g4" data-i="0" loading="lazy" alt="个人作品场景"></figure>
       <figure class="shot"><img src="assets/icecave.jpg" data-gallery="g4" data-i="1" loading="lazy" alt="冰晶洞窟"></figure>
       <figure class="shot"><img src="assets/moon_2.jpg" data-gallery="g4" data-i="2" loading="lazy" alt="登月场景"></figure>
