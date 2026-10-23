@@ -158,6 +158,23 @@ footer::before{content:'';position:absolute;left:0;top:0;width:100%;height:3px;b
 .reel .vnote{margin:0;padding:10px 14px;border-top:1px solid var(--line);font-size:11.5px;color:var(--muted);background:#fff}
 @media (max-width:720px){.proj{padding:16px 14px 18px;border-radius:12px}.stack{gap:3px}.proj-date{margin-left:0}}
 
+
+/* ===== 作品区扉页（方案①） ===== */
+.cover{position:relative;display:flex;flex-direction:column;justify-content:center;
+  min-height:58vh;padding:0 0 40px;overflow:hidden}
+.cover .rule{width:72px;height:3px;background:var(--accent);margin-bottom:28px}
+.cover .t{font-size:44px;font-weight:700;letter-spacing:.12em;color:var(--ink);line-height:1.1}
+.cover .en{margin-top:14px;font-size:12px;font-weight:600;letter-spacing:.32em;color:var(--muted);text-transform:uppercase}
+.cover .meta{margin-top:24px;font-size:12.5px;font-weight:600;letter-spacing:.1em;color:var(--accent-ink)}
+.cover .n{position:absolute;right:-6px;top:50%;transform:translateY(-50%);pointer-events:none;
+  font-family:var(--f-serif);font-size:230px;font-weight:700;line-height:.75;color:var(--accent);opacity:.09}
+.cover .line{position:absolute;left:0;bottom:0;width:100%;height:2px;
+  background:linear-gradient(90deg,var(--accent) 0%,var(--accent) 15%,var(--line) 15%,var(--line) 100%)}
+.secskip{position:absolute;visibility:hidden;counter-increment:sec}
+@media (max-width:720px){
+  .cover{min-height:46vh}.cover .t{font-size:30px}.cover .n{font-size:150px}
+}
+
 </style>
 </head>
 <body>
@@ -179,7 +196,15 @@ footer::before{content:'';position:absolute;left:0;top:0;width:100%;height:3px;b
 </header>
 
 <section class="block wrap" id="works">
-  <h2 class="sec-title">工作项目作品 <em>Client / Studio Projects</em></h2>
+  <div class="cover">
+    <span class="secskip"></span>
+    <div class="n">01</div>
+    <div class="rule"></div>
+    <div class="t">工作项目作品</div>
+    <div class="en">Client / Studio Projects</div>
+    <div class="meta">《全职高手》 · 《X调查局》 · 《壁画那边是唐朝》</div>
+    <div class="line"></div>
+  </div>
 
   <article class="proj">
     <div class="proj-head">

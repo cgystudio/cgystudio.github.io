@@ -1236,6 +1236,26 @@ html[data-style="L"] .sidebar .s-block{ margin-bottom:20px !important; }
 .wpage{ width:210mm; height:auto; padding:0; margin:0 auto; box-sizing:border-box; background:#fff;
         display:block; page-break-after:auto; break-after:auto; }
 .wpage + .wpage{ margin-top:5mm; }   /* 项目之间的间隔（比图片间距大一点，形成分组节奏） */
+/* ===== 作品区扉页（A4 整页） ===== */
+.wcover{ height:287mm; display:flex; flex-direction:column; justify-content:center;
+         position:relative; overflow:hidden; }
+.wcover .wc-n{ position:absolute; right:-4mm; top:50%; transform:translateY(-50%);
+         font-family:var(--f-serif,"Songti SC",serif); font-size:150pt; font-weight:700; line-height:.75;
+         color:var(--accent); opacity:.1; }
+.wcover .wc-rule{ width:24mm; height:.9mm; background:var(--accent); margin-bottom:7mm; }
+.wcover .wc-t{ font-size:26pt; font-weight:700; letter-spacing:.1em; color:var(--ink); line-height:1.15; }
+.wcover .wc-en{ margin-top:4mm; font-size:7.5pt; font-weight:600; letter-spacing:.3em;
+         color:var(--muted); text-transform:uppercase; }
+.wcover .wc-list{ list-style:none; margin-top:16mm; border-top:.25mm solid var(--line); }
+.wcover .wc-list li{ display:flex; align-items:baseline; gap:4mm;
+         padding:4.2mm 0; border-bottom:.25mm solid var(--line); }
+.wcover .wc-list b{ font-family:var(--f-serif,"Songti SC",serif); font-size:10pt; font-weight:700;
+         color:var(--accent); width:7mm; }
+.wcover .wc-list span{ font-size:11pt; font-weight:700; color:var(--ink); }
+.wcover .wc-list em{ margin-left:auto; font-style:normal; font-size:8.5pt; color:var(--muted); }
+.wcover .wc-line{ position:absolute; left:0; bottom:0; width:100%; height:.5mm;
+         background:linear-gradient(90deg,var(--accent) 0%,var(--accent) 15%,var(--line) 15%,var(--line) 100%); }
+
 .wgroup{ position:relative; display:flex; align-items:baseline; gap:2.5mm;
          border-bottom:.28mm solid var(--line); padding:3.4mm 0 2.6mm; margin-bottom:4.5mm;
          font-size:13pt; font-weight:700; letter-spacing:.05em; color:var(--accent-ink); }
@@ -1496,7 +1516,18 @@ body{padding:0 !important; background:#fff !important; display:block !important;
 <!--PAGE:END--></div>
 <div class="works-lite">
 <!-- ===== 作品页（速览版） ===== -->
-  <div class="wgroup" data-n="01">工作项目作品</div>
+  <div class="wpage wcover">
+    <div class="wc-n">01</div>
+    <div class="wc-rule"></div>
+    <div class="wc-t">工作项目作品</div>
+    <div class="wc-en">Client / Studio Projects</div>
+    <ul class="wc-list">
+      <li><b>01</b><span>《全职高手》</span><em>阅文 IP · 游戏</em></li>
+      <li><b>02</b><span>《X调查局》</span><em>游戏 · 单体场景</em></li>
+      <li><b>03</b><span>《壁画那边是唐朝》</span><em>文博 · 独立主导</em></li>
+    </ul>
+    <div class="wc-line"></div>
+  </div>
   <div class="wpage">
     <div class="ph"><div class="ph-row"><span class="ph-n">01</span><span class="ph-t">《全职高手》</span><span class="ph-m">阅文 IP · 游戏 · 数十万平米 · 资产 50+ · PC 稳定 30 帧</span></div>
       <div class="ph-resp">场景地编全流程：资产替换 · 灯光 · 地形雾效 · 过场动画；参与关卡动线与白盒搭建。</div></div>
