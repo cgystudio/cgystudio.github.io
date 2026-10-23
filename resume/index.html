@@ -1236,6 +1236,9 @@ html[data-style="L"] .sidebar .s-block{ margin-bottom:20px !important; }
 .wpage{ width:210mm; height:auto; padding:0; margin:0 auto; box-sizing:border-box; background:#fff;
         display:block; page-break-after:auto; break-after:auto; }
 .wpage + .wpage{ margin-top:5mm; }   /* 项目之间的间隔（比图片间距大一点，形成分组节奏） */
+.wgroup{ background:#f3ece7; border-left:3px solid var(--accent); padding:3mm 6mm;
+         font-size:9pt; font-weight:700; letter-spacing:.18em; color:#8a4a30; margin-bottom:3mm; }
+.wpage + .wgroup{ margin-top:8mm; }   /* 大分组之间比项目间距更大 */
 
 /* 抬头条 */
 .ph{ display:block; padding:4.2mm 7mm 4mm; background:#241713; color:#fff;
@@ -1487,6 +1490,7 @@ body{padding:0 !important; background:#fff !important; display:block !important;
 <!--PAGE:END--></div>
 <div class="works-lite">
 <!-- ===== 作品页（速览版） ===== -->
+  <div class="wgroup">工作项目作品</div>
   <div class="wpage">
     <div class="ph"><div class="ph-row"><span class="ph-n">01</span><span class="ph-t">《全职高手》</span><span class="ph-m">阅文 IP · 游戏 · 数十万平米 · 资产 50+ · PC 稳定 30 帧</span></div>
       <div class="ph-resp">场景地编全流程：资产替换 · 灯光 · 地形雾效 · 过场动画；参与关卡动线与白盒搭建。</div></div>
@@ -1514,6 +1518,7 @@ body{padding:0 !important; background:#fff !important; display:block !important;
       <img src="../assets/sunset_lowres.jpg" alt="黄昏长安"><img src="../assets/bh_4.jpg" alt="壁画那边是唐朝场景">
     </div>
   </div>
+  <div class="wgroup">个人作品</div>
   <div class="wpage">
     <div class="ph"><div class="ph-row"><span class="ph-n">04</span><span class="ph-t">个人作品</span><span class="ph-m">个人全流程</span></div></div>
     <div class="band" style="margin-top:0"><img src="../assets/moon_3.jpg" alt="登月场景"></div>

@@ -120,6 +120,11 @@ footer::before{content:'';position:absolute;left:0;top:0;width:100%;height:3px;b
 .proj-date{margin-left:auto;font-size:11.5px;color:var(--muted);white-space:nowrap}
 .proj-role{margin-top:6px;font-size:12px;color:var(--muted)}
 .proj-line{margin-top:7px;font-size:12.5px;font-weight:600;color:var(--accent-ink);letter-spacing:.01em}
+.groupbar{display:flex;align-items:baseline;gap:10px;margin:0 0 16px;padding:9px 16px;
+  background:#f3ece7;border-left:4px solid var(--accent);border-radius:4px;
+  font-size:12.5px;font-weight:700;letter-spacing:.16em;color:#8a4a30}
+.groupbar em{font-style:normal;font-size:9.5px;font-weight:600;letter-spacing:.14em;color:#b08a76;text-transform:uppercase}
+article.proj + .groupbar{margin-top:34px}
 /* 作品图：每 2 张一行，四张拼成一整块（2×2）；不裁切，按原图比例显示 */
 .stack{display:grid;grid-template-columns:repeat(2,1fr);gap:3px;margin-top:18px;border-radius:10px;overflow:hidden;background:#0b0a0b}
 .shot{margin:0;border:0;border-radius:0;background:#0b0a0b;position:relative;overflow:hidden;aspect-ratio:2.47}
@@ -176,6 +181,8 @@ footer::before{content:'';position:absolute;left:0;top:0;width:100%;height:3px;b
 <section class="block wrap" id="works">
   <h2 class="sec-title">作品 <em>Works</em></h2>
 
+  <div class="groupbar">工作项目作品 <em>Client / Studio Projects</em></div>
+
   <article class="proj">
     <div class="proj-head">
       <div class="proj-title">《全职高手》</div>
@@ -212,7 +219,9 @@ footer::before{content:'';position:absolute;left:0;top:0;width:100%;height:3px;b
     </div>
   </article>
 
-  <article class="proj coming">
+  <div class="groupbar">个人作品 <em>Personal Works</em></div>
+
+  <article class="proj">
     <div class="proj-head">
       <div class="proj-title">个人作品</div>
       <div class="proj-sub">个人全流程 · 场景 / 材质 / 灯光</div>
