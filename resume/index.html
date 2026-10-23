@@ -1231,9 +1231,9 @@ html[data-style="L"] .num b{ font-size:23px !important; }
 html[data-style="L"] .sidebar .s-block{ margin-bottom:20px !important; }
 
 /* ===== 作品图片合集：一项目一页 · 主图/配图/说明 ===== */
-.wpage{ width:210mm; height:297mm; padding:0; margin:0 auto; box-sizing:border-box; background:#fff;
-        display:flex; flex-direction:column; overflow:hidden; page-break-after:always; break-after:page; }
-.wpage:last-child{ page-break-after:auto; break-after:auto; }
+.wpage{ width:210mm; height:auto; padding:0; margin:0 auto; box-sizing:border-box; background:#fff;
+        display:block; page-break-after:auto; break-after:auto; }
+.wpage + .wpage{ margin-top:2.5mm; }   /* 项目之间只留一点点间隔 */
 
 /* 抬头条 */
 .ph{ display:block; padding:4.2mm 7mm 4mm; background:#241713; color:#fff;
@@ -1275,7 +1275,7 @@ html[data-style="L"] .sidebar .s-block{ margin-bottom:20px !important; }
 .pvideo .row{ margin:0; padding:0 7mm; }
 .pvideo figcaption{ display:block; margin-top:1.5mm; font-size:7.6pt; color:#7b8794; letter-spacing:.02em; }
 
-.wpage.solo .hero{ margin:auto 0; }   /* 单图页：图片垂直居中 */
+
 /* 单图页：图片垂直居中 */
 
 .wpage figure{ margin:0; }
