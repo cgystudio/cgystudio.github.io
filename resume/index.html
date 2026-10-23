@@ -1220,6 +1220,14 @@ html[data-style="L"] .tl-item{ margin-bottom:14px !important; }
 html[data-style="L"] .skill2 li{ padding:7px 0 !important; }
 html[data-style="L"] .skill2 li span, html[data-style="L"] .skill2 li b{ font-size:12.5px !important; }
 html[data-style="L"] .num b{ font-size:23px !important; }
+
+/* ===== 正文统一字重：取消正文里的行内加粗（标题/数字不受影响） ===== */
+.main li b, .main p b, .main .tl-item b, .main ul.dash li b,
+.main .v-lite b, .main .v-full b, .main .stmt b{
+  font-weight: inherit !important;
+  color: inherit !important;
+  letter-spacing: inherit !important;
+}
 html[data-style="L"] .sidebar .s-block{ margin-bottom:20px !important; }
 
 /* ===== 作品图片合集：一项目一页 · 主图/配图/说明 ===== */
