@@ -437,7 +437,7 @@ html[data-theme="shimo"]  .edu-ico{ background-image:url(scau-shimo.png); }
   .page{ width:210mm; height:297mm; min-height:0; overflow:hidden; box-shadow:none; margin:0; }
   .page::after{ display:none; }
   [contenteditable="true"]{ background:none !important; box-shadow:none !important; }
-  .wpage{ width:210mm; height:297mm; margin:0 !important; box-shadow:none !important; overflow:hidden; }
+  .wpage{ width:210mm; height:auto; margin:0 !important; box-shadow:none !important; overflow:hidden; }
   .works-lite{ display:none !important; }
   html[data-style="L"]:not([data-works="off"]) .works-lite{ display:block !important; }
   .wpage figure img{ border-radius:0; }
@@ -1222,21 +1222,18 @@ html[data-style="L"] .skill2 li span, html[data-style="L"] .skill2 li b{ font-si
 html[data-style="L"] .num b{ font-size:23px !important; }
 html[data-style="L"] .sidebar .s-block{ margin-bottom:20px !important; }
 
-/* ===== 作品图片合集（附在简历后的 A4 页） ===== */
-.wpage{ width:210mm; height:297mm; padding:14mm; box-sizing:border-box; background:#fff;
-        display:flex; flex-direction:column; page-break-after:always; break-after:page;
-        box-shadow:0 18px 50px rgba(15,30,40,.20), 0 2px 6px rgba(15,30,40,.08); margin:0 auto 26px; }
-.wpage:last-child{ page-break-after:auto; break-after:auto; }
-.wtitle{ font-family:var(--f-serif); font-size:16pt; font-weight:700; color:#241713; letter-spacing:.02em;
-         padding-bottom:3mm; margin-bottom:4mm; border-bottom:1.5px solid #e0653c; display:flex; align-items:baseline; gap:4mm; }
-.wtitle span{ font-family:var(--f-sans); font-size:8pt; font-weight:600; color:#b8431f; letter-spacing:.02em; }
-.wpage figure{ margin:0 0 5mm; break-inside:avoid; }
-.wpage figure img{ width:100%; display:block; border-radius:2mm; }
-.wpage figcaption{ margin-top:1.6mm; font-size:8pt; color:#7b8794; letter-spacing:.04em; }
-.wpage .grid2{ display:grid; grid-template-columns:1fr 1fr; gap:4mm 4mm; }
-.wpage .grid2 figure{ margin:0; }
-.wpage .head-note{ margin-top:auto; padding-top:6mm; font-size:7.5pt; color:#a89c95; border-top:1px solid #eae4df; letter-spacing:.03em; }
-/* 作品页开关：仅「作品集版」(data-style=L 且 data-works!=off) 输出作品页 */
+/* ===== 作品图片合集：满版铺开、零间隙、页面无缝相接 ===== */
+.wpage{ width:210mm; height:auto; min-height:0; padding:0; margin:0 auto; box-sizing:border-box;
+        background:#fff; position:relative; overflow:hidden; page-break-after:auto; break-after:auto; }
+.pgroup{ position:relative; }
+.plabel{ position:absolute; top:0; left:0; right:0; z-index:2; padding:8mm 8mm 22mm;
+         font-family:var(--f-serif); font-size:15pt; font-weight:700; letter-spacing:.03em; color:#fff;
+         background:linear-gradient(to bottom, rgba(0,0,0,.62), rgba(0,0,0,0)); }
+.plabel span{ display:block; margin-top:2mm; font-family:var(--f-sans); font-size:8.5pt; font-weight:600;
+         color:rgba(255,255,255,.92); letter-spacing:.02em; }
+.wpage figure{ margin:0 !important; padding:0; }
+.wpage figure img{ width:100%; display:block; border-radius:0 !important; }
+.wpage figcaption{ display:none; }
 .works-lite{ display:none; }
 html[data-style="L"]:not([data-works="off"]) .works-lite{ display:block; }
 
@@ -1458,39 +1455,32 @@ body{padding:0 !important; background:#fff !important; display:block !important;
   </section>  </div>
 <!--PAGE:END--></div>
 <div class="works-lite">
-<!-- ===== 作品图片合集（新增页） ===== -->
-  <div class="wpage">
-    <div class="wtitle">《全职高手》 <span>阅文 IP · 游戏 · 森林 + 城堡 · 数十万平米 · 资产 50+ · PC 稳定 30 帧</span></div>
-      <figure><img src="../assets/qz_hero.jpg" alt="大殿内景"><figcaption>大殿内景</figcaption></figure>
-      <figure><img src="../assets/qz_02.jpg" alt="祭坛阶梯"><figcaption>祭坛阶梯</figcaption></figure>
-      <figure><img src="../assets/qz_03.jpg" alt="断柱碎石"><figcaption>断柱碎石</figcaption></figure>
-  </div>
-  <div class="wpage">
-    <div class="wtitle">《全职高手》 <span>场景地编 / 灯光</span></div>
-      <figure><img src="../assets/qz_04.jpg" alt="外景城堡"><figcaption>外景城堡</figcaption></figure>
-      <figure><img src="../assets/qz_05.jpg" alt="长厅纵深"><figcaption>长厅纵深</figcaption></figure>
-  </div>
-  <div class="wpage">
-    <div class="wtitle">《X调查局》 <span>游戏 · 单体场景 · 数万平米 · 资产 30+</span></div>
-      <figure><img src="../assets/xdcj_1.jpg" alt="X调查局场景 1"></figure>
-      <figure><img src="../assets/xdcj_2.jpg" alt="X调查局场景 2"></figure>
-  </div>
-  <div class="wpage">
-    <div class="wtitle">《X调查局》 <span>场景地编 / 灯光氛围</span></div>
-      <figure><img src="../assets/xdcj_3.jpg" alt="X调查局场景 3"></figure>
-      <figure><img src="../assets/xdcj_4.jpg" alt="X调查局场景 4"></figure>
-  </div>
-  <div class="wpage">
-    <div class="wtitle">《壁画那边是唐朝》 <span>文博 · 独立主导 · 唐代长安城级 · 平方公里级 · 资产 100+</span></div>
-      <figure><img src="../assets/hero_street.jpg" alt="夜景长廊"><figcaption>夜景长廊</figcaption></figure>
-      <figure><img src="../assets/sunset_lowres.jpg" alt="黄昏长安"><figcaption>黄昏长安</figcaption></figure>
-  </div>
-  <div class="wpage">
-    <div class="wtitle">登月 <span>场景地编</span></div>
-      <figure><img src="../assets/icecave.jpg" alt="冰晶洞窟"><figcaption>冰晶洞窟</figcaption></figure>
-    <div class="head-note">《全职高手》《壁画那边是唐朝》《X调查局》动态影像见作品集网站 cgystudio.github.io</div>
-  </div>
-  </div>
+<!-- ===== 作品图片合集（满版） ===== -->
+  <div class="wpage"><div class="pgroup">
+    <div class="plabel">《全职高手》<span>阅文 IP · 游戏 · 森林 + 城堡 · 数十万平米 · 资产 50+ · PC 稳定 30 帧</span></div>
+    <figure><img src="../assets/qz_hero.jpg" alt="《全职高手》"></figure>
+    <figure><img src="../assets/qz_02.jpg" alt="《全职高手》"></figure>
+    <figure><img src="../assets/qz_03.jpg" alt="《全职高手》"></figure>
+    <figure><img src="../assets/qz_04.jpg" alt="《全职高手》"></figure>
+    <figure><img src="../assets/qz_05.jpg" alt="《全职高手》"></figure>
+  </div></div>
+  <div class="wpage"><div class="pgroup">
+    <div class="plabel">《X调查局》<span>游戏 · 单体场景 · 数万平米 · 资产 30+ · 场景地编与灯光</span></div>
+    <figure><img src="../assets/xdcj_1.jpg" alt="《X调查局》"></figure>
+    <figure><img src="../assets/xdcj_2.jpg" alt="《X调查局》"></figure>
+    <figure><img src="../assets/xdcj_3.jpg" alt="《X调查局》"></figure>
+    <figure><img src="../assets/xdcj_4.jpg" alt="《X调查局》"></figure>
+  </div></div>
+  <div class="wpage"><div class="pgroup">
+    <div class="plabel">《壁画那边是唐朝》<span>文博 · 独立主导 · 唐代长安城级 · 平方公里级 · 资产 100+</span></div>
+    <figure><img src="../assets/hero_street.jpg" alt="《壁画那边是唐朝》"></figure>
+    <figure><img src="../assets/sunset_lowres.jpg" alt="《壁画那边是唐朝》"></figure>
+  </div></div>
+  <div class="wpage"><div class="pgroup">
+    <div class="plabel">登月<span>场景地编</span></div>
+    <figure><img src="../assets/icecave.jpg" alt="登月"></figure>
+  </div></div>
+</div>
 
 
 
