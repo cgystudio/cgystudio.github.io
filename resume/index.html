@@ -1230,53 +1230,32 @@ html[data-style="L"] .num b{ font-size:23px !important; }
 }
 html[data-style="L"] .sidebar .s-block{ margin-bottom:20px !important; }
 
-/* ===== 作品图片合集：一项目一页 · 主图/配图/说明 ===== */
-.wpage{ width:210mm; height:auto; padding:0; margin:0 auto; box-sizing:border-box; background:#fff;
-        display:block; page-break-after:auto; break-after:auto; }
-.wpage + .wpage{ margin-top:2.5mm; }   /* 项目之间只留一点点间隔 */
+/* ===== 作品页（速览版）：A4 一页 = 2 个项目，每项目 2×2 拼图 ===== */
+.wpage{ width:210mm; height:297mm; padding:0; margin:0 auto; box-sizing:border-box; background:#fff;
+        display:flex; flex-direction:column; overflow:hidden; page-break-after:always; break-after:page; }
+.wpage:last-child{ page-break-after:auto; break-after:auto; }
+.wpage + .wpage{ margin-top:0; }
 
 /* 抬头条 */
 .ph{ display:block; padding:4.2mm 7mm 4mm; background:#241713; color:#fff;
      border-bottom:2.5px solid var(--accent); }
 .ph-row{ display:flex; align-items:baseline; gap:4mm; }
-.ph-resp{ margin-top:1.5mm; font-size:8pt; font-weight:400; line-height:1.55; color:rgba(255,255,255,.74); letter-spacing:.01em; }
 .ph-n{ font-family:var(--f-serif); font-size:9pt; font-weight:700; color:var(--accent); letter-spacing:.08em; }
 .ph-t{ font-family:var(--f-serif); font-size:13.5pt; font-weight:700; letter-spacing:.03em; }
 .ph-m{ margin-left:auto; font-size:7.6pt; font-weight:600; color:rgba(255,255,255,.72); letter-spacing:.02em; }
+.ph-resp{ margin-top:1.5mm; font-size:8pt; font-weight:400; line-height:1.55; color:rgba(255,255,255,.74); letter-spacing:.01em; }
 
-/* 图块 */
+/* 2×2 拼图格子 */
+.grid2x2{ display:grid; grid-template-columns:1fr 1fr; gap:2.5mm; margin:2.5mm 0 0; }
+.grid2x2 img{ width:100%; height:58mm; object-fit:cover; display:block; }
+
+/* 通栏补图 / 单图 */
 .band{ margin:2.5mm 0 0; }
 .band img{ width:100%; height:auto; display:block; }
 .hero{ margin:0; }
 .hero img{ width:100%; height:auto; display:block; }
-.row{ display:grid; gap:2.5mm; margin:2.5mm 0 0; }
-.row.c3{ grid-template-columns:repeat(3,1fr); }
-.row.c2{ grid-template-columns:repeat(2,1fr); }
-.row img{ width:100%; height:auto; display:block; }
-.row img.fit{ aspect-ratio:2.473; object-fit:cover; height:auto; }
-
-/* 说明块：贴底，撑满剩余空白 */
-.pnote{ margin-top:auto; padding:5mm 7mm 7mm; font-size:8.6pt; line-height:1.72; color:#3f4a55; }
-.pnote b{ display:block; margin-bottom:1.6mm; font-size:9pt; font-weight:700; color:#b8431f; letter-spacing:.08em; }
-.pnote i{ font-style:normal; color:#241713; font-weight:600; }
-
-/* 末页联系方式 */
-.pfoot{ display:flex; align-items:center; gap:7mm; padding:6mm 7mm 8mm; margin-top:6mm;
-        border-top:2.5px solid var(--accent); background:#241713; color:#fff; }
-.pfoot-qr{ width:26mm; height:26mm; object-fit:contain; background:#fff; padding:1.5mm; border-radius:2mm; }
-.pfoot-txt{ display:flex; flex-direction:column; gap:1.4mm; font-size:8.4pt; line-height:1.5; color:rgba(255,255,255,.82); }
-.pfoot-txt b{ font-family:var(--f-serif); font-size:13pt; letter-spacing:.06em; color:#fff; }
-.pfoot-txt span:first-of-type{ color:var(--accent); font-weight:600; letter-spacing:.06em; }
-
-/* 末页影像区 */
-.pvideo{ margin-top:5mm; }
-.pvideo-h{ padding:3mm 7mm; font-size:9pt; font-weight:700; letter-spacing:.1em; color:#b8431f;
-           border-top:2.5px solid var(--accent); }
-.pvideo .row{ margin:0; padding:0 7mm; }
-.pvideo figcaption{ display:block; margin-top:1.5mm; font-size:7.6pt; color:#7b8794; letter-spacing:.02em; }
-
-
-/* 单图页：图片垂直居中 */
+.wpage.center{ justify-content:flex-start; }
+.wpage.center .hero{ margin:auto 0; }
 
 .wpage figure{ margin:0; }
 .wpage figcaption{ display:none; }
@@ -1503,41 +1482,36 @@ body{padding:0 !important; background:#fff !important; display:block !important;
   </section>  </div>
 <!--PAGE:END--></div>
 <div class="works-lite">
-<!-- ===== 作品页：一项目一页 ===== -->
+<!-- ===== 作品页（速览版） ===== -->
   <div class="wpage">
     <div class="ph"><div class="ph-row"><span class="ph-n">01</span><span class="ph-t">《全职高手》</span><span class="ph-m">阅文 IP · 游戏 · 数十万平米 · 资产 50+ · PC 稳定 30 帧</span></div>
       <div class="ph-resp">场景地编全流程：资产替换 · 灯光 · 地形雾效 · 过场动画；参与关卡动线与白盒搭建。</div></div>
-    <div class="hero"><img src="../assets/qz_04.jpg" alt="外景城堡"></div>
+    <div class="grid2x2">
+      <img src="../assets/qz_04.jpg" alt="外景城堡"><img src="../assets/qz_hero.jpg" alt="大殿内景">
+      <img src="../assets/qz_02.jpg" alt="祭坛阶梯"><img src="../assets/qz_05.jpg" alt="长厅纵深">
+    </div>
     <div class="band"><img src="../assets/qz_03.jpg" alt="断柱碎石"></div>
-    <div class="row c3"><img src="../assets/qz_02.jpg" alt="祭坛阶梯"><img class="fit" src="../assets/qz_05.jpg" alt="长厅纵深"><img src="../assets/qz_hero.jpg" alt="大殿内景"></div>
   </div>
   <div class="wpage">
     <div class="ph"><div class="ph-row"><span class="ph-n">02</span><span class="ph-t">《X调查局》</span><span class="ph-m">游戏 · 单体场景 · 数万平米 · 资产 30+</span></div>
       <div class="ph-resp">单体场景（数万平米 / 资产 30+）：场景地编与灯光氛围。</div></div>
-    <div class="hero"><img src="../assets/xdcj_3.jpg" alt="X调查局场景"></div>
-    <div class="row c2"><img src="../assets/xdcj_1.jpg" alt="X调查局场景"><img src="../assets/xdcj_4.jpg" alt="X调查局场景"></div>
-    <div class="band"><img src="../assets/xdcj_2.jpg" alt="X调查局场景"></div>
-  </div>
-  <div class="wpage">
+    <div class="grid2x2">
+      <img src="../assets/xdcj_1.jpg" alt="X调查局场景"><img src="../assets/xdcj_2.jpg" alt="X调查局场景">
+      <img src="../assets/xdcj_3.jpg" alt="X调查局场景"><img src="../assets/xdcj_4.jpg" alt="X调查局场景">
+    </div>
     <div class="ph"><div class="ph-row"><span class="ph-n">03</span><span class="ph-t">《壁画那边是唐朝》</span><span class="ph-m">文博 · 独立主导 · 唐代长安城级 · 平方公里级 · 资产 100+</span></div>
       <div class="ph-resp">独立主导：唐代长安城级写实场景，白盒到灯光后期全流程。</div></div>
-    <div class="hero"><img src="../assets/hero_street.jpg" alt="夜景长廊"></div>
-    <div class="band"><img src="../assets/bh_3.jpg" alt="壁画那边是唐朝场景"></div>
-    <div class="band"><img src="../assets/sunset_lowres.jpg" alt="黄昏长安"></div>
-    <div class="band"><img src="../assets/bh_4.jpg" alt="壁画那边是唐朝场景"></div>
+    <div class="grid2x2">
+      <img src="../assets/hero_street.jpg" alt="夜景长廊"><img src="../assets/bh_3.jpg" alt="壁画那边是唐朝场景">
+      <img src="../assets/sunset_lowres.jpg" alt="黄昏长安"><img src="../assets/bh_4.jpg" alt="壁画那边是唐朝场景">
+    </div>
   </div>
-  <div class="wpage solo">
+  <div class="wpage center">
     <div class="ph"><div class="ph-row"><span class="ph-n">04</span><span class="ph-t">登月</span><span class="ph-m">游戏 · 场景地编</span></div>
       <div class="ph-resp">冰晶洞窟与环形基地平台，UE 实机截图。</div></div>
     <div class="hero"><img src="../assets/icecave.jpg" alt="冰晶洞窟"></div>
   </div>
 </div>
-
-
-
-
-
-<!-- ===== 旧草稿找回 ===== -->
 
 
 
