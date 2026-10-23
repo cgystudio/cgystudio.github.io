@@ -1233,12 +1233,13 @@ html[data-style="L"] .sidebar .s-block{ margin-bottom:20px !important; }
 .wpage figure{ margin:0 0 5mm; break-inside:avoid; }
 .wpage figure img{ width:100%; display:block; border-radius:2mm; }
 .wpage figcaption{ margin-top:1.6mm; font-size:8pt; color:#7b8794; letter-spacing:.04em; }
+.wpage .grid2{ display:grid; grid-template-columns:1fr 1fr; gap:4mm 4mm; }
+.wpage .grid2 figure{ margin:0; }
 .wpage .head-note{ margin-top:auto; padding-top:6mm; font-size:7.5pt; color:#a89c95; border-top:1px solid #eae4df; letter-spacing:.03em; }
 /* 作品页开关：仅「作品集版」(data-style=L 且 data-works!=off) 输出作品页 */
 .works-lite{ display:none; }
 html[data-style="L"]:not([data-works="off"]) .works-lite{ display:block; }
 
-/* ===== 线上只读版 ===== */
 body{padding:0 !important; background:#fff !important; display:block !important;}
 .page{box-shadow:none !important; margin:0 auto !important;}
 .page::after{display:none !important;}
@@ -1468,6 +1469,15 @@ body{padding:0 !important; background:#fff !important; display:block !important;
     <div class="wtitle">《全职高手》 <span>场景地编 / 灯光</span></div>
       <figure><img src="../assets/qz_04.jpg" alt="外景城堡"><figcaption>外景城堡</figcaption></figure>
       <figure><img src="../assets/qz_05.jpg" alt="长厅纵深"><figcaption>长厅纵深</figcaption></figure>
+  </div>
+  <div class="wpage">
+    <div class="wtitle">《X调查局》 <span>游戏向项目 · 场景地编</span></div>
+    <div class="grid2">
+      <figure><img src="../assets/xdcj_1.jpg" alt="X调查局场景 1"></figure>
+      <figure><img src="../assets/xdcj_2.jpg" alt="X调查局场景 2"></figure>
+      <figure><img src="../assets/xdcj_3.jpg" alt="X调查局场景 3"></figure>
+      <figure><img src="../assets/xdcj_4.jpg" alt="X调查局场景 4"></figure>
+    </div>
   </div>
   <div class="wpage">
     <div class="wtitle">《壁画那边是唐朝》 <span>文博 · 独立主导 · 唐代长安城级 · 平方公里级 · 资产 100+</span></div>
