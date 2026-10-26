@@ -1262,6 +1262,8 @@ html[data-style="L"] .sidebar .s-block{ margin-bottom:20px !important; }
 .ph-resp{ margin-top:1.5mm; font-size:8pt; font-weight:400; line-height:1.55; color:rgba(255,255,255,.74); letter-spacing:.01em; }
 
 /* 2×2 拼图格子 */
+.grid3{ display:grid; grid-template-columns:repeat(3,1fr); gap:2.5mm; margin:2.5mm 0 0; align-items:center; }
+.grid3 img{ width:100%; height:auto; display:block; }
 .grid2x2{ display:grid; grid-template-columns:1fr 1fr; gap:2.5mm; margin:2.5mm 0 0; }
 .grid2x2 img{ width:100%; height:58mm; object-fit:cover; display:block; }
 .grid2x2.auto img{ height:auto; object-fit:contain; }   /* 不裁切，按原比例 */
@@ -1287,8 +1289,9 @@ html[data-style="L"] .sidebar .s-block{ margin-bottom:20px !important; }
 .works-lite{ display:none; }
 html[data-style="L"]:not([data-works="off"]) .works-lite{ display:block; margin-top:10mm; }  /* 简历与作品区之间的间隔 */
 
-body{padding:0 !important;background:#fff !important;display:block !important;}
-.page{box-shadow:none !important;margin:0 auto !important;}
+
+body{padding:0 !important; background:#fff !important; display:block !important;}
+.page{box-shadow:none !important; margin:0 auto !important;}
 .page::after{display:none !important;}
 .toolbar,.add-btn,.del-btn,.drag-handle,.blk-tools,#warn,#saved,#buildtag,#tip,#toast,.tipbar{display:none !important;}
 </style>
@@ -1555,10 +1558,10 @@ body{padding:0 !important;background:#fff !important;display:block !important;}
   </div>
   <div class="wpage breakpage">
     <div class="ph"><div class="ph-row"><span class="ph-n">06</span><span class="ph-t">场景 / Environments</span><span class="ph-m">山寺场景 · 5 个机位 · 实机</span></div>
-      <div class="ph-resp">同一座山寺场景的五个机位：秋林全景建立、正门匾额对称、屋顶鸟瞰、林间石径与自殿内门扇望出去的框景，覆盖户外天光到室内暗部的完整气氛。</div></div>
+      <div class="ph-resp">同一座山寺场景的五个机位：秋林全景建立、殿前土路纵深、室内烛光、石栏小亭与正殿逆光，覆盖户外天光到室内暗部的完整气氛。</div></div>
     <div class="band" style="margin-top:0"><img src="../assets/env_1.jpg" alt="山寺场景 · 秋林全景"></div>
-    <div class="grid2x2 fix r247"><img src="../assets/env_2.jpg" alt="山寺场景 · 正门匾额"><img src="../assets/env_3.jpg" alt="山寺场景 · 屋顶鸟瞰"></div>
-    <div class="grid2x2 fix r247"><img src="../assets/env_4.jpg" alt="山寺场景 · 林间石径"><img src="../assets/env_5.jpg" alt="山寺场景 · 门内望外"></div>
+    <div class="band" style="margin-top:2.5mm;width:92%;margin-left:auto;margin-right:auto"><img src="../assets/env_2.jpg" alt="山寺场景 · 殿前土路"></div>
+    <div class="grid3"><img src="../assets/env_3.jpg" alt="山寺场景 · 室内烛光"><img src="../assets/env_4.jpg" alt="山寺场景 · 石栏小亭"><img src="../assets/env_5.jpg" alt="山寺场景 · 正殿逆光"></div>
   </div>
 </div>
 
