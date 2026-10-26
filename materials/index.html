@@ -10,84 +10,79 @@
 body{background:var(--bg);color:var(--text);font-family:var(--f);line-height:1.6}
 img{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
-.wrap{max-width:1400px;margin:0 auto;padding:0 24px}
-
-/* 顶部 */
-.top{padding:44px 0 28px;border-bottom:1px solid var(--line)}
+.wrap{max-width:1440px;margin:0 auto;padding:0 24px}
+.top{padding:42px 0 26px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
 .back{font-size:11.5px;letter-spacing:.16em;color:var(--muted)}
 .back:hover{color:var(--accent)}
-.h1{margin-top:22px;font-family:var(--fs);font-size:54px;font-weight:700;line-height:1;letter-spacing:.02em}
-.h1 em{font-family:var(--f);font-style:normal;font-size:15px;letter-spacing:.42em;color:var(--accent);
-  display:block;margin-top:12px;font-weight:700}
-.lede{max-width:660px;margin-top:18px;font-size:13px;line-height:1.95;color:rgba(238,233,229,.62)}
+.h1{margin-top:16px;font-family:var(--fs);font-size:48px;font-weight:700;line-height:1}
+.h1 em{display:block;font-family:var(--f);font-style:normal;font-size:13px;letter-spacing:.4em;color:var(--accent);margin-top:10px;font-weight:700}
+.lede{max-width:600px;font-size:12.5px;line-height:1.95;color:rgba(238,233,229,.6)}
+.switch{display:flex;gap:8px;margin-top:14px;font-size:11.5px;letter-spacing:.1em}
+.switch a{padding:6px 12px;border:1px solid var(--line);border-radius:2px;color:var(--muted)}
+.switch a.cur{border-color:var(--accent-ink);color:#fff;background:rgba(184,67,31,.16)}
 
-/* 章节导航 */
-.nav{position:sticky;top:0;z-index:50;background:rgba(8,7,6,.92);backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--line)}
-.nav-in{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;padding:10px 0}
+.nav{position:sticky;top:0;z-index:50;background:rgba(8,7,6,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav-in{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;padding:9px 0}
 .nav-in::-webkit-scrollbar{display:none}
-.nav a{flex:0 0 auto;display:flex;align-items:baseline;gap:8px;padding:7px 12px;font-size:11.5px;
-  color:var(--muted);border-bottom:2px solid transparent;transition:.18s}
+.nav a{flex:0 0 auto;display:flex;align-items:baseline;gap:7px;padding:7px 11px;font-size:11.5px;color:var(--muted);
+  border-bottom:2px solid transparent;transition:.18s}
 .nav a i{font-style:normal;font-size:10px;opacity:.55}
 .nav a:hover{color:var(--text)}
 .nav a.on{color:#fff;border-bottom-color:var(--accent)}
 
-/* 幻灯片 */
-.deck{padding:26px 0 60px;display:flex;flex-direction:column;gap:26px}
-.slide{position:relative;aspect-ratio:16/9;overflow:hidden;border-radius:3px;isolation:isolate;
-  box-shadow:0 18px 50px rgba(0,0,0,.55)}
+.deck{padding:24px 0 56px;display:flex;flex-direction:column;gap:24px}
+.slide{position:relative;aspect-ratio:16/9;overflow:hidden;border-radius:3px;isolation:isolate;box-shadow:0 18px 50px rgba(0,0,0,.55)}
 .slide .bg{position:absolute;inset:-6%;z-index:0}
-.slide .bg img{width:100%;height:100%;object-fit:cover;filter:blur(18px) brightness(.46) saturate(.8)}
+.slide .bg img{width:100%;height:100%;object-fit:cover;filter:blur(20px) brightness(.42) saturate(.75)}
 .slide::after{content:'';position:absolute;inset:0;z-index:1;
-  background:radial-gradient(ellipse at 42% 48%,rgba(0,0,0,.05) 0%,rgba(0,0,0,.42) 62%,rgba(0,0,0,.82) 100%)}
-.stage{position:relative;z-index:2;height:100%;display:grid;grid-template-columns:1.06fr .74fr;
-  gap:5%;align-items:center;padding:3.2% 5.5% 4.6%}
-.ball{margin:0}
-.ball img{width:100%;filter:drop-shadow(0 26px 46px rgba(0,0,0,.7)) contrast(1.04)}
-.strips{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;height:76%}
-.strips figure{margin:0;background-size:cover;background-position:center;position:relative;
-  border-radius:2px;box-shadow:0 18px 38px rgba(0,0,0,.55);cursor:zoom-in;overflow:hidden}
-.strips figure::after{content:'';position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
-.strips span{position:absolute;left:0;bottom:-19px;font-size:9px;letter-spacing:.22em;color:rgba(255,255,255,.5)}
-
-/* 幻灯片脚注 */
-.cap{position:absolute;left:0;right:0;bottom:0;z-index:3;display:flex;align-items:baseline;gap:18px;
-  padding:0 5.5% 2.2%}
+  background:radial-gradient(ellipse at 34% 46%,rgba(0,0,0,.02) 0%,rgba(0,0,0,.34) 55%,rgba(0,0,0,.80) 100%)}
+.stage{position:relative;z-index:2;height:100%;display:grid;grid-template-columns:minmax(0,1fr) 56%;
+  align-items:center;gap:2.5%}
+.ball{margin:0;padding:2.2% 0 5%}
+.ball img{width:100%;height:auto;filter:drop-shadow(0 22px 44px rgba(0,0,0,.72))}
+.ball.plane{padding:3.4% 0 6%}
+.ball.plane img{border-radius:3px;filter:drop-shadow(0 20px 40px rgba(0,0,0,.6)) saturate(1.02);
+  box-shadow:0 0 0 1px rgba(255,255,255,.06)}
+.maps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:center;padding-right:3.6%}
+.maps figure{margin:0;position:relative;cursor:zoom-in}
+.maps img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:2px;
+  box-shadow:0 16px 34px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.07)}
+.maps span{position:absolute;left:1px;bottom:-17px;font-size:8.5px;letter-spacing:.2em;color:rgba(255,255,255,.45)}
+.cap{position:absolute;left:0;right:0;bottom:0;z-index:3;display:flex;align-items:baseline;gap:14px;padding:0 3.4% 2.1%}
 .cap .idx{font-family:var(--fs);font-size:12px;color:var(--accent);letter-spacing:.06em}
-.cap .nm{display:flex;align-items:baseline;gap:12px}
-.cap .nm b{font-size:16px;font-weight:700;letter-spacing:.06em}
-.cap .nm em{font-style:normal;font-size:9.5px;letter-spacing:.2em;color:rgba(255,255,255,.55);text-transform:uppercase}
-.cap .ds{font-size:10.5px;color:rgba(255,255,255,.45);letter-spacing:.04em}
-.cap .sp{margin-left:auto;font-size:9.5px;letter-spacing:.16em;color:rgba(255,255,255,.42)}
+.cap b{font-size:15px;font-weight:700;letter-spacing:.07em}
+.cap em{font-style:normal;font-size:9.5px;letter-spacing:.2em;color:rgba(255,255,255,.5);text-transform:uppercase}
+.cap .ds{font-size:10.5px;color:rgba(255,255,255,.42)}
+.cap .sp{margin-left:auto;font-size:9.5px;letter-spacing:.16em;color:rgba(255,255,255,.4)}
 
-/* 说明 + 页脚 */
-.note{border-top:1px solid var(--line);padding:52px 0 30px}
-.note h3{font-size:11px;letter-spacing:.26em;color:var(--accent);margin-bottom:16px}
+.note{border-top:1px solid var(--line);padding:48px 0 26px}
+.note h3{font-size:11px;letter-spacing:.26em;color:var(--accent);margin-bottom:14px}
 .note p{max-width:760px;font-size:12.5px;line-height:2.05;color:rgba(238,233,229,.6)}
-.foot{border-top:1px solid var(--line);padding:22px 0 44px;display:flex;justify-content:space-between;
-  font-size:11px;letter-spacing:.12em;color:var(--muted)}
+.foot{border-top:1px solid var(--line);padding:20px 0 42px;display:flex;justify-content:space-between;font-size:11px;letter-spacing:.12em;color:var(--muted)}
 .foot a:hover{color:var(--accent)}
-
 #lb{position:fixed;inset:0;z-index:99;background:rgba(4,3,3,.96);display:none;align-items:center;justify-content:center;cursor:zoom-out}
 #lb.on{display:flex}
-#lb img{max-width:94vw;max-height:92vh;object-fit:contain}
-
-@media (max-width:860px){
-  .h1{font-size:34px}
-  .slide{aspect-ratio:auto;min-height:auto;padding:22px 0 42px}
-  .stage{grid-template-columns:1fr;gap:18px;padding:0}
-  .ball{width:72%;margin:0 auto}
-  .strips{height:150px;padding:0}
-  .strips span{bottom:-16px}
-  .cap{position:static;padding:16px 0 0;flex-wrap:wrap;gap:8px 14px}
+#lb img{max-width:92vw;max-height:90vh;object-fit:contain}
+@media (max-width:980px){
+  .h1{font-size:32px}.lede{display:none}
+  .slide{aspect-ratio:auto;padding:18px 0 40px}
+  .stage{grid-template-columns:1fr;gap:16px}
+  .ball{padding:0;width:76%;margin:0 auto}
+  .maps{padding:0 2px}
+  .cap{position:static;margin-top:16px;flex-wrap:wrap;gap:8px 12px;padding:0}
   .cap .sp{margin-left:0}
 }
 </style></head><body>
 
 <div class="wrap top">
-  <a class="back" href="../">← 返回作品集 PORTFOLIO</a>
-  <h1 class="h1">材质库<em>MATERIALS</em></h1>
-  <p class="lede">14 组程序化材质，Substance Designer 全节点搭建，4K 输出。每组材质球为实时渲染，右侧为同源的 Albedo / Normal / Roughness 三通道，拍平后可直接进引擎。每种材质保留了 3–12 个随机变体，用于同一场景内重复铺贴去重。</p>
+  <div>
+    <a class="back" href="../">← 返回作品集 PORTFOLIO</a>
+    <h1 class="h1">材质库<em>MATERIALS</em></h1>
+  </div>
+  <div>
+    <p class="lede">14 组程序化材质，Substance Designer 全节点搭建，4K 输出。左侧为该材质在 SD 中的光照渲染（球体 / 立方体 / 圆柱原型，保留原始外形与轮廓），右侧为同源的 Albedo / Normal / Roughness 平面图。每种材质保留 3–12 个随机变体，用于场景内重复铺贴去重。</p>
+    <div class="switch"><a class="cur" href="./">幻灯片版</a><a href="3d/">3D 材质球版</a></div>
+  </div>
 </div>
 
 <nav class="nav"><div class="wrap nav-in"><a href="#m01" data-i="m01">01<i>红砖墙</i></a><a href="#m02" data-i="m02">02<i>红漆墙</i></a><a href="#m03" data-i="m03">03<i>白灰墙</i></a><a href="#m04" data-i="m04">04<i>石砖墙</i></a><a href="#m05" data-i="m05">05<i>粗石墙</i></a><a href="#m06" data-i="m06">06<i>石板地面</i></a><a href="#m07" data-i="m07">07<i>湿泥地</i></a><a href="#m08" data-i="m08">08<i>土壤</i></a><a href="#m09" data-i="m09">09<i>草地</i></a><a href="#m10" data-i="m10">10<i>水面</i></a><a href="#m11" data-i="m11">11<i>瓦屋面</i></a><a href="#m12" data-i="m12">12<i>青瓦</i></a><a href="#m13" data-i="m13">13<i>窗格</i></a><a href="#m14" data-i="m14">14<i>木纹</i></a></div></nav>
@@ -97,246 +92,246 @@ a{color:inherit;text-decoration:none}
 <article class="slide" id="m01">
   <div class="bg"><img src="../assets/mat/bg20.webp" alt="" loading="lazy"></div>
   <div class="stage">
-    <figure class="ball"><img src="../assets/mat/brick_ball.webp" alt="红砖墙 材质球" loading="lazy"></figure>
-    <div class="strips">
-      <figure data-full="../assets/mat/brick_albedo.webp" style="background-image:url(../assets/mat/brick_albedo.webp)"><span>ALBEDO</span></figure>
-      <figure data-full="../assets/mat/brick_normal.webp" style="background-image:url(../assets/mat/brick_normal.webp)"><span>NORMAL</span></figure>
-      <figure data-full="../assets/mat/brick_rough.webp" style="background-image:url(../assets/mat/brick_rough.webp)"><span>ROUGH</span></figure>
+    <figure class="ball"><img src="../assets/mat/brick_ball.webp" alt="红砖墙 材质渲染" loading="lazy"></figure>
+    <div class="maps">
+      <figure data-full="../assets/mat/brick_albedo.webp"><img src="../assets/mat/brick_albedo.webp" alt="红砖墙 Albedo" loading="lazy"><span>ALBEDO</span></figure>
+      <figure data-full="../assets/mat/brick_normal.webp"><img src="../assets/mat/brick_normal.webp" alt="红砖墙 Normal" loading="lazy"><span>NORMAL</span></figure>
+      <figure data-full="../assets/mat/brick_rough.webp"><img src="../assets/mat/brick_rough.webp" alt="红砖墙 Roughness" loading="lazy"><span>ROUGH</span></figure>
     </div>
   </div>
   <div class="cap">
     <span class="idx">01</span>
-    <div class="nm"><b>红砖墙</b><em>BrickWall_01</em></div>
-    <div class="ds">砖缝手凿 · 边角破损 · 苔痕　·　建筑石材</div>
-    <div class="sp">4K · 4 变体 · SD</div>
+    <b>红砖墙</b><em>BrickWall_01</em>
+    <span class="ds">砖缝手凿 · 边角破损 · 苔痕　·　建筑石材</span>
+    <span class="sp">4K · 4 变体 · SD</span>
   </div>
 </article>
 <article class="slide" id="m02">
   <div class="bg"><img src="../assets/mat/bg21.webp" alt="" loading="lazy"></div>
   <div class="stage">
-    <figure class="ball"><img src="../assets/mat/redwall_ball.webp" alt="红漆墙 材质球" loading="lazy"></figure>
-    <div class="strips">
-      <figure data-full="../assets/mat/redwall_albedo.webp" style="background-image:url(../assets/mat/redwall_albedo.webp)"><span>ALBEDO</span></figure>
-      <figure data-full="../assets/mat/redwall_normal.webp" style="background-image:url(../assets/mat/redwall_normal.webp)"><span>NORMAL</span></figure>
-      <figure data-full="../assets/mat/redwall_rough.webp" style="background-image:url(../assets/mat/redwall_rough.webp)"><span>ROUGH</span></figure>
+    <figure class="ball plane"><img src="../assets/mat/redwall_ball.webp" alt="红漆墙 材质渲染" loading="lazy"></figure>
+    <div class="maps">
+      <figure data-full="../assets/mat/redwall_albedo.webp"><img src="../assets/mat/redwall_albedo.webp" alt="红漆墙 Albedo" loading="lazy"><span>ALBEDO</span></figure>
+      <figure data-full="../assets/mat/redwall_normal.webp"><img src="../assets/mat/redwall_normal.webp" alt="红漆墙 Normal" loading="lazy"><span>NORMAL</span></figure>
+      <figure data-full="../assets/mat/redwall_rough.webp"><img src="../assets/mat/redwall_rough.webp" alt="红漆墙 Roughness" loading="lazy"><span>ROUGH</span></figure>
     </div>
   </div>
   <div class="cap">
     <span class="idx">02</span>
-    <div class="nm"><b>红漆墙</b><em>RedWall_01</em></div>
-    <div class="ds">漆面剥落 · 底灰外露 · 雨水冲痕　·　建筑石材</div>
-    <div class="sp">4K · 4 变体 · SD</div>
+    <b>红漆墙</b><em>RedWall_01</em>
+    <span class="ds">漆面剥落 · 底灰外露 · 雨水冲痕　·　建筑石材</span>
+    <span class="sp">4K · 4 变体 · SD</span>
   </div>
 </article>
 <article class="slide" id="m03">
   <div class="bg"><img src="../assets/mat/bg13.webp" alt="" loading="lazy"></div>
   <div class="stage">
-    <figure class="ball"><img src="../assets/mat/whitewall_ball.webp" alt="白灰墙 材质球" loading="lazy"></figure>
-    <div class="strips">
-      <figure data-full="../assets/mat/whitewall_albedo.webp" style="background-image:url(../assets/mat/whitewall_albedo.webp)"><span>ALBEDO</span></figure>
-      <figure data-full="../assets/mat/whitewall_normal.webp" style="background-image:url(../assets/mat/whitewall_normal.webp)"><span>NORMAL</span></figure>
-      <figure data-full="../assets/mat/whitewall_rough.webp" style="background-image:url(../assets/mat/whitewall_rough.webp)"><span>ROUGH</span></figure>
+    <figure class="ball plane"><img src="../assets/mat/whitewall_ball.webp" alt="白灰墙 材质渲染" loading="lazy"></figure>
+    <div class="maps">
+      <figure data-full="../assets/mat/whitewall_albedo.webp"><img src="../assets/mat/whitewall_albedo.webp" alt="白灰墙 Albedo" loading="lazy"><span>ALBEDO</span></figure>
+      <figure data-full="../assets/mat/whitewall_normal.webp"><img src="../assets/mat/whitewall_normal.webp" alt="白灰墙 Normal" loading="lazy"><span>NORMAL</span></figure>
+      <figure data-full="../assets/mat/whitewall_rough.webp"><img src="../assets/mat/whitewall_rough.webp" alt="白灰墙 Roughness" loading="lazy"><span>ROUGH</span></figure>
     </div>
   </div>
   <div class="cap">
     <span class="idx">03</span>
-    <div class="nm"><b>白灰墙</b><em>White_Wall_01</em></div>
-    <div class="ds">石灰抹面 · 细裂纹 · 水渍拖尾　·　建筑石材</div>
-    <div class="sp">4K · 12 变体 · SD</div>
+    <b>白灰墙</b><em>White_Wall_01</em>
+    <span class="ds">石灰抹面 · 细裂纹 · 水渍拖尾　·　建筑石材</span>
+    <span class="sp">4K · 12 变体 · SD</span>
   </div>
 </article>
 <article class="slide" id="m04">
   <div class="bg"><img src="../assets/mat/bg15.webp" alt="" loading="lazy"></div>
   <div class="stage">
-    <figure class="ball"><img src="../assets/mat/stonebrick_ball.webp" alt="石砖墙 材质球" loading="lazy"></figure>
-    <div class="strips">
-      <figure data-full="../assets/mat/stonebrick_albedo.webp" style="background-image:url(../assets/mat/stonebrick_albedo.webp)"><span>ALBEDO</span></figure>
-      <figure data-full="../assets/mat/stonebrick_normal.webp" style="background-image:url(../assets/mat/stonebrick_normal.webp)"><span>NORMAL</span></figure>
-      <figure data-full="../assets/mat/stonebrick_rough.webp" style="background-image:url(../assets/mat/stonebrick_rough.webp)"><span>ROUGH</span></figure>
+    <figure class="ball plane"><img src="../assets/mat/stonebrick_ball.webp" alt="石砖墙 材质渲染" loading="lazy"></figure>
+    <div class="maps">
+      <figure data-full="../assets/mat/stonebrick_albedo.webp"><img src="../assets/mat/stonebrick_albedo.webp" alt="石砖墙 Albedo" loading="lazy"><span>ALBEDO</span></figure>
+      <figure data-full="../assets/mat/stonebrick_normal.webp"><img src="../assets/mat/stonebrick_normal.webp" alt="石砖墙 Normal" loading="lazy"><span>NORMAL</span></figure>
+      <figure data-full="../assets/mat/stonebrick_rough.webp"><img src="../assets/mat/stonebrick_rough.webp" alt="石砖墙 Roughness" loading="lazy"><span>ROUGH</span></figure>
     </div>
   </div>
   <div class="cap">
     <span class="idx">04</span>
-    <div class="nm"><b>石砖墙</b><em>StoneBrick_01</em></div>
-    <div class="ds">规整砌筑 · 边角磨损　·　建筑石材</div>
-    <div class="sp">4K · 4 变体 · SD</div>
+    <b>石砖墙</b><em>StoneBrick_01</em>
+    <span class="ds">规整砌筑 · 边角磨损　·　建筑石材</span>
+    <span class="sp">4K · 4 变体 · SD</span>
   </div>
 </article>
 <article class="slide" id="m05">
   <div class="bg"><img src="../assets/mat/bg18.webp" alt="" loading="lazy"></div>
   <div class="stage">
-    <figure class="ball"><img src="../assets/mat/stonewall_ball.webp" alt="粗石墙 材质球" loading="lazy"></figure>
-    <div class="strips">
-      <figure data-full="../assets/mat/stonewall_albedo.webp" style="background-image:url(../assets/mat/stonewall_albedo.webp)"><span>ALBEDO</span></figure>
-      <figure data-full="../assets/mat/stonewall_normal.webp" style="background-image:url(../assets/mat/stonewall_normal.webp)"><span>NORMAL</span></figure>
-      <figure data-full="../assets/mat/stonewall_rough.webp" style="background-image:url(../assets/mat/stonewall_rough.webp)"><span>ROUGH</span></figure>
+    <figure class="ball"><img src="../assets/mat/stonewall_ball.webp" alt="粗石墙 材质渲染" loading="lazy"></figure>
+    <div class="maps">
+      <figure data-full="../assets/mat/stonewall_albedo.webp"><img src="../assets/mat/stonewall_albedo.webp" alt="粗石墙 Albedo" loading="lazy"><span>ALBEDO</span></figure>
+      <figure data-full="../assets/mat/stonewall_normal.webp"><img src="../assets/mat/stonewall_normal.webp" alt="粗石墙 Normal" loading="lazy"><span>NORMAL</span></figure>
+      <figure data-full="../assets/mat/stonewall_rough.webp"><img src="../assets/mat/stonewall_rough.webp" alt="粗石墙 Roughness" loading="lazy"><span>ROUGH</span></figure>
     </div>
   </div>
   <div class="cap">
     <span class="idx">05</span>
-    <div class="nm"><b>粗石墙</b><em>StoneWall_01</em></div>
-    <div class="ds">不规则石砌 · 风化麻面　·　建筑石材</div>
-    <div class="sp">4K · 4 变体 · SD</div>
+    <b>粗石墙</b><em>StoneWall_01</em>
+    <span class="ds">不规则石砌 · 风化麻面　·　建筑石材</span>
+    <span class="sp">4K · 4 变体 · SD</span>
   </div>
 </article>
 <article class="slide" id="m06">
   <div class="bg"><img src="../assets/mat/bg23.webp" alt="" loading="lazy"></div>
   <div class="stage">
-    <figure class="ball"><img src="../assets/mat/floor_ball.webp" alt="石板地面 材质球" loading="lazy"></figure>
-    <div class="strips">
-      <figure data-full="../assets/mat/floor_albedo.webp" style="background-image:url(../assets/mat/floor_albedo.webp)"><span>ALBEDO</span></figure>
-      <figure data-full="../assets/mat/floor_normal.webp" style="background-image:url(../assets/mat/floor_normal.webp)"><span>NORMAL</span></figure>
-      <figure data-full="../assets/mat/floor_rough.webp" style="background-image:url(../assets/mat/floor_rough.webp)"><span>ROUGH</span></figure>
+    <figure class="ball"><img src="../assets/mat/floor_ball.webp" alt="石板地面 材质渲染" loading="lazy"></figure>
+    <div class="maps">
+      <figure data-full="../assets/mat/floor_albedo.webp"><img src="../assets/mat/floor_albedo.webp" alt="石板地面 Albedo" loading="lazy"><span>ALBEDO</span></figure>
+      <figure data-full="../assets/mat/floor_normal.webp"><img src="../assets/mat/floor_normal.webp" alt="石板地面 Normal" loading="lazy"><span>NORMAL</span></figure>
+      <figure data-full="../assets/mat/floor_rough.webp"><img src="../assets/mat/floor_rough.webp" alt="石板地面 Roughness" loading="lazy"><span>ROUGH</span></figure>
     </div>
   </div>
   <div class="cap">
     <span class="idx">06</span>
-    <div class="nm"><b>石板地面</b><em>floor_01</em></div>
-    <div class="ds">方石板铺装 · 踩踏磨损　·　地面</div>
-    <div class="sp">4K · 4 变体 · SD</div>
+    <b>石板地面</b><em>floor_01</em>
+    <span class="ds">方石板铺装 · 踩踏磨损　·　地面</span>
+    <span class="sp">4K · 4 变体 · SD</span>
   </div>
 </article>
 <article class="slide" id="m07">
   <div class="bg"><img src="../assets/mat/bg27.webp" alt="" loading="lazy"></div>
   <div class="stage">
-    <figure class="ball"><img src="../assets/mat/ground_ball.webp" alt="湿泥地 材质球" loading="lazy"></figure>
-    <div class="strips">
-      <figure data-full="../assets/mat/ground_albedo.webp" style="background-image:url(../assets/mat/ground_albedo.webp)"><span>ALBEDO</span></figure>
-      <figure data-full="../assets/mat/ground_normal.webp" style="background-image:url(../assets/mat/ground_normal.webp)"><span>NORMAL</span></figure>
-      <figure data-full="../assets/mat/ground_rough.webp" style="background-image:url(../assets/mat/ground_rough.webp)"><span>ROUGH</span></figure>
+    <figure class="ball plane"><img src="../assets/mat/ground_ball.webp" alt="湿泥地 材质渲染" loading="lazy"></figure>
+    <div class="maps">
+      <figure data-full="../assets/mat/ground_albedo.webp"><img src="../assets/mat/ground_albedo.webp" alt="湿泥地 Albedo" loading="lazy"><span>ALBEDO</span></figure>
+      <figure data-full="../assets/mat/ground_normal.webp"><img src="../assets/mat/ground_normal.webp" alt="湿泥地 Normal" loading="lazy"><span>NORMAL</span></figure>
+      <figure data-full="../assets/mat/ground_rough.webp"><img src="../assets/mat/ground_rough.webp" alt="湿泥地 Roughness" loading="lazy"><span>ROUGH</span></figure>
     </div>
   </div>
   <div class="cap">
     <span class="idx">07</span>
-    <div class="nm"><b>湿泥地</b><em>ground_01</em></div>
-    <div class="ds">积水洼 · 泥纹 · 碎屑　·　地面</div>
-    <div class="sp">4K · 4 变体 · SD</div>
+    <b>湿泥地</b><em>ground_01</em>
+    <span class="ds">积水洼 · 泥纹 · 碎屑　·　地面</span>
+    <span class="sp">4K · 4 变体 · SD</span>
   </div>
 </article>
 <article class="slide" id="m08">
   <div class="bg"><img src="../assets/mat/bg19.webp" alt="" loading="lazy"></div>
   <div class="stage">
-    <figure class="ball"><img src="../assets/mat/soil_ball.webp" alt="土壤 材质球" loading="lazy"></figure>
-    <div class="strips">
-      <figure data-full="../assets/mat/soil_albedo.webp" style="background-image:url(../assets/mat/soil_albedo.webp)"><span>ALBEDO</span></figure>
-      <figure data-full="../assets/mat/soil_normal.webp" style="background-image:url(../assets/mat/soil_normal.webp)"><span>NORMAL</span></figure>
-      <figure data-full="../assets/mat/soil_rough.webp" style="background-image:url(../assets/mat/soil_rough.webp)"><span>ROUGH</span></figure>
+    <figure class="ball"><img src="../assets/mat/soil_ball.webp" alt="土壤 材质渲染" loading="lazy"></figure>
+    <div class="maps">
+      <figure data-full="../assets/mat/soil_albedo.webp"><img src="../assets/mat/soil_albedo.webp" alt="土壤 Albedo" loading="lazy"><span>ALBEDO</span></figure>
+      <figure data-full="../assets/mat/soil_normal.webp"><img src="../assets/mat/soil_normal.webp" alt="土壤 Normal" loading="lazy"><span>NORMAL</span></figure>
+      <figure data-full="../assets/mat/soil_rough.webp"><img src="../assets/mat/soil_rough.webp" alt="土壤 Roughness" loading="lazy"><span>ROUGH</span></figure>
     </div>
   </div>
   <div class="cap">
     <span class="idx">08</span>
-    <div class="nm"><b>土壤</b><em>Soil_01</em></div>
-    <div class="ds">干裂土块 · 碎石颗粒　·　自然</div>
-    <div class="sp">4K · 4 变体 · SD</div>
+    <b>土壤</b><em>Soil_01</em>
+    <span class="ds">干裂土块 · 碎石颗粒　·　自然</span>
+    <span class="sp">4K · 4 变体 · SD</span>
   </div>
 </article>
 <article class="slide" id="m09">
   <div class="bg"><img src="../assets/mat/bg24.webp" alt="" loading="lazy"></div>
   <div class="stage">
-    <figure class="ball"><img src="../assets/mat/grass_ball.webp" alt="草地 材质球" loading="lazy"></figure>
-    <div class="strips">
-      <figure data-full="../assets/mat/grass_albedo.webp" style="background-image:url(../assets/mat/grass_albedo.webp)"><span>ALBEDO</span></figure>
-      <figure data-full="../assets/mat/grass_normal.webp" style="background-image:url(../assets/mat/grass_normal.webp)"><span>NORMAL</span></figure>
-      <figure data-full="../assets/mat/grass_rough.webp" style="background-image:url(../assets/mat/grass_rough.webp)"><span>ROUGH</span></figure>
+    <figure class="ball"><img src="../assets/mat/grass_ball.webp" alt="草地 材质渲染" loading="lazy"></figure>
+    <div class="maps">
+      <figure data-full="../assets/mat/grass_albedo.webp"><img src="../assets/mat/grass_albedo.webp" alt="草地 Albedo" loading="lazy"><span>ALBEDO</span></figure>
+      <figure data-full="../assets/mat/grass_normal.webp"><img src="../assets/mat/grass_normal.webp" alt="草地 Normal" loading="lazy"><span>NORMAL</span></figure>
+      <figure data-full="../assets/mat/grass_rough.webp"><img src="../assets/mat/grass_rough.webp" alt="草地 Roughness" loading="lazy"><span>ROUGH</span></figure>
     </div>
   </div>
   <div class="cap">
     <span class="idx">09</span>
-    <div class="nm"><b>草地</b><em>grass_01</em></div>
-    <div class="ds">杂草丛生 · 土斑穿插　·　自然</div>
-    <div class="sp">4K · 4 变体 · SD</div>
+    <b>草地</b><em>grass_01</em>
+    <span class="ds">杂草丛生 · 土斑穿插　·　自然</span>
+    <span class="sp">4K · 4 变体 · SD</span>
   </div>
 </article>
 <article class="slide" id="m10">
   <div class="bg"><img src="../assets/mat/bg28.webp" alt="" loading="lazy"></div>
   <div class="stage">
-    <figure class="ball"><img src="../assets/mat/water_ball.webp" alt="水面 材质球" loading="lazy"></figure>
-    <div class="strips">
-      <figure data-full="../assets/mat/water_albedo.webp" style="background-image:url(../assets/mat/water_albedo.webp)"><span>ALBEDO</span></figure>
-      <figure data-full="../assets/mat/water_normal.webp" style="background-image:url(../assets/mat/water_normal.webp)"><span>NORMAL</span></figure>
-      <figure data-full="../assets/mat/water_rough.webp" style="background-image:url(../assets/mat/water_rough.webp)"><span>ROUGH</span></figure>
+    <figure class="ball plane"><img src="../assets/mat/water_ball.webp" alt="水面 材质渲染" loading="lazy"></figure>
+    <div class="maps">
+      <figure data-full="../assets/mat/water_albedo.webp"><img src="../assets/mat/water_albedo.webp" alt="水面 Albedo" loading="lazy"><span>ALBEDO</span></figure>
+      <figure data-full="../assets/mat/water_normal.webp"><img src="../assets/mat/water_normal.webp" alt="水面 Normal" loading="lazy"><span>NORMAL</span></figure>
+      <figure data-full="../assets/mat/water_rough.webp"><img src="../assets/mat/water_rough.webp" alt="水面 Roughness" loading="lazy"><span>ROUGH</span></figure>
     </div>
   </div>
   <div class="cap">
     <span class="idx">10</span>
-    <div class="nm"><b>水面</b><em>water_01</em></div>
-    <div class="ds">涟漪法线 · 流动粗糙度　·　自然</div>
-    <div class="sp">4K · 4 变体 · SD</div>
+    <b>水面</b><em>water_01</em>
+    <span class="ds">涟漪法线 · 流动粗糙度　·　自然</span>
+    <span class="sp">4K · 4 变体 · SD</span>
   </div>
 </article>
 <article class="slide" id="m11">
   <div class="bg"><img src="../assets/mat/bg35.webp" alt="" loading="lazy"></div>
   <div class="stage">
-    <figure class="ball"><img src="../assets/mat/roof1_ball.webp" alt="瓦屋面 材质球" loading="lazy"></figure>
-    <div class="strips">
-      <figure data-full="../assets/mat/roof1_albedo.webp" style="background-image:url(../assets/mat/roof1_albedo.webp)"><span>ALBEDO</span></figure>
-      <figure data-full="../assets/mat/roof1_normal.webp" style="background-image:url(../assets/mat/roof1_normal.webp)"><span>NORMAL</span></figure>
-      <figure data-full="../assets/mat/roof1_rough.webp" style="background-image:url(../assets/mat/roof1_rough.webp)"><span>ROUGH</span></figure>
+    <figure class="ball plane"><img src="../assets/mat/roof1_ball.webp" alt="瓦屋面 材质渲染" loading="lazy"></figure>
+    <div class="maps">
+      <figure data-full="../assets/mat/roof1_albedo.webp"><img src="../assets/mat/roof1_albedo.webp" alt="瓦屋面 Albedo" loading="lazy"><span>ALBEDO</span></figure>
+      <figure data-full="../assets/mat/roof1_normal.webp"><img src="../assets/mat/roof1_normal.webp" alt="瓦屋面 Normal" loading="lazy"><span>NORMAL</span></figure>
+      <figure data-full="../assets/mat/roof1_rough.webp"><img src="../assets/mat/roof1_rough.webp" alt="瓦屋面 Roughness" loading="lazy"><span>ROUGH</span></figure>
     </div>
   </div>
   <div class="cap">
     <span class="idx">11</span>
-    <div class="nm"><b>瓦屋面</b><em>roof_01</em></div>
-    <div class="ds">筒瓦叠压 · 苔藓附着　·　建筑构件</div>
-    <div class="sp">4K · 3 变体 · SD</div>
+    <b>瓦屋面</b><em>roof_01</em>
+    <span class="ds">筒瓦叠压 · 苔藓附着　·　建筑构件</span>
+    <span class="sp">4K · 3 变体 · SD</span>
   </div>
 </article>
 <article class="slide" id="m12">
   <div class="bg"><img src="../assets/mat/bg30.webp" alt="" loading="lazy"></div>
   <div class="stage">
-    <figure class="ball"><img src="../assets/mat/roof2_ball.webp" alt="青瓦 材质球" loading="lazy"></figure>
-    <div class="strips">
-      <figure data-full="../assets/mat/roof2_albedo.webp" style="background-image:url(../assets/mat/roof2_albedo.webp)"><span>ALBEDO</span></figure>
-      <figure data-full="../assets/mat/roof2_normal.webp" style="background-image:url(../assets/mat/roof2_normal.webp)"><span>NORMAL</span></figure>
-      <figure data-full="../assets/mat/roof2_rough.webp" style="background-image:url(../assets/mat/roof2_rough.webp)"><span>ROUGH</span></figure>
+    <figure class="ball"><img src="../assets/mat/roof2_ball.webp" alt="青瓦 材质渲染" loading="lazy"></figure>
+    <div class="maps">
+      <figure data-full="../assets/mat/roof2_albedo.webp"><img src="../assets/mat/roof2_albedo.webp" alt="青瓦 Albedo" loading="lazy"><span>ALBEDO</span></figure>
+      <figure data-full="../assets/mat/roof2_normal.webp"><img src="../assets/mat/roof2_normal.webp" alt="青瓦 Normal" loading="lazy"><span>NORMAL</span></figure>
+      <figure data-full="../assets/mat/roof2_rough.webp"><img src="../assets/mat/roof2_rough.webp" alt="青瓦 Roughness" loading="lazy"><span>ROUGH</span></figure>
     </div>
   </div>
   <div class="cap">
     <span class="idx">12</span>
-    <div class="nm"><b>青瓦</b><em>roof_02</em></div>
-    <div class="ds">板瓦错缝 · 风化剥落　·　建筑构件</div>
-    <div class="sp">4K · 4 变体 · SD</div>
+    <b>青瓦</b><em>roof_02</em>
+    <span class="ds">板瓦错缝 · 风化剥落　·　建筑构件</span>
+    <span class="sp">4K · 4 变体 · SD</span>
   </div>
 </article>
 <article class="slide" id="m13">
   <div class="bg"><img src="../assets/mat/bg22.webp" alt="" loading="lazy"></div>
   <div class="stage">
-    <figure class="ball"><img src="../assets/mat/window_ball.webp" alt="窗格 材质球" loading="lazy"></figure>
-    <div class="strips">
-      <figure data-full="../assets/mat/window_albedo.webp" style="background-image:url(../assets/mat/window_albedo.webp)"><span>ALBEDO</span></figure>
-      <figure data-full="../assets/mat/window_normal.webp" style="background-image:url(../assets/mat/window_normal.webp)"><span>NORMAL</span></figure>
-      <figure data-full="../assets/mat/window_rough.webp" style="background-image:url(../assets/mat/window_rough.webp)"><span>ROUGH</span></figure>
+    <figure class="ball"><img src="../assets/mat/window_ball.webp" alt="窗格 材质渲染" loading="lazy"></figure>
+    <div class="maps">
+      <figure data-full="../assets/mat/window_albedo.webp"><img src="../assets/mat/window_albedo.webp" alt="窗格 Albedo" loading="lazy"><span>ALBEDO</span></figure>
+      <figure data-full="../assets/mat/window_normal.webp"><img src="../assets/mat/window_normal.webp" alt="窗格 Normal" loading="lazy"><span>NORMAL</span></figure>
+      <figure data-full="../assets/mat/window_rough.webp"><img src="../assets/mat/window_rough.webp" alt="窗格 Roughness" loading="lazy"><span>ROUGH</span></figure>
     </div>
   </div>
   <div class="cap">
     <span class="idx">13</span>
-    <div class="nm"><b>窗格</b><em>window_1</em></div>
-    <div class="ds">木格窗 · 独立透明通道　·　建筑构件</div>
-    <div class="sp">4K · 9 变体 · SD</div>
+    <b>窗格</b><em>window_1</em>
+    <span class="ds">木格窗 · 独立透明通道　·　建筑构件</span>
+    <span class="sp">4K · 9 变体 · SD</span>
   </div>
 </article>
 <article class="slide" id="m14">
   <div class="bg"><img src="../assets/mat/bg26.webp" alt="" loading="lazy"></div>
   <div class="stage">
-    <figure class="ball"><img src="../assets/mat/wood_ball.webp" alt="木纹 材质球" loading="lazy"></figure>
-    <div class="strips">
-      <figure data-full="../assets/mat/wood_albedo.webp" style="background-image:url(../assets/mat/wood_albedo.webp)"><span>ALBEDO</span></figure>
-      <figure data-full="../assets/mat/wood_normal.webp" style="background-image:url(../assets/mat/wood_normal.webp)"><span>NORMAL</span></figure>
-      <figure data-full="../assets/mat/wood_rough.webp" style="background-image:url(../assets/mat/wood_rough.webp)"><span>ROUGH</span></figure>
+    <figure class="ball plane"><img src="../assets/mat/wood_ball.webp" alt="木纹 材质渲染" loading="lazy"></figure>
+    <div class="maps">
+      <figure data-full="../assets/mat/wood_albedo.webp"><img src="../assets/mat/wood_albedo.webp" alt="木纹 Albedo" loading="lazy"><span>ALBEDO</span></figure>
+      <figure data-full="../assets/mat/wood_normal.webp"><img src="../assets/mat/wood_normal.webp" alt="木纹 Normal" loading="lazy"><span>NORMAL</span></figure>
+      <figure data-full="../assets/mat/wood_rough.webp"><img src="../assets/mat/wood_rough.webp" alt="木纹 Roughness" loading="lazy"><span>ROUGH</span></figure>
     </div>
   </div>
   <div class="cap">
     <span class="idx">14</span>
-    <div class="nm"><b>木纹</b><em>wood_01</em></div>
-    <div class="ds">顺纹木理 · 裂纹 · 节疤　·　建筑构件</div>
-    <div class="sp">4K · 4 变体 · SD</div>
+    <b>木纹</b><em>wood_01</em>
+    <span class="ds">顺纹木理 · 裂纹 · 节疤　·　建筑构件</span>
+    <span class="sp">4K · 4 变体 · SD</span>
   </div>
 </article>
 </div>
 
 <div class="wrap note">
   <h3>PROCESS / 制作说明</h3>
-  <p>从 Height 打底：手工雕痕 + Noise 走一遍 Displacement 收敛大形，再用 Tile Sampler 控制砌筑与铺装节奏；法线与粗糙度共用同一套高度信息，保证凹凸与接缝严格对齐。颜色以 Curve 收对比、以 Gradient Map 限定色域，避免全图一个灰度。最后输出 4K 四件套并回引擎校准。</p>
+  <p>Height 打底：手工雕痕 + Noise 走 Displacement 收敛大形，Tile Sampler 控制砌筑与铺装节奏；法线与粗糙度共用同一套高度信息，保证凹凸与接缝严格对齐。颜色用 Curve 收对比、Gradient Map 限定色域，避免全图单一灰度。输出 4K 四件套后回引擎校准。</p>
 </div>
 
 <div class="wrap"><div class="foot">
@@ -350,20 +345,20 @@ a{color:inherit;text-decoration:none}
   var links=[].slice.call(document.querySelectorAll('.nav a'));
   var secs=links.map(function(a){return document.getElementById(a.dataset.i);});
   function spy(){
-    var y=window.scrollY+160, cur=-1;
-    secs.forEach(function(s,i){ if(s && s.offsetTop<=y) cur=i; });
-    links.forEach(function(a,i){ a.classList.toggle('on', i===cur); });
+    var y=window.scrollY+160,cur=-1;
+    secs.forEach(function(s,i){if(s&&s.offsetTop<=y)cur=i;});
+    links.forEach(function(a,i){a.classList.toggle('on',i===cur);});
   }
-  window.addEventListener('scroll',spy,{passive:true}); spy();
+  window.addEventListener('scroll',spy,{passive:true});spy();
   links.forEach(function(a){a.addEventListener('click',function(e){
     var t=document.getElementById(a.dataset.i);
-    if(t){e.preventDefault();window.scrollTo({top:t.offsetTop-90,behavior:'smooth'});}
+    if(t){e.preventDefault();window.scrollTo({top:t.offsetTop-86,behavior:'smooth'});}
   });});
-  var lb=document.getElementById('lb'), im=lb.querySelector('img');
-  document.querySelectorAll('.strips figure').forEach(function(f){
-    f.addEventListener('click',function(){ im.src=f.dataset.full; lb.classList.add('on'); });
+  var lb=document.getElementById('lb'),im=lb.querySelector('img');
+  document.querySelectorAll('.maps figure').forEach(function(f){
+    f.addEventListener('click',function(){im.src=f.dataset.full;lb.classList.add('on');});
   });
-  lb.addEventListener('click',function(){lb.classList.remove('on');iframe=null;im.src='';});
+  lb.addEventListener('click',function(){lb.classList.remove('on');im.src='';});
   document.addEventListener('keydown',function(e){if(e.key==='Escape')lb.classList.remove('on');});
 })();
 </script>
