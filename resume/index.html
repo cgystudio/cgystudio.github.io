@@ -1235,6 +1235,8 @@ html[data-style="L"] .sidebar .s-block{ margin-bottom:20px !important; }
 /* ===== 作品页（速览版）：A4 一页 = 2 个项目，每项目 2×2 拼图 ===== */
 .wpage{ width:210mm; height:auto; padding:0; margin:0 auto; box-sizing:border-box; background:#fff;
         display:block; page-break-after:auto; break-after:auto; }
+.wpage.breakpage{ break-before:page; page-break-before:always; margin-top:0 !important; }
+.wpage.breakpage + .wpage{ margin-top:0; }
 .wpage + .wpage{ margin-top:5mm; }   /* 项目之间的间隔（比图片间距大一点，形成分组节奏） */
 .wgroup{ position:relative; display:flex; align-items:baseline; gap:2.5mm;
          width:210mm; margin:0 auto 4.5mm;
@@ -1265,12 +1267,12 @@ html[data-style="L"] .sidebar .s-block{ margin-bottom:20px !important; }
 .grid2x2.auto img{ height:auto; object-fit:contain; }   /* 不裁切，按原比例 */
 .grid2x2.fix img{ height:auto; object-fit:cover; }   /* 同一行画幅统一，仅微裁 */
 .grid2x2.r187 img{ aspect-ratio:1.87; }
-.grid2x2.r247 img{ aspect-ratio:2.47; }
+.grid2x2.r247 img{ aspect-ratio:2.475; }
 .grid2x2.r192 img{ aspect-ratio:1.92; }
 .grid2x2.r178 img{ aspect-ratio:16/9; }
 
 /* 通栏补图 / 单图 */
-.band{ margin:2.5mm 0 0; }
+.band{ margin:2.5mm 0 0; break-inside:avoid; page-break-inside:avoid; }
 .band img{ width:100%; height:auto; display:block; }
 .matwrap{ background:#121212; margin-top:2.5mm; }
 .matwrap .band{ margin:0; break-inside:avoid; page-break-inside:avoid; }
@@ -1541,7 +1543,7 @@ body{padding:0 !important;background:#fff !important;display:block !important;}
       <img src="../assets/kill_05.jpg" alt="个人作品场景"><img src="../assets/kill_04.jpg" alt="个人作品场景">
     </div>
   </div>
-  <div class="wpage">
+  <div class="wpage breakpage">
     <div class="ph"><div class="ph-row"><span class="ph-n">05</span><span class="ph-t">材质 / Materials</span><span class="ph-m">程序化材质 20 组 · 4K ＋ 资产模块总览</span></div>
       <div class="ph-resp">Substance Designer 全节点搭建：砌筑石材、涂装、地面、植被、瓦作与木作，全部 4K 无缝输出，直接进引擎。统一以圆柱体测试，保证各材质在曲面上仍保持细节密度与尺度一致。</div></div>
     <div class="matwrap">
@@ -1551,7 +1553,7 @@ body{padding:0 !important;background:#fff !important;display:block !important;}
       <div class="band matband"><img src="../assets/mat_kit.jpg" alt="资产模块总览：建筑模块 / 屋面瓦作 / 山石 / 植被 / 地面平台"></div>
     </div>
   </div>
-  <div class="wpage">
+  <div class="wpage breakpage">
     <div class="ph"><div class="ph-row"><span class="ph-n">06</span><span class="ph-t">场景 / Environments</span><span class="ph-m">山寺场景 · 5 个机位 · 实机</span></div>
       <div class="ph-resp">同一座山寺场景的五个机位：秋林全景建立、正门匾额对称、屋顶鸟瞰、林间石径与夜间室内灯光，覆盖户外天光到室内烛光的完整气氛。</div></div>
     <div class="band" style="margin-top:0"><img src="../assets/env_1.jpg" alt="山寺场景 · 秋林全景"></div>
