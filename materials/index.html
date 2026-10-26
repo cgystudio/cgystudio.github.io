@@ -5,662 +5,366 @@
 <title>材质库 · 陈冠宇 · UE 场景地编</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --bg:#0a0908; --panel:#131110; --line:#241e1c; --text:#eae5e1; --muted:#94867e;
-  --accent:#e0653c; --accent-ink:#b8431f;
-  --f-sans:"Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
-  --f-serif:"Songti SC","Times New Roman",serif;
-}
-html{-webkit-text-size-adjust:100%}
-body{background:var(--bg);color:var(--text);font-family:var(--f-sans);line-height:1.6;overflow-x:hidden}
+:root{--bg:#080706;--text:#eee9e5;--muted:#9c8e85;--accent:#e0653c;--accent-ink:#b8431f;--line:#241e1b;
+  --f:"Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;--fs:"Songti SC",serif}
+body{background:var(--bg);color:var(--text);font-family:var(--f);line-height:1.6}
 img{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
-.wrap{max-width:1240px;margin:0 auto;padding:0 28px}
+.wrap{max-width:1400px;margin:0 auto;padding:0 24px}
 
-/* ---------- 头图 ---------- */
-.hero{position:relative;min-height:66vh;display:flex;align-items:flex-end;overflow:hidden;
-  background:#060505 url(../assets/mat/bg_dark.webp) center/cover no-repeat}
-.hero::before{content:'';position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(6,5,5,.55) 0%,rgba(6,5,5,.72) 45%,rgba(6,5,5,.96) 100%)}
-.hero::after{content:'';position:absolute;left:0;bottom:0;width:100%;height:2px;background:var(--accent-ink)}
-.hero-in{position:relative;width:100%;padding:56px 0 46px}
-.back{display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.14em;
-  color:rgba(234,229,225,.62);margin-bottom:28px;transition:color .2s}
+/* 顶部 */
+.top{padding:44px 0 28px;border-bottom:1px solid var(--line)}
+.back{font-size:11.5px;letter-spacing:.16em;color:var(--muted)}
 .back:hover{color:var(--accent)}
-.t-en{font-family:var(--f-serif);font-size:64px;font-weight:700;line-height:.95;letter-spacing:.02em}
-.t-cn{margin-top:10px;font-size:26px;font-weight:700;letter-spacing:.34em;color:var(--accent)}
-.lede{max-width:640px;margin-top:22px;font-size:13.5px;color:rgba(234,229,225,.72);line-height:1.9}
-.stats{display:flex;gap:44px;margin-top:34px;flex-wrap:wrap}
-.stats div{border-left:2px solid var(--accent-ink);padding-left:14px}
-.stats b{display:block;font-family:var(--f-serif);font-size:26px;line-height:1}
-.stats span{font-size:11px;letter-spacing:.18em;color:var(--muted)}
+.h1{margin-top:22px;font-family:var(--fs);font-size:54px;font-weight:700;line-height:1;letter-spacing:.02em}
+.h1 em{font-family:var(--f);font-style:normal;font-size:15px;letter-spacing:.42em;color:var(--accent);
+  display:block;margin-top:12px;font-weight:700}
+.lede{max-width:660px;margin-top:18px;font-size:13px;line-height:1.95;color:rgba(238,233,229,.62)}
 
-/* ---------- 缩略图墙 ---------- */
-.mosaic{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-top:-1px}
-.mosaic .th{position:relative;aspect-ratio:1;overflow:hidden;background:#000}
-.mosaic img{width:100%;height:100%;object-fit:cover;opacity:.72;transition:.35s ease}
-.mosaic .th:hover img{opacity:1;transform:scale(1.06)}
-
-/* ---------- 导航 ---------- */
-.nav{position:sticky;top:0;z-index:40;background:rgba(10,9,8,.9);backdrop-filter:blur(12px);
+/* 章节导航 */
+.nav{position:sticky;top:0;z-index:50;background:rgba(8,7,6,.92);backdrop-filter:blur(14px);
   border-bottom:1px solid var(--line)}
-.nav-in{display:flex;gap:6px;overflow-x:auto;padding:12px 0;scrollbar-width:none}
+.nav-in{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;padding:10px 0}
 .nav-in::-webkit-scrollbar{display:none}
-.nav a{flex:0 0 auto;display:flex;align-items:baseline;gap:7px;padding:6px 12px;border-radius:3px;
-  font-size:12px;letter-spacing:.08em;color:var(--muted);border:1px solid transparent;transition:.2s}
-.nav a span{font-family:var(--f-serif);font-size:10px;opacity:.6}
-.nav a:hover{color:var(--text);border-color:var(--line)}
-.nav a.on{color:#fff;background:var(--accent-ink);border-color:var(--accent-ink)}
-.nav a.on span{opacity:.75}
+.nav a{flex:0 0 auto;display:flex;align-items:baseline;gap:8px;padding:7px 12px;font-size:11.5px;
+  color:var(--muted);border-bottom:2px solid transparent;transition:.18s}
+.nav a i{font-style:normal;font-size:10px;opacity:.55}
+.nav a:hover{color:var(--text)}
+.nav a.on{color:#fff;border-bottom-color:var(--accent)}
 
-/* ---------- 材质条目 ---------- */
-.mat{padding:72px 0 76px;border-bottom:1px solid var(--line)}
-.mat-h{display:grid;grid-template-columns:1fr auto;gap:10px 40px;align-items:baseline;margin-bottom:30px}
-.mat-t{display:flex;align-items:baseline;gap:16px}
-.idx{font-family:var(--f-serif);font-size:15px;font-weight:700;color:var(--accent);letter-spacing:.06em}
-.mat h2{font-size:27px;font-weight:700;letter-spacing:.06em;display:flex;align-items:baseline;gap:14px}
-.mat h2 em{font-style:normal;font-size:12px;font-weight:600;letter-spacing:.16em;color:var(--muted);text-transform:uppercase}
-.desc{grid-column:1;font-size:13px;color:rgba(234,229,225,.62);letter-spacing:.02em}
-.spec{grid-column:2;grid-row:1/3;display:flex;gap:0;flex-wrap:wrap;justify-content:flex-end}
-.spec li{list-style:none;font-size:11px;letter-spacing:.1em;color:var(--muted);
-  padding:0 14px;border-left:1px solid var(--line)}
-.spec li:last-child{padding-right:0}
-.mat-b{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.pane{position:relative;margin:0;overflow:hidden;background:#000;border-radius:2px;cursor:zoom-in}
-.pane img{width:100%;height:100%;object-fit:cover;aspect-ratio:1;transition:transform .5s ease}
-.pane:hover img{transform:scale(1.03)}
-.pane figcaption{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:baseline;gap:9px;
-  padding:26px 12px 9px;font-size:10.5px;letter-spacing:.14em;color:rgba(255,255,255,.9);
-  background:linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(0,0,0,.72) 100%);pointer-events:none}
-.pane figcaption b{font-weight:700;color:#fff;letter-spacing:.16em}
-.pane figcaption span{color:rgba(255,255,255,.55)}
-.quad{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.zoom{background-size:230%;background-position:36% 40%;cursor:default}
-.zoom:hover img{transform:none}
+/* 幻灯片 */
+.deck{padding:26px 0 60px;display:flex;flex-direction:column;gap:26px}
+.slide{position:relative;aspect-ratio:16/9;overflow:hidden;border-radius:3px;isolation:isolate;
+  box-shadow:0 18px 50px rgba(0,0,0,.55)}
+.slide .bg{position:absolute;inset:-6%;z-index:0}
+.slide .bg img{width:100%;height:100%;object-fit:cover;filter:blur(18px) brightness(.46) saturate(.8)}
+.slide::after{content:'';position:absolute;inset:0;z-index:1;
+  background:radial-gradient(ellipse at 42% 48%,rgba(0,0,0,.05) 0%,rgba(0,0,0,.42) 62%,rgba(0,0,0,.82) 100%)}
+.stage{position:relative;z-index:2;height:100%;display:grid;grid-template-columns:1.06fr .74fr;
+  gap:5%;align-items:center;padding:3.2% 5.5% 4.6%}
+.ball{margin:0}
+.ball img{width:100%;filter:drop-shadow(0 26px 46px rgba(0,0,0,.7)) contrast(1.04)}
+.strips{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;height:76%}
+.strips figure{margin:0;background-size:cover;background-position:center;position:relative;
+  border-radius:2px;box-shadow:0 18px 38px rgba(0,0,0,.55);cursor:zoom-in;overflow:hidden}
+.strips figure::after{content:'';position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
+.strips span{position:absolute;left:0;bottom:-19px;font-size:9px;letter-spacing:.22em;color:rgba(255,255,255,.5)}
 
-/* ---------- 说明 ---------- */
-.note{padding:64px 0 88px}
-.note h3{font-size:12px;letter-spacing:.24em;color:var(--accent);margin-bottom:18px}
-.note p{max-width:720px;font-size:13px;line-height:2;color:rgba(234,229,225,.66)}
-.note ul{margin-top:22px;display:flex;gap:0;flex-wrap:wrap}
-.note li{list-style:none;font-size:11.5px;color:var(--muted);padding:0 16px;border-left:1px solid var(--line)}
-.note li:first-child{padding-left:0;border-left:0}
-.foot{border-top:1px solid var(--line);padding:26px 0 40px;display:flex;justify-content:space-between;
-  align-items:center;font-size:11.5px;color:var(--muted);letter-spacing:.1em}
+/* 幻灯片脚注 */
+.cap{position:absolute;left:0;right:0;bottom:0;z-index:3;display:flex;align-items:baseline;gap:18px;
+  padding:0 5.5% 2.2%}
+.cap .idx{font-family:var(--fs);font-size:12px;color:var(--accent);letter-spacing:.06em}
+.cap .nm{display:flex;align-items:baseline;gap:12px}
+.cap .nm b{font-size:16px;font-weight:700;letter-spacing:.06em}
+.cap .nm em{font-style:normal;font-size:9.5px;letter-spacing:.2em;color:rgba(255,255,255,.55);text-transform:uppercase}
+.cap .ds{font-size:10.5px;color:rgba(255,255,255,.45);letter-spacing:.04em}
+.cap .sp{margin-left:auto;font-size:9.5px;letter-spacing:.16em;color:rgba(255,255,255,.42)}
+
+/* 说明 + 页脚 */
+.note{border-top:1px solid var(--line);padding:52px 0 30px}
+.note h3{font-size:11px;letter-spacing:.26em;color:var(--accent);margin-bottom:16px}
+.note p{max-width:760px;font-size:12.5px;line-height:2.05;color:rgba(238,233,229,.6)}
+.foot{border-top:1px solid var(--line);padding:22px 0 44px;display:flex;justify-content:space-between;
+  font-size:11px;letter-spacing:.12em;color:var(--muted)}
 .foot a:hover{color:var(--accent)}
 
-/* ---------- 灯箱 ---------- */
-#lb{position:fixed;inset:0;z-index:99;background:rgba(4,3,3,.96);display:none;
-  align-items:center;justify-content:center;cursor:zoom-out}
+#lb{position:fixed;inset:0;z-index:99;background:rgba(4,3,3,.96);display:none;align-items:center;justify-content:center;cursor:zoom-out}
 #lb.on{display:flex}
-#lb img{max-width:94vw;max-height:92vh;object-fit:contain;border-radius:2px}
-#lb .x{position:absolute;top:20px;right:26px;font-size:24px;color:#fff;opacity:.7}
+#lb img{max-width:94vw;max-height:92vh;object-fit:contain}
 
-@media (max-width:900px){
-  .t-en{font-size:40px} .t-cn{font-size:20px;letter-spacing:.24em}
-  .mosaic{grid-template-columns:repeat(4,1fr)}
-  .mat{padding:48px 0 52px}
-  .mat-h{grid-template-columns:1fr;gap:8px}
-  .spec{grid-row:auto;grid-column:1;justify-content:flex-start}
-  .spec li:first-child{padding-left:0;border-left:0}
-  .mat h2{font-size:21px} .mat h2 em{font-size:10.5px}
-  .mat-b{grid-template-columns:1fr;gap:10px}
-  .quad{gap:10px}
+@media (max-width:860px){
+  .h1{font-size:34px}
+  .slide{aspect-ratio:auto;min-height:auto;padding:22px 0 42px}
+  .stage{grid-template-columns:1fr;gap:18px;padding:0}
+  .ball{width:72%;margin:0 auto}
+  .strips{height:150px;padding:0}
+  .strips span{bottom:-16px}
+  .cap{position:static;padding:16px 0 0;flex-wrap:wrap;gap:8px 14px}
+  .cap .sp{margin-left:0}
 }
 </style></head><body>
 
-<header class="hero">
-  <div class="wrap hero-in">
-    <a class="back" href="../">← 返回作品集 PORTFOLIO</a>
-    <div class="t-en">MATERIALS</div>
-    <div class="t-cn">材质库</div>
-    <p class="lede">14 组程序化材质，Substance Designer 节点搭建，4K 输出。全部按 PBR 标准拆分为 Albedo / Normal / Roughness 三通道，可直接进引擎；每种材质保留了多个随机变体，用于同一场景内的重复铺贴去重。</p>
-    <div class="stats">
-      <div><b>14</b><span>组材质</span></div>
-      <div><b>42</b><span>张 PBR 贴图</span></div>
-      <div><b>4K</b><span>导出分辨率</span></div>
-      <div><b>SD</b><span>全节点流程</span></div>
-    </div>
-  </div>
-</header>
+<div class="wrap top">
+  <a class="back" href="../">← 返回作品集 PORTFOLIO</a>
+  <h1 class="h1">材质库<em>MATERIALS</em></h1>
+  <p class="lede">14 组程序化材质，Substance Designer 全节点搭建，4K 输出。每组材质球为实时渲染，右侧为同源的 Albedo / Normal / Roughness 三通道，拍平后可直接进引擎。每种材质保留了 3–12 个随机变体，用于同一场景内重复铺贴去重。</p>
+</div>
 
-<div class="mosaic"><a href="#m01" class="th" title="红砖墙"><img src="../assets/mat/brick_thumb.webp" alt="红砖墙" loading="lazy"></a><a href="#m02" class="th" title="红漆墙"><img src="../assets/mat/redwall_thumb.webp" alt="红漆墙" loading="lazy"></a><a href="#m03" class="th" title="白灰墙"><img src="../assets/mat/whitewall_thumb.webp" alt="白灰墙" loading="lazy"></a><a href="#m04" class="th" title="石砖墙"><img src="../assets/mat/stonebrick_thumb.webp" alt="石砖墙" loading="lazy"></a><a href="#m05" class="th" title="粗石墙"><img src="../assets/mat/stonewall_thumb.webp" alt="粗石墙" loading="lazy"></a><a href="#m06" class="th" title="石板地面"><img src="../assets/mat/floor_thumb.webp" alt="石板地面" loading="lazy"></a><a href="#m07" class="th" title="湿泥地"><img src="../assets/mat/ground_thumb.webp" alt="湿泥地" loading="lazy"></a><a href="#m08" class="th" title="土壤"><img src="../assets/mat/soil_thumb.webp" alt="土壤" loading="lazy"></a><a href="#m09" class="th" title="草地"><img src="../assets/mat/grass_thumb.webp" alt="草地" loading="lazy"></a><a href="#m10" class="th" title="水面"><img src="../assets/mat/water_thumb.webp" alt="水面" loading="lazy"></a><a href="#m11" class="th" title="瓦屋面"><img src="../assets/mat/roof1_thumb.webp" alt="瓦屋面" loading="lazy"></a><a href="#m12" class="th" title="青瓦"><img src="../assets/mat/roof2_thumb.webp" alt="青瓦" loading="lazy"></a><a href="#m13" class="th" title="窗格"><img src="../assets/mat/window_thumb.webp" alt="窗格" loading="lazy"></a><a href="#m14" class="th" title="木纹"><img src="../assets/mat/wood_thumb.webp" alt="木纹" loading="lazy"></a></div>
+<nav class="nav"><div class="wrap nav-in"><a href="#m01" data-i="m01">01<i>红砖墙</i></a><a href="#m02" data-i="m02">02<i>红漆墙</i></a><a href="#m03" data-i="m03">03<i>白灰墙</i></a><a href="#m04" data-i="m04">04<i>石砖墙</i></a><a href="#m05" data-i="m05">05<i>粗石墙</i></a><a href="#m06" data-i="m06">06<i>石板地面</i></a><a href="#m07" data-i="m07">07<i>湿泥地</i></a><a href="#m08" data-i="m08">08<i>土壤</i></a><a href="#m09" data-i="m09">09<i>草地</i></a><a href="#m10" data-i="m10">10<i>水面</i></a><a href="#m11" data-i="m11">11<i>瓦屋面</i></a><a href="#m12" data-i="m12">12<i>青瓦</i></a><a href="#m13" data-i="m13">13<i>窗格</i></a><a href="#m14" data-i="m14">14<i>木纹</i></a></div></nav>
 
-<nav class="nav"><div class="wrap nav-in"><a href="#m01" data-i="m01"><span>01</span>红砖墙</a><a href="#m02" data-i="m02"><span>02</span>红漆墙</a><a href="#m03" data-i="m03"><span>03</span>白灰墙</a><a href="#m04" data-i="m04"><span>04</span>石砖墙</a><a href="#m05" data-i="m05"><span>05</span>粗石墙</a><a href="#m06" data-i="m06"><span>06</span>石板地面</a><a href="#m07" data-i="m07"><span>07</span>湿泥地</a><a href="#m08" data-i="m08"><span>08</span>土壤</a><a href="#m09" data-i="m09"><span>09</span>草地</a><a href="#m10" data-i="m10"><span>10</span>水面</a><a href="#m11" data-i="m11"><span>11</span>瓦屋面</a><a href="#m12" data-i="m12"><span>12</span>青瓦</a><a href="#m13" data-i="m13"><span>13</span>窗格</a><a href="#m14" data-i="m14"><span>14</span>木纹</a></div></nav>
+<div class="wrap deck">
 
-<main class="wrap">
+<article class="slide" id="m01">
+  <div class="bg"><img src="../assets/mat/bg20.webp" alt="" loading="lazy"></div>
+  <div class="stage">
+    <figure class="ball"><img src="../assets/mat/brick_ball.webp" alt="红砖墙 材质球" loading="lazy"></figure>
+    <div class="strips">
+      <figure data-full="../assets/mat/brick_albedo.webp" style="background-image:url(../assets/mat/brick_albedo.webp)"><span>ALBEDO</span></figure>
+      <figure data-full="../assets/mat/brick_normal.webp" style="background-image:url(../assets/mat/brick_normal.webp)"><span>NORMAL</span></figure>
+      <figure data-full="../assets/mat/brick_rough.webp" style="background-image:url(../assets/mat/brick_rough.webp)"><span>ROUGH</span></figure>
+    </div>
+  </div>
+  <div class="cap">
+    <span class="idx">01</span>
+    <div class="nm"><b>红砖墙</b><em>BrickWall_01</em></div>
+    <div class="ds">砖缝手凿 · 边角破损 · 苔痕　·　建筑石材</div>
+    <div class="sp">4K · 4 变体 · SD</div>
+  </div>
+</article>
+<article class="slide" id="m02">
+  <div class="bg"><img src="../assets/mat/bg21.webp" alt="" loading="lazy"></div>
+  <div class="stage">
+    <figure class="ball"><img src="../assets/mat/redwall_ball.webp" alt="红漆墙 材质球" loading="lazy"></figure>
+    <div class="strips">
+      <figure data-full="../assets/mat/redwall_albedo.webp" style="background-image:url(../assets/mat/redwall_albedo.webp)"><span>ALBEDO</span></figure>
+      <figure data-full="../assets/mat/redwall_normal.webp" style="background-image:url(../assets/mat/redwall_normal.webp)"><span>NORMAL</span></figure>
+      <figure data-full="../assets/mat/redwall_rough.webp" style="background-image:url(../assets/mat/redwall_rough.webp)"><span>ROUGH</span></figure>
+    </div>
+  </div>
+  <div class="cap">
+    <span class="idx">02</span>
+    <div class="nm"><b>红漆墙</b><em>RedWall_01</em></div>
+    <div class="ds">漆面剥落 · 底灰外露 · 雨水冲痕　·　建筑石材</div>
+    <div class="sp">4K · 4 变体 · SD</div>
+  </div>
+</article>
+<article class="slide" id="m03">
+  <div class="bg"><img src="../assets/mat/bg13.webp" alt="" loading="lazy"></div>
+  <div class="stage">
+    <figure class="ball"><img src="../assets/mat/whitewall_ball.webp" alt="白灰墙 材质球" loading="lazy"></figure>
+    <div class="strips">
+      <figure data-full="../assets/mat/whitewall_albedo.webp" style="background-image:url(../assets/mat/whitewall_albedo.webp)"><span>ALBEDO</span></figure>
+      <figure data-full="../assets/mat/whitewall_normal.webp" style="background-image:url(../assets/mat/whitewall_normal.webp)"><span>NORMAL</span></figure>
+      <figure data-full="../assets/mat/whitewall_rough.webp" style="background-image:url(../assets/mat/whitewall_rough.webp)"><span>ROUGH</span></figure>
+    </div>
+  </div>
+  <div class="cap">
+    <span class="idx">03</span>
+    <div class="nm"><b>白灰墙</b><em>White_Wall_01</em></div>
+    <div class="ds">石灰抹面 · 细裂纹 · 水渍拖尾　·　建筑石材</div>
+    <div class="sp">4K · 12 变体 · SD</div>
+  </div>
+</article>
+<article class="slide" id="m04">
+  <div class="bg"><img src="../assets/mat/bg15.webp" alt="" loading="lazy"></div>
+  <div class="stage">
+    <figure class="ball"><img src="../assets/mat/stonebrick_ball.webp" alt="石砖墙 材质球" loading="lazy"></figure>
+    <div class="strips">
+      <figure data-full="../assets/mat/stonebrick_albedo.webp" style="background-image:url(../assets/mat/stonebrick_albedo.webp)"><span>ALBEDO</span></figure>
+      <figure data-full="../assets/mat/stonebrick_normal.webp" style="background-image:url(../assets/mat/stonebrick_normal.webp)"><span>NORMAL</span></figure>
+      <figure data-full="../assets/mat/stonebrick_rough.webp" style="background-image:url(../assets/mat/stonebrick_rough.webp)"><span>ROUGH</span></figure>
+    </div>
+  </div>
+  <div class="cap">
+    <span class="idx">04</span>
+    <div class="nm"><b>石砖墙</b><em>StoneBrick_01</em></div>
+    <div class="ds">规整砌筑 · 边角磨损　·　建筑石材</div>
+    <div class="sp">4K · 4 变体 · SD</div>
+  </div>
+</article>
+<article class="slide" id="m05">
+  <div class="bg"><img src="../assets/mat/bg18.webp" alt="" loading="lazy"></div>
+  <div class="stage">
+    <figure class="ball"><img src="../assets/mat/stonewall_ball.webp" alt="粗石墙 材质球" loading="lazy"></figure>
+    <div class="strips">
+      <figure data-full="../assets/mat/stonewall_albedo.webp" style="background-image:url(../assets/mat/stonewall_albedo.webp)"><span>ALBEDO</span></figure>
+      <figure data-full="../assets/mat/stonewall_normal.webp" style="background-image:url(../assets/mat/stonewall_normal.webp)"><span>NORMAL</span></figure>
+      <figure data-full="../assets/mat/stonewall_rough.webp" style="background-image:url(../assets/mat/stonewall_rough.webp)"><span>ROUGH</span></figure>
+    </div>
+  </div>
+  <div class="cap">
+    <span class="idx">05</span>
+    <div class="nm"><b>粗石墙</b><em>StoneWall_01</em></div>
+    <div class="ds">不规则石砌 · 风化麻面　·　建筑石材</div>
+    <div class="sp">4K · 4 变体 · SD</div>
+  </div>
+</article>
+<article class="slide" id="m06">
+  <div class="bg"><img src="../assets/mat/bg23.webp" alt="" loading="lazy"></div>
+  <div class="stage">
+    <figure class="ball"><img src="../assets/mat/floor_ball.webp" alt="石板地面 材质球" loading="lazy"></figure>
+    <div class="strips">
+      <figure data-full="../assets/mat/floor_albedo.webp" style="background-image:url(../assets/mat/floor_albedo.webp)"><span>ALBEDO</span></figure>
+      <figure data-full="../assets/mat/floor_normal.webp" style="background-image:url(../assets/mat/floor_normal.webp)"><span>NORMAL</span></figure>
+      <figure data-full="../assets/mat/floor_rough.webp" style="background-image:url(../assets/mat/floor_rough.webp)"><span>ROUGH</span></figure>
+    </div>
+  </div>
+  <div class="cap">
+    <span class="idx">06</span>
+    <div class="nm"><b>石板地面</b><em>floor_01</em></div>
+    <div class="ds">方石板铺装 · 踩踏磨损　·　地面</div>
+    <div class="sp">4K · 4 变体 · SD</div>
+  </div>
+</article>
+<article class="slide" id="m07">
+  <div class="bg"><img src="../assets/mat/bg27.webp" alt="" loading="lazy"></div>
+  <div class="stage">
+    <figure class="ball"><img src="../assets/mat/ground_ball.webp" alt="湿泥地 材质球" loading="lazy"></figure>
+    <div class="strips">
+      <figure data-full="../assets/mat/ground_albedo.webp" style="background-image:url(../assets/mat/ground_albedo.webp)"><span>ALBEDO</span></figure>
+      <figure data-full="../assets/mat/ground_normal.webp" style="background-image:url(../assets/mat/ground_normal.webp)"><span>NORMAL</span></figure>
+      <figure data-full="../assets/mat/ground_rough.webp" style="background-image:url(../assets/mat/ground_rough.webp)"><span>ROUGH</span></figure>
+    </div>
+  </div>
+  <div class="cap">
+    <span class="idx">07</span>
+    <div class="nm"><b>湿泥地</b><em>ground_01</em></div>
+    <div class="ds">积水洼 · 泥纹 · 碎屑　·　地面</div>
+    <div class="sp">4K · 4 变体 · SD</div>
+  </div>
+</article>
+<article class="slide" id="m08">
+  <div class="bg"><img src="../assets/mat/bg19.webp" alt="" loading="lazy"></div>
+  <div class="stage">
+    <figure class="ball"><img src="../assets/mat/soil_ball.webp" alt="土壤 材质球" loading="lazy"></figure>
+    <div class="strips">
+      <figure data-full="../assets/mat/soil_albedo.webp" style="background-image:url(../assets/mat/soil_albedo.webp)"><span>ALBEDO</span></figure>
+      <figure data-full="../assets/mat/soil_normal.webp" style="background-image:url(../assets/mat/soil_normal.webp)"><span>NORMAL</span></figure>
+      <figure data-full="../assets/mat/soil_rough.webp" style="background-image:url(../assets/mat/soil_rough.webp)"><span>ROUGH</span></figure>
+    </div>
+  </div>
+  <div class="cap">
+    <span class="idx">08</span>
+    <div class="nm"><b>土壤</b><em>Soil_01</em></div>
+    <div class="ds">干裂土块 · 碎石颗粒　·　自然</div>
+    <div class="sp">4K · 4 变体 · SD</div>
+  </div>
+</article>
+<article class="slide" id="m09">
+  <div class="bg"><img src="../assets/mat/bg24.webp" alt="" loading="lazy"></div>
+  <div class="stage">
+    <figure class="ball"><img src="../assets/mat/grass_ball.webp" alt="草地 材质球" loading="lazy"></figure>
+    <div class="strips">
+      <figure data-full="../assets/mat/grass_albedo.webp" style="background-image:url(../assets/mat/grass_albedo.webp)"><span>ALBEDO</span></figure>
+      <figure data-full="../assets/mat/grass_normal.webp" style="background-image:url(../assets/mat/grass_normal.webp)"><span>NORMAL</span></figure>
+      <figure data-full="../assets/mat/grass_rough.webp" style="background-image:url(../assets/mat/grass_rough.webp)"><span>ROUGH</span></figure>
+    </div>
+  </div>
+  <div class="cap">
+    <span class="idx">09</span>
+    <div class="nm"><b>草地</b><em>grass_01</em></div>
+    <div class="ds">杂草丛生 · 土斑穿插　·　自然</div>
+    <div class="sp">4K · 4 变体 · SD</div>
+  </div>
+</article>
+<article class="slide" id="m10">
+  <div class="bg"><img src="../assets/mat/bg28.webp" alt="" loading="lazy"></div>
+  <div class="stage">
+    <figure class="ball"><img src="../assets/mat/water_ball.webp" alt="水面 材质球" loading="lazy"></figure>
+    <div class="strips">
+      <figure data-full="../assets/mat/water_albedo.webp" style="background-image:url(../assets/mat/water_albedo.webp)"><span>ALBEDO</span></figure>
+      <figure data-full="../assets/mat/water_normal.webp" style="background-image:url(../assets/mat/water_normal.webp)"><span>NORMAL</span></figure>
+      <figure data-full="../assets/mat/water_rough.webp" style="background-image:url(../assets/mat/water_rough.webp)"><span>ROUGH</span></figure>
+    </div>
+  </div>
+  <div class="cap">
+    <span class="idx">10</span>
+    <div class="nm"><b>水面</b><em>water_01</em></div>
+    <div class="ds">涟漪法线 · 流动粗糙度　·　自然</div>
+    <div class="sp">4K · 4 变体 · SD</div>
+  </div>
+</article>
+<article class="slide" id="m11">
+  <div class="bg"><img src="../assets/mat/bg35.webp" alt="" loading="lazy"></div>
+  <div class="stage">
+    <figure class="ball"><img src="../assets/mat/roof1_ball.webp" alt="瓦屋面 材质球" loading="lazy"></figure>
+    <div class="strips">
+      <figure data-full="../assets/mat/roof1_albedo.webp" style="background-image:url(../assets/mat/roof1_albedo.webp)"><span>ALBEDO</span></figure>
+      <figure data-full="../assets/mat/roof1_normal.webp" style="background-image:url(../assets/mat/roof1_normal.webp)"><span>NORMAL</span></figure>
+      <figure data-full="../assets/mat/roof1_rough.webp" style="background-image:url(../assets/mat/roof1_rough.webp)"><span>ROUGH</span></figure>
+    </div>
+  </div>
+  <div class="cap">
+    <span class="idx">11</span>
+    <div class="nm"><b>瓦屋面</b><em>roof_01</em></div>
+    <div class="ds">筒瓦叠压 · 苔藓附着　·　建筑构件</div>
+    <div class="sp">4K · 3 变体 · SD</div>
+  </div>
+</article>
+<article class="slide" id="m12">
+  <div class="bg"><img src="../assets/mat/bg30.webp" alt="" loading="lazy"></div>
+  <div class="stage">
+    <figure class="ball"><img src="../assets/mat/roof2_ball.webp" alt="青瓦 材质球" loading="lazy"></figure>
+    <div class="strips">
+      <figure data-full="../assets/mat/roof2_albedo.webp" style="background-image:url(../assets/mat/roof2_albedo.webp)"><span>ALBEDO</span></figure>
+      <figure data-full="../assets/mat/roof2_normal.webp" style="background-image:url(../assets/mat/roof2_normal.webp)"><span>NORMAL</span></figure>
+      <figure data-full="../assets/mat/roof2_rough.webp" style="background-image:url(../assets/mat/roof2_rough.webp)"><span>ROUGH</span></figure>
+    </div>
+  </div>
+  <div class="cap">
+    <span class="idx">12</span>
+    <div class="nm"><b>青瓦</b><em>roof_02</em></div>
+    <div class="ds">板瓦错缝 · 风化剥落　·　建筑构件</div>
+    <div class="sp">4K · 4 变体 · SD</div>
+  </div>
+</article>
+<article class="slide" id="m13">
+  <div class="bg"><img src="../assets/mat/bg22.webp" alt="" loading="lazy"></div>
+  <div class="stage">
+    <figure class="ball"><img src="../assets/mat/window_ball.webp" alt="窗格 材质球" loading="lazy"></figure>
+    <div class="strips">
+      <figure data-full="../assets/mat/window_albedo.webp" style="background-image:url(../assets/mat/window_albedo.webp)"><span>ALBEDO</span></figure>
+      <figure data-full="../assets/mat/window_normal.webp" style="background-image:url(../assets/mat/window_normal.webp)"><span>NORMAL</span></figure>
+      <figure data-full="../assets/mat/window_rough.webp" style="background-image:url(../assets/mat/window_rough.webp)"><span>ROUGH</span></figure>
+    </div>
+  </div>
+  <div class="cap">
+    <span class="idx">13</span>
+    <div class="nm"><b>窗格</b><em>window_1</em></div>
+    <div class="ds">木格窗 · 独立透明通道　·　建筑构件</div>
+    <div class="sp">4K · 9 变体 · SD</div>
+  </div>
+</article>
+<article class="slide" id="m14">
+  <div class="bg"><img src="../assets/mat/bg26.webp" alt="" loading="lazy"></div>
+  <div class="stage">
+    <figure class="ball"><img src="../assets/mat/wood_ball.webp" alt="木纹 材质球" loading="lazy"></figure>
+    <div class="strips">
+      <figure data-full="../assets/mat/wood_albedo.webp" style="background-image:url(../assets/mat/wood_albedo.webp)"><span>ALBEDO</span></figure>
+      <figure data-full="../assets/mat/wood_normal.webp" style="background-image:url(../assets/mat/wood_normal.webp)"><span>NORMAL</span></figure>
+      <figure data-full="../assets/mat/wood_rough.webp" style="background-image:url(../assets/mat/wood_rough.webp)"><span>ROUGH</span></figure>
+    </div>
+  </div>
+  <div class="cap">
+    <span class="idx">14</span>
+    <div class="nm"><b>木纹</b><em>wood_01</em></div>
+    <div class="ds">顺纹木理 · 裂纹 · 节疤　·　建筑构件</div>
+    <div class="sp">4K · 4 变体 · SD</div>
+  </div>
+</article>
+</div>
 
-
-<article class="mat" id="m01">
-  <div class="mat-h">
-    <div class="mat-t">
-      <span class="idx">01</span>
-      <h2>红砖墙<em>BrickWall_01</em></h2>
-    </div>
-    <p class="desc">砖缝手凿感 · 边角破损 · 苔痕沉积　·　建筑石材</p>
-    <ul class="spec">
-      <li>4K 导出 3840×2160</li><li>无缝平铺</li><li>4 个变体</li><li>SD 节点流程</li>
-    </ul>
-  </div>
-  <div class="mat-b">
-    <figure class="pane lit" data-full="../assets/mat/brick_lit.webp">
-      <img src="../assets/mat/brick_lit.webp" alt="红砖墙 光照渲染" loading="lazy">
-      <figcaption><b>Lit</b><span>光照渲染</span></figcaption>
-    </figure>
-    <div class="quad">
-      <figure class="pane" data-full="../assets/mat/brick_albedo.webp">
-        <img src="../assets/mat/brick_albedo.webp" alt="红砖墙 Albedo" loading="lazy">
-        <figcaption><b>Albedo</b><span>反射率</span></figcaption>
-      </figure>
-      <figure class="pane" data-full="../assets/mat/brick_normal.webp">
-        <img src="../assets/mat/brick_normal.webp" alt="红砖墙 Normal" loading="lazy">
-        <figcaption><b>Normal</b><span>法线</span></figcaption>
-      </figure>
-      <figure class="pane" data-full="../assets/mat/brick_rough.webp">
-        <img src="../assets/mat/brick_rough.webp" alt="红砖墙 Roughness" loading="lazy">
-        <figcaption><b>Roughness</b><span>粗糙度</span></figcaption>
-      </figure>
-      <figure class="pane zoom" style="background-image:url(../assets/mat/brick_albedo.webp)">
-        <figcaption><b>1:1</b><span>细节 · 2× 放大</span></figcaption>
-      </figure>
-    </div>
-  </div>
-</article>
-<article class="mat" id="m02">
-  <div class="mat-h">
-    <div class="mat-t">
-      <span class="idx">02</span>
-      <h2>红漆墙<em>RedWall_01</em></h2>
-    </div>
-    <p class="desc">漆面剥落 · 底灰外露 · 雨水冲痕　·　建筑石材</p>
-    <ul class="spec">
-      <li>4K 导出 3840×2160</li><li>无缝平铺</li><li>4 个变体</li><li>SD 节点流程</li>
-    </ul>
-  </div>
-  <div class="mat-b">
-    <figure class="pane lit" data-full="../assets/mat/redwall_lit.webp">
-      <img src="../assets/mat/redwall_lit.webp" alt="红漆墙 光照渲染" loading="lazy">
-      <figcaption><b>Lit</b><span>光照渲染</span></figcaption>
-    </figure>
-    <div class="quad">
-      <figure class="pane" data-full="../assets/mat/redwall_albedo.webp">
-        <img src="../assets/mat/redwall_albedo.webp" alt="红漆墙 Albedo" loading="lazy">
-        <figcaption><b>Albedo</b><span>反射率</span></figcaption>
-      </figure>
-      <figure class="pane" data-full="../assets/mat/redwall_normal.webp">
-        <img src="../assets/mat/redwall_normal.webp" alt="红漆墙 Normal" loading="lazy">
-        <figcaption><b>Normal</b><span>法线</span></figcaption>
-      </figure>
-      <figure class="pane" data-full="../assets/mat/redwall_rough.webp">
-        <img src="../assets/mat/redwall_rough.webp" alt="红漆墙 Roughness" loading="lazy">
-        <figcaption><b>Roughness</b><span>粗糙度</span></figcaption>
-      </figure>
-      <figure class="pane zoom" style="background-image:url(../assets/mat/redwall_albedo.webp)">
-        <figcaption><b>1:1</b><span>细节 · 2× 放大</span></figcaption>
-      </figure>
-    </div>
-  </div>
-</article>
-<article class="mat" id="m03">
-  <div class="mat-h">
-    <div class="mat-t">
-      <span class="idx">03</span>
-      <h2>白灰墙<em>White_Wall_01</em></h2>
-    </div>
-    <p class="desc">石灰抹面 · 细裂纹 · 水渍拖尾　·　建筑石材</p>
-    <ul class="spec">
-      <li>4K 导出 3840×2160</li><li>无缝平铺</li><li>12 个变体</li><li>SD 节点流程</li>
-    </ul>
-  </div>
-  <div class="mat-b">
-    <figure class="pane lit" data-full="../assets/mat/whitewall_lit.webp">
-      <img src="../assets/mat/whitewall_lit.webp" alt="白灰墙 光照渲染" loading="lazy">
-      <figcaption><b>Lit</b><span>光照渲染</span></figcaption>
-    </figure>
-    <div class="quad">
-      <figure class="pane" data-full="../assets/mat/whitewall_albedo.webp">
-        <img src="../assets/mat/whitewall_albedo.webp" alt="白灰墙 Albedo" loading="lazy">
-        <figcaption><b>Albedo</b><span>反射率</span></figcaption>
-      </figure>
-      <figure class="pane" data-full="../assets/mat/whitewall_normal.webp">
-        <img src="../assets/mat/whitewall_normal.webp" alt="白灰墙 Normal" loading="lazy">
-        <figcaption><b>Normal</b><span>法线</span></figcaption>
-      </figure>
-      <figure class="pane" data-full="../assets/mat/whitewall_rough.webp">
-        <img src="../assets/mat/whitewall_rough.webp" alt="白灰墙 Roughness" loading="lazy">
-        <figcaption><b>Roughness</b><span>粗糙度</span></figcaption>
-      </figure>
-      <figure class="pane zoom" style="background-image:url(../assets/mat/whitewall_albedo.webp)">
-        <figcaption><b>1:1</b><span>细节 · 2× 放大</span></figcaption>
-      </figure>
-    </div>
-  </div>
-</article>
-<article class="mat" id="m04">
-  <div class="mat-h">
-    <div class="mat-t">
-      <span class="idx">04</span>
-      <h2>石砖墙<em>StoneBrick_01</em></h2>
-    </div>
-    <p class="desc">规整砌筑 · 边角磨损 · 深浅错落　·　建筑石材</p>
-    <ul class="spec">
-      <li>4K 导出 3840×2160</li><li>无缝平铺</li><li>4 个变体</li><li>SD 节点流程</li>
-    </ul>
-  </div>
-  <div class="mat-b">
-    <figure class="pane lit" data-full="../assets/mat/stonebrick_lit.webp">
-      <img src="../assets/mat/stonebrick_lit.webp" alt="石砖墙 光照渲染" loading="lazy">
-      <figcaption><b>Lit</b><span>光照渲染</span></figcaption>
-    </figure>
-    <div class="quad">
-      <figure class="pane" data-full="../assets/mat/stonebrick_albedo.webp">
-        <img src="../assets/mat/stonebrick_albedo.webp" alt="石砖墙 Albedo" loading="lazy">
-        <figcaption><b>Albedo</b><span>反射率</span></figcaption>
-      </figure>
-      <figure class="pane" data-full="../assets/mat/stonebrick_normal.webp">
-        <img src="../assets/mat/stonebrick_normal.webp" alt="石砖墙 Normal" loading="lazy">
-        <figcaption><b>Normal</b><span>法线</span></figcaption>
-      </figure>
-      <figure class="pane" data-full="../assets/mat/stonebrick_rough.webp">
-        <img src="../assets/mat/stonebrick_rough.webp" alt="石砖墙 Roughness" loading="lazy">
-        <figcaption><b>Roughness</b><span>粗糙度</span></figcaption>
-      </figure>
-      <figure class="pane zoom" style="background-image:url(../assets/mat/stonebrick_albedo.webp)">
-        <figcaption><b>1:1</b><span>细节 · 2× 放大</span></figcaption>
-      </figure>
-    </div>
-  </div>
-</article>
-<article class="mat" id="m05">
-  <div class="mat-h">
-    <div class="mat-t">
-      <span class="idx">05</span>
-      <h2>粗石墙<em>StoneWall_01</em></h2>
-    </div>
-    <p class="desc">不规则石砌 · 风化麻面 · 灰浆缝　·　建筑石材</p>
-    <ul class="spec">
-      <li>4K 导出 3840×2160</li><li>无缝平铺</li><li>4 个变体</li><li>SD 节点流程</li>
-    </ul>
-  </div>
-  <div class="mat-b">
-    <figure class="pane lit" data-full="../assets/mat/stonewall_lit.webp">
-      <img src="../assets/mat/stonewall_lit.webp" alt="粗石墙 光照渲染" loading="lazy">
-      <figcaption><b>Lit</b><span>光照渲染</span></figcaption>
-    </figure>
-    <div class="quad">
-      <figure class="pane" data-full="../assets/mat/stonewall_albedo.webp">
-        <img src="../assets/mat/stonewall_albedo.webp" alt="粗石墙 Albedo" loading="lazy">
-        <figcaption><b>Albedo</b><span>反射率</span></figcaption>
-      </figure>
-      <figure class="pane" data-full="../assets/mat/stonewall_normal.webp">
-        <img src="../assets/mat/stonewall_normal.webp" alt="粗石墙 Normal" loading="lazy">
-        <figcaption><b>Normal</b><span>法线</span></figcaption>
-      </figure>
-      <figure class="pane" data-full="../assets/mat/stonewall_rough.webp">
-        <img src="../assets/mat/stonewall_rough.webp" alt="粗石墙 Roughness" loading="lazy">
-        <figcaption><b>Roughness</b><span>粗糙度</span></figcaption>
-      </figure>
-      <figure class="pane zoom" style="background-image:url(../assets/mat/stonewall_albedo.webp)">
-        <figcaption><b>1:1</b><span>细节 · 2× 放大</span></figcaption>
-      </figure>
-    </div>
-  </div>
-</article>
-<article class="mat" id="m06">
-  <div class="mat-h">
-    <div class="mat-t">
-      <span class="idx">06</span>
-      <h2>石板地面<em>floor_01</em></h2>
-    </div>
-    <p class="desc">方石板铺装 · 踩踏磨损 · 接缝积尘　·　地面</p>
-    <ul class="spec">
-      <li>4K 导出 3840×2160</li><li>无缝平铺</li><li>4 个变体</li><li>SD 节点流程</li>
-    </ul>
-  </div>
-  <div class="mat-b">
-    <figure class="pane lit" data-full="../assets/mat/floor_lit.webp">
-      <img src="../assets/mat/floor_lit.webp" alt="石板地面 光照渲染" loading="lazy">
-      <figcaption><b>Lit</b><span>光照渲染</span></figcaption>
-    </figure>
-    <div class="quad">
-      <figure class="pane" data-full="../assets/mat/floor_albedo.webp">
-        <img src="../assets/mat/floor_albedo.webp" alt="石板地面 Albedo" loading="lazy">
-        <figcaption><b>Albedo</b><span>反射率</span></figcaption>
-      </figure>
-      <figure class="pane" data-full="../assets/mat/floor_normal.webp">
-        <img src="../assets/mat/floor_normal.webp" alt="石板地面 Normal" loading="lazy">
-        <figcaption><b>Normal</b><span>法线</span></figcaption>
-      </figure>
-      <figure class="pane" data-full="../assets/mat/floor_rough.webp">
-        <img src="../assets/mat/floor_rough.webp" alt="石板地面 Roughness" loading="lazy">
-        <figcaption><b>Roughness</b><span>粗糙度</span></figcaption>
-      </figure>
-      <figure class="pane zoom" style="background-image:url(../assets/mat/floor_albedo.webp)">
-        <figcaption><b>1:1</b><span>细节 · 2× 放大</span></figcaption>
-      </figure>
-    </div>
-  </div>
-</article>
-<article class="mat" id="m07">
-  <div class="mat-h">
-    <div class="mat-t">
-      <span class="idx">07</span>
-      <h2>湿泥地<em>ground_01</em></h2>
-    </div>
-    <p class="desc">积水洼 · 泥纹拖痕 · 碎屑　·　地面</p>
-    <ul class="spec">
-      <li>4K 导出 3840×2160</li><li>无缝平铺</li><li>4 个变体</li><li>SD 节点流程</li>
-    </ul>
-  </div>
-  <div class="mat-b">
-    <figure class="pane lit" data-full="../assets/mat/ground_lit.webp">
-      <img src="../assets/mat/ground_lit.webp" alt="湿泥地 光照渲染" loading="lazy">
-      <figcaption><b>Lit</b><span>光照渲染</span></figcaption>
-    </figure>
-    <div class="quad">
-      <figure class="pane" data-full="../assets/mat/ground_albedo.webp">
-        <img src="../assets/mat/ground_albedo.webp" alt="湿泥地 Albedo" loading="lazy">
-        <figcaption><b>Albedo</b><span>反射率</span></figcaption>
-      </figure>
-      <figure class="pane" data-full="../assets/mat/ground_normal.webp">
-        <img src="../assets/mat/ground_normal.webp" alt="湿泥地 Normal" loading="lazy">
-        <figcaption><b>Normal</b><span>法线</span></figcaption>
-      </figure>
-      <figure class="pane" data-full="../assets/mat/ground_rough.webp">
-        <img src="../assets/mat/ground_rough.webp" alt="湿泥地 Roughness" loading="lazy">
-        <figcaption><b>Roughness</b><span>粗糙度</span></figcaption>
-      </figure>
-      <figure class="pane zoom" style="background-image:url(../assets/mat/ground_albedo.webp)">
-        <figcaption><b>1:1</b><span>细节 · 2× 放大</span></figcaption>
-      </figure>
-    </div>
-  </div>
-</article>
-<article class="mat" id="m08">
-  <div class="mat-h">
-    <div class="mat-t">
-      <span class="idx">08</span>
-      <h2>土壤<em>Soil_01</em></h2>
-    </div>
-    <p class="desc">干裂土块 · 碎石颗粒　·　自然</p>
-    <ul class="spec">
-      <li>4K 导出 3840×2160</li><li>无缝平铺</li><li>4 个变体</li><li>SD 节点流程</li>
-    </ul>
-  </div>
-  <div class="mat-b">
-    <figure class="pane lit" data-full="../assets/mat/soil_lit.webp">
-      <img src="../assets/mat/soil_lit.webp" alt="土壤 光照渲染" loading="lazy">
-      <figcaption><b>Lit</b><span>光照渲染</span></figcaption>
-    </figure>
-    <div class="quad">
-      <figure class="pane" data-full="../assets/mat/soil_albedo.webp">
-        <img src="../assets/mat/soil_albedo.webp" alt="土壤 Albedo" loading="lazy">
-        <figcaption><b>Albedo</b><span>反射率</span></figcaption>
-      </figure>
-      <figure class="pane" data-full="../assets/mat/soil_normal.webp">
-        <img src="../assets/mat/soil_normal.webp" alt="土壤 Normal" loading="lazy">
-        <figcaption><b>Normal</b><span>法线</span></figcaption>
-      </figure>
-      <figure class="pane" data-full="../assets/mat/soil_rough.webp">
-        <img src="../assets/mat/soil_rough.webp" alt="土壤 Roughness" loading="lazy">
-        <figcaption><b>Roughness</b><span>粗糙度</span></figcaption>
-      </figure>
-      <figure class="pane zoom" style="background-image:url(../assets/mat/soil_albedo.webp)">
-        <figcaption><b>1:1</b><span>细节 · 2× 放大</span></figcaption>
-      </figure>
-    </div>
-  </div>
-</article>
-<article class="mat" id="m09">
-  <div class="mat-h">
-    <div class="mat-t">
-      <span class="idx">09</span>
-      <h2>草地<em>grass_01</em></h2>
-    </div>
-    <p class="desc">杂草丛生 · 土斑穿插　·　自然</p>
-    <ul class="spec">
-      <li>4K 导出 3840×2160</li><li>无缝平铺</li><li>4 个变体</li><li>SD 节点流程</li>
-    </ul>
-  </div>
-  <div class="mat-b">
-    <figure class="pane lit" data-full="../assets/mat/grass_lit.webp">
-      <img src="../assets/mat/grass_lit.webp" alt="草地 光照渲染" loading="lazy">
-      <figcaption><b>Lit</b><span>光照渲染</span></figcaption>
-    </figure>
-    <div class="quad">
-      <figure class="pane" data-full="../assets/mat/grass_albedo.webp">
-        <img src="../assets/mat/grass_albedo.webp" alt="草地 Albedo" loading="lazy">
-        <figcaption><b>Albedo</b><span>反射率</span></figcaption>
-      </figure>
-      <figure class="pane" data-full="../assets/mat/grass_normal.webp">
-        <img src="../assets/mat/grass_normal.webp" alt="草地 Normal" loading="lazy">
-        <figcaption><b>Normal</b><span>法线</span></figcaption>
-      </figure>
-      <figure class="pane" data-full="../assets/mat/grass_rough.webp">
-        <img src="../assets/mat/grass_rough.webp" alt="草地 Roughness" loading="lazy">
-        <figcaption><b>Roughness</b><span>粗糙度</span></figcaption>
-      </figure>
-      <figure class="pane zoom" style="background-image:url(../assets/mat/grass_albedo.webp)">
-        <figcaption><b>1:1</b><span>细节 · 2× 放大</span></figcaption>
-      </figure>
-    </div>
-  </div>
-</article>
-<article class="mat" id="m10">
-  <div class="mat-h">
-    <div class="mat-t">
-      <span class="idx">10</span>
-      <h2>水面<em>water_01</em></h2>
-    </div>
-    <p class="desc">涟漪法线 · 流动粗糙度变化　·　自然</p>
-    <ul class="spec">
-      <li>4K 导出 3840×2160</li><li>无缝平铺</li><li>4 个变体</li><li>SD 节点流程</li>
-    </ul>
-  </div>
-  <div class="mat-b">
-    <figure class="pane lit" data-full="../assets/mat/water_lit.webp">
-      <img src="../assets/mat/water_lit.webp" alt="水面 光照渲染" loading="lazy">
-      <figcaption><b>Lit</b><span>光照渲染</span></figcaption>
-    </figure>
-    <div class="quad">
-      <figure class="pane" data-full="../assets/mat/water_albedo.webp">
-        <img src="../assets/mat/water_albedo.webp" alt="水面 Albedo" loading="lazy">
-        <figcaption><b>Albedo</b><span>反射率</span></figcaption>
-      </figure>
-      <figure class="pane" data-full="../assets/mat/water_normal.webp">
-        <img src="../assets/mat/water_normal.webp" alt="水面 Normal" loading="lazy">
-        <figcaption><b>Normal</b><span>法线</span></figcaption>
-      </figure>
-      <figure class="pane" data-full="../assets/mat/water_rough.webp">
-        <img src="../assets/mat/water_rough.webp" alt="水面 Roughness" loading="lazy">
-        <figcaption><b>Roughness</b><span>粗糙度</span></figcaption>
-      </figure>
-      <figure class="pane zoom" style="background-image:url(../assets/mat/water_albedo.webp)">
-        <figcaption><b>1:1</b><span>细节 · 2× 放大</span></figcaption>
-      </figure>
-    </div>
-  </div>
-</article>
-<article class="mat" id="m11">
-  <div class="mat-h">
-    <div class="mat-t">
-      <span class="idx">11</span>
-      <h2>瓦屋面<em>roof_01</em></h2>
-    </div>
-    <p class="desc">筒瓦叠压 · 苔藓附着　·　建筑构件</p>
-    <ul class="spec">
-      <li>4K 导出 3840×2160</li><li>无缝平铺</li><li>3 个变体</li><li>SD 节点流程</li>
-    </ul>
-  </div>
-  <div class="mat-b">
-    <figure class="pane lit" data-full="../assets/mat/roof1_lit.webp">
-      <img src="../assets/mat/roof1_lit.webp" alt="瓦屋面 光照渲染" loading="lazy">
-      <figcaption><b>Lit</b><span>光照渲染</span></figcaption>
-    </figure>
-    <div class="quad">
-      <figure class="pane" data-full="../assets/mat/roof1_albedo.webp">
-        <img src="../assets/mat/roof1_albedo.webp" alt="瓦屋面 Albedo" loading="lazy">
-        <figcaption><b>Albedo</b><span>反射率</span></figcaption>
-      </figure>
-      <figure class="pane" data-full="../assets/mat/roof1_normal.webp">
-        <img src="../assets/mat/roof1_normal.webp" alt="瓦屋面 Normal" loading="lazy">
-        <figcaption><b>Normal</b><span>法线</span></figcaption>
-      </figure>
-      <figure class="pane" data-full="../assets/mat/roof1_rough.webp">
-        <img src="../assets/mat/roof1_rough.webp" alt="瓦屋面 Roughness" loading="lazy">
-        <figcaption><b>Roughness</b><span>粗糙度</span></figcaption>
-      </figure>
-      <figure class="pane zoom" style="background-image:url(../assets/mat/roof1_albedo.webp)">
-        <figcaption><b>1:1</b><span>细节 · 2× 放大</span></figcaption>
-      </figure>
-    </div>
-  </div>
-</article>
-<article class="mat" id="m12">
-  <div class="mat-h">
-    <div class="mat-t">
-      <span class="idx">12</span>
-      <h2>青瓦<em>roof_02</em></h2>
-    </div>
-    <p class="desc">板瓦错缝 · 风化剥落　·　建筑构件</p>
-    <ul class="spec">
-      <li>4K 导出 3840×2160</li><li>无缝平铺</li><li>4 个变体</li><li>SD 节点流程</li>
-    </ul>
-  </div>
-  <div class="mat-b">
-    <figure class="pane lit" data-full="../assets/mat/roof2_lit.webp">
-      <img src="../assets/mat/roof2_lit.webp" alt="青瓦 光照渲染" loading="lazy">
-      <figcaption><b>Lit</b><span>光照渲染</span></figcaption>
-    </figure>
-    <div class="quad">
-      <figure class="pane" data-full="../assets/mat/roof2_albedo.webp">
-        <img src="../assets/mat/roof2_albedo.webp" alt="青瓦 Albedo" loading="lazy">
-        <figcaption><b>Albedo</b><span>反射率</span></figcaption>
-      </figure>
-      <figure class="pane" data-full="../assets/mat/roof2_normal.webp">
-        <img src="../assets/mat/roof2_normal.webp" alt="青瓦 Normal" loading="lazy">
-        <figcaption><b>Normal</b><span>法线</span></figcaption>
-      </figure>
-      <figure class="pane" data-full="../assets/mat/roof2_rough.webp">
-        <img src="../assets/mat/roof2_rough.webp" alt="青瓦 Roughness" loading="lazy">
-        <figcaption><b>Roughness</b><span>粗糙度</span></figcaption>
-      </figure>
-      <figure class="pane zoom" style="background-image:url(../assets/mat/roof2_albedo.webp)">
-        <figcaption><b>1:1</b><span>细节 · 2× 放大</span></figcaption>
-      </figure>
-    </div>
-  </div>
-</article>
-<article class="mat" id="m13">
-  <div class="mat-h">
-    <div class="mat-t">
-      <span class="idx">13</span>
-      <h2>窗格<em>window_1</em></h2>
-    </div>
-    <p class="desc">木格窗 · 独立透明通道　·　建筑构件</p>
-    <ul class="spec">
-      <li>4K 导出 3840×2160</li><li>无缝平铺</li><li>9 个变体</li><li>SD 节点流程</li>
-    </ul>
-  </div>
-  <div class="mat-b">
-    <figure class="pane lit" data-full="../assets/mat/window_lit.webp">
-      <img src="../assets/mat/window_lit.webp" alt="窗格 光照渲染" loading="lazy">
-      <figcaption><b>Lit</b><span>光照渲染</span></figcaption>
-    </figure>
-    <div class="quad">
-      <figure class="pane" data-full="../assets/mat/window_albedo.webp">
-        <img src="../assets/mat/window_albedo.webp" alt="窗格 Albedo" loading="lazy">
-        <figcaption><b>Albedo</b><span>反射率</span></figcaption>
-      </figure>
-      <figure class="pane" data-full="../assets/mat/window_normal.webp">
-        <img src="../assets/mat/window_normal.webp" alt="窗格 Normal" loading="lazy">
-        <figcaption><b>Normal</b><span>法线</span></figcaption>
-      </figure>
-      <figure class="pane" data-full="../assets/mat/window_rough.webp">
-        <img src="../assets/mat/window_rough.webp" alt="窗格 Roughness" loading="lazy">
-        <figcaption><b>Roughness</b><span>粗糙度</span></figcaption>
-      </figure>
-      <figure class="pane zoom" style="background-image:url(../assets/mat/window_albedo.webp)">
-        <figcaption><b>1:1</b><span>细节 · 2× 放大</span></figcaption>
-      </figure>
-    </div>
-  </div>
-</article>
-<article class="mat" id="m14">
-  <div class="mat-h">
-    <div class="mat-t">
-      <span class="idx">14</span>
-      <h2>木纹<em>wood_01</em></h2>
-    </div>
-    <p class="desc">顺纹木理 · 裂纹 · 节疤　·　建筑构件</p>
-    <ul class="spec">
-      <li>4K 导出 3840×2160</li><li>无缝平铺</li><li>4 个变体</li><li>SD 节点流程</li>
-    </ul>
-  </div>
-  <div class="mat-b">
-    <figure class="pane lit" data-full="../assets/mat/wood_lit.webp">
-      <img src="../assets/mat/wood_lit.webp" alt="木纹 光照渲染" loading="lazy">
-      <figcaption><b>Lit</b><span>光照渲染</span></figcaption>
-    </figure>
-    <div class="quad">
-      <figure class="pane" data-full="../assets/mat/wood_albedo.webp">
-        <img src="../assets/mat/wood_albedo.webp" alt="木纹 Albedo" loading="lazy">
-        <figcaption><b>Albedo</b><span>反射率</span></figcaption>
-      </figure>
-      <figure class="pane" data-full="../assets/mat/wood_normal.webp">
-        <img src="../assets/mat/wood_normal.webp" alt="木纹 Normal" loading="lazy">
-        <figcaption><b>Normal</b><span>法线</span></figcaption>
-      </figure>
-      <figure class="pane" data-full="../assets/mat/wood_rough.webp">
-        <img src="../assets/mat/wood_rough.webp" alt="木纹 Roughness" loading="lazy">
-        <figcaption><b>Roughness</b><span>粗糙度</span></figcaption>
-      </figure>
-      <figure class="pane zoom" style="background-image:url(../assets/mat/wood_albedo.webp)">
-        <figcaption><b>1:1</b><span>细节 · 2× 放大</span></figcaption>
-      </figure>
-    </div>
-  </div>
-</article>
-
-  <section class="note">
-    <h3>PROCESS / 制作说明</h3>
-    <p>所有材质在 Substance Designer 中从零搭建：以手工雕刻与 Noise 打底，经 Tile Sampler 控制砌筑与铺装节奏，再用 Curve / Levels 收颜色对比，法线与高度共用同一套 Height 输出，保证凹凸与画面细节严格对齐。粗糙度单独控制湿痕、磨损与积灰，避免全图一个灰度。</p>
-    <ul>
-      <li>4 个大类：建筑石材 · 地面 · 自然 · 建筑构件</li>
-      <li>导出 3840×2160 单图 + 裁切 1:1 展示</li>
-      <li>Albedo / Normal / Roughness 三通道分离</li>
-      <li>每类 3–12 个随机变体</li>
-    </ul>
-  </section>
-</main>
+<div class="wrap note">
+  <h3>PROCESS / 制作说明</h3>
+  <p>从 Height 打底：手工雕痕 + Noise 走一遍 Displacement 收敛大形，再用 Tile Sampler 控制砌筑与铺装节奏；法线与粗糙度共用同一套高度信息，保证凹凸与接缝严格对齐。颜色以 Curve 收对比、以 Gradient Map 限定色域，避免全图一个灰度。最后输出 4K 四件套并回引擎校准。</p>
+</div>
 
 <div class="wrap"><div class="foot">
   <span>陈冠宇 · UE 场景地编 / 灯光 · 材质库</span>
   <a href="../">返回作品集 →</a>
 </div></div>
 
-<div id="lb"><span class="x">×</span><img src="" alt=""></div>
-
+<div id="lb"><img src="" alt=""></div>
 <script>
 (function(){
-  var nav=document.querySelector('.nav-in'), links=[].slice.call(nav.querySelectorAll('a'));
+  var links=[].slice.call(document.querySelectorAll('.nav a'));
   var secs=links.map(function(a){return document.getElementById(a.dataset.i);});
   function spy(){
-    var y=window.scrollY+140, cur=0;
+    var y=window.scrollY+160, cur=-1;
     secs.forEach(function(s,i){ if(s && s.offsetTop<=y) cur=i; });
     links.forEach(function(a,i){ a.classList.toggle('on', i===cur); });
   }
   window.addEventListener('scroll',spy,{passive:true}); spy();
   links.forEach(function(a){a.addEventListener('click',function(e){
     var t=document.getElementById(a.dataset.i);
-    if(t){ e.preventDefault(); window.scrollTo({top:t.offsetTop-64,behavior:'smooth'}); }
+    if(t){e.preventDefault();window.scrollTo({top:t.offsetTop-90,behavior:'smooth'});}
   });});
-  var lb=document.getElementById('lb'), lbimg=lb.querySelector('img');
-  document.querySelectorAll('.pane[data-full]').forEach(function(p){
-    p.addEventListener('click',function(){ lbimg.src=p.dataset.full; lb.classList.add('on'); });
+  var lb=document.getElementById('lb'), im=lb.querySelector('img');
+  document.querySelectorAll('.strips figure').forEach(function(f){
+    f.addEventListener('click',function(){ im.src=f.dataset.full; lb.classList.add('on'); });
   });
-  lb.addEventListener('click',function(){ lb.classList.remove('on'); lbimg.src=''; });
-  document.addEventListener('keydown',function(e){ if(e.key==='Escape') lb.classList.remove('on'); });
+  lb.addEventListener('click',function(){lb.classList.remove('on');iframe=null;im.src='';});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')lb.classList.remove('on');});
 })();
 </script>
 </body></html>
