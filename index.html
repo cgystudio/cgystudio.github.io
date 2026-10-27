@@ -211,7 +211,7 @@ footer::before{content:'';position:absolute;left:0;top:0;width:100%;height:3px;b
 
 /* ===== 视频播放徽标 ===== */
 .proj-video{position:relative}
-.playb{position:absolute;left:50%;top:calc(50% - 18px);transform:translate(-50%,-50%);width:66px;height:66px;border-radius:50%;background:rgba(14,8,5,.45);border:1.5px solid rgba(255,255,255,.94);display:grid;place-items:center;pointer-events:none;transition:transform .2s,border-color .2s;box-shadow:0 0 0 12px rgba(10,6,4,.14),0 0 34px 22px rgba(10,6,4,.16),0 6px 18px rgba(0,0,0,.40)}
+.playb{position:absolute;left:50%;top:calc(50% - 18px);transform:translate(-50%,-50%);width:66px;height:66px;border-radius:50%;background:rgba(14,8,5,.45);border:1.5px solid rgba(255,255,255,.94);display:grid;place-items:center;pointer-events:auto;cursor:pointer;z-index:2;transition:transform .2s,border-color .2s;box-shadow:0 0 0 12px rgba(10,6,4,.14),0 0 34px 22px rgba(10,6,4,.16),0 6px 18px rgba(0,0,0,.40)}
 .playb::before{content:'';border-style:solid;border-width:11px 0 11px 19px;
   border-color:transparent transparent transparent #fff;margin-left:5px}
 .proj-video.playing .playb{display:none}
@@ -440,6 +440,15 @@ document.querySelectorAll('.proj-video video').forEach(function(v){
   var box = v.closest('.proj-video');
   v.addEventListener('play', function(){ if(box) box.classList.add('playing'); });
   v.addEventListener('ended', function(){ if(box) box.classList.remove('playing'); });
+});
+/* 点中间播放徽标直接播 */
+document.querySelectorAll('.proj-video .playb').forEach(function(b){
+  b.addEventListener('click', function(e){
+    e.preventDefault(); e.stopPropagation();
+    var v = b.parentElement.querySelector('video');
+    if (!v) return;
+    if (v.paused) { var pr = v.play(); if (pr && pr.catch) pr.catch(function(){}); }
+  });
 });
 </script>
 </body>
