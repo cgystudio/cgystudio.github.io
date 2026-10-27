@@ -457,6 +457,15 @@ document.querySelectorAll('.proj-video .playb').forEach(function(b){
     if (v.paused) { var pr = v.play(); if (pr && pr.catch) pr.catch(function(){}); }
   });
 });
+
+/* 裂图自动重试一次（github.io 国内偶发连接中断，浏览器失败后不会重试） */
+document.addEventListener('error', function(e){
+  var t = e.target;
+  if (!t || t.tagName !== 'IMG' || t.dataset.retried) return;
+  t.dataset.retried = '1';
+  var base = t.src.split('?')[0];
+  t.src = base + '?r=' + Date.now();
+}, true);
 </script>
 </body>
 </html>
