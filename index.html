@@ -218,6 +218,17 @@ footer::before{content:'';position:absolute;left:0;top:0;width:100%;height:3px;b
 .proj-video:hover .playb{border-color:#fff;transform:translate(-50%,-50%) scale(1.06)}
 @media (max-width:720px){.playb{width:52px;height:52px;top:50%}
   .playb::before{border-width:9px 0 9px 15px;margin-left:4px}}
+
+/* 页脚末尾条：与简历末尾栏同一语言 */
+.wend{position:relative;text-align:center;padding:20px 24px 22px;
+  border-top:1px solid rgba(255,255,255,.10);
+  font-size:12.5px;font-weight:600;letter-spacing:.22em;color:#fff}
+.wend em{font-style:normal;font-size:10.5px;font-weight:400;letter-spacing:.18em;
+  color:rgba(255,255,255,.52);margin-left:14px}
+.wend::after{content:'';position:absolute;left:0;bottom:0;width:100%;height:3px;
+  background:linear-gradient(90deg,var(--accent) 0%,var(--accent) 10%,rgba(224,101,60,.55) 42%,rgba(224,101,60,.18) 72%,rgba(224,101,60,0) 100%)}
+@media (max-width:720px){.wend{font-size:11.5px;padding:16px 20px 18px}
+  .wend em{display:block;margin:6px 0 0;font-size:9.5px}}
 </style>
 </head>
 <body>
@@ -373,7 +384,7 @@ footer::before{content:'';position:absolute;left:0;top:0;width:100%;height:3px;b
       </div>
     </div>
   </div>
-  <div class="wrap copyright">作品集持续更新中</div>
+  <div class="wend">持续更新中……<em>MORE WORKS IN PROGRESS</em></div>
 </footer>
 
 <div id="top" role="button" aria-label="返回顶部">↑ 返回</div>
