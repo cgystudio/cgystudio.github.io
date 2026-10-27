@@ -7,8 +7,13 @@
 <style>
 
 /* 作品集末尾：持续更新提示 */
-.wend{ width:210mm; margin:9mm auto 0; padding-top:3.2mm; border-top:.35mm solid rgba(36,23,19,.28); text-align:center; font-size:8.5pt; letter-spacing:.18em; color:var(--muted); }
-.wend em{ font-style:normal; letter-spacing:.14em; opacity:.75; margin-left:2mm; }
+.wend{ width:210mm; margin:9mm auto 0; padding:5.6mm 7mm 5.2mm;
+  background:linear-gradient(115deg,var(--ink) 0%,var(--ink) 46%,var(--ink-2) 100%);
+  color:#fff; display:flex; align-items:baseline; justify-content:space-between; gap:6mm;
+  position:relative; font-size:9pt; font-weight:600; letter-spacing:.22em; }
+.wend::after{ content:''; position:absolute; left:0; bottom:0; width:100%; height:3px;
+  background:linear-gradient(90deg,var(--accent) 0%,var(--accent) 17%,rgba(255,255,255,.10) 17%,rgba(255,255,255,.10) 100%); }
+.wend em{ font-style:normal; font-size:7.5pt; font-weight:400; letter-spacing:.16em; color:rgba(255,255,255,.52); }
 /* ============================================================
    简历编辑器 —— 所见即所得
    · 点纸面任意文字即可直接修改
