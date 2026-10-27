@@ -9,8 +9,8 @@
 /* 作品集末尾：持续更新提示 */
 .wend{ width:210mm; margin:9mm auto 0; padding:5.6mm 7mm 5.2mm;
   background:linear-gradient(115deg,var(--ink) 0%,var(--ink) 46%,var(--ink-2) 100%);
-  color:#fff; display:flex; align-items:baseline; justify-content:space-between; gap:6mm;
-  position:relative; font-size:9pt; font-weight:600; letter-spacing:.22em; }
+  color:#fff; text-align:center; position:relative;
+  font-size:9pt; font-weight:600; letter-spacing:.22em; }
 .wend::after{ content:''; position:absolute; left:0; bottom:0; width:100%; height:3px;
   background:linear-gradient(90deg,var(--accent) 0%,var(--accent) 17%,rgba(255,255,255,.10) 17%,rgba(255,255,255,.10) 100%); }
 .wend em{ font-style:normal; font-size:7.5pt; font-weight:400; letter-spacing:.16em; color:rgba(255,255,255,.52); }
@@ -1309,6 +1309,16 @@ body{padding:0 !important;background:#fff !important;display:block !important;}
 .page{box-shadow:none !important;margin:0 auto !important;}
 .page::after{display:none !important;}
 .toolbar,.add-btn,.del-btn,.drag-handle,.blk-tools,#warn,#saved,#buildtag,#tip,#toast,.tipbar{display:none !important;}
+
+/* ===== 悬浮返回作品集 ===== */
+#backhome{position:fixed;right:22px;bottom:26px;z-index:70;display:inline-flex;align-items:center;gap:7px;
+  padding:10px 16px;border-radius:999px;font-size:12.5px;font-weight:600;letter-spacing:.04em;
+  color:#fff;background:rgba(28,16,11,.86);border:1px solid rgba(255,255,255,.22);text-decoration:none;
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  box-shadow:0 6px 20px rgba(0,0,0,.35);transition:border-color .2s,background .2s,color .2s}
+#backhome:hover{border-color:#e0653c;background:rgba(44,24,16,.95);color:#ffd2bd}
+@media (max-width:720px){#backhome{right:12px;bottom:16px;padding:9px 13px;font-size:12px}}
+@media print{#backhome{display:none !important}}
 </style>
 </head>
 <body>
@@ -1573,7 +1583,7 @@ body{padding:0 !important;background:#fff !important;display:block !important;}
       <img src="../assets/shenshe.jpg" alt="场景渲染"><img src="../assets/kill_02.jpg" alt="个人作品场景">
       <img src="../assets/kill_05.jpg" alt="个人作品场景"><img src="../assets/kill_04.jpg" alt="个人作品场景">
     </div>
-  <div class="wend">持续更新中<em>MORE WORKS IN PROGRESS</em></div>
+  <div class="wend">持续更新中……</div>
   </div>
 
   
@@ -1581,4 +1591,5 @@ body{padding:0 !important;background:#fff !important;display:block !important;}
 
 
 
+<a id="backhome" href="../">← 返回作品集</a>
 </body></html>
