@@ -208,6 +208,20 @@ footer::before{content:'';position:absolute;left:0;top:0;width:100%;height:3px;b
 #top.on{opacity:1;transform:none;pointer-events:auto}
 #top:hover{border-color:var(--accent);color:#ffd2bd}
 @media (max-width:720px){#top{right:12px;top:12px;padding:8px 12px;font-size:12px}}
+
+/* ===== 视频播放徽标 ===== */
+.proj-video{position:relative}
+.playb{position:absolute;left:50%;top:calc(50% - 18px);transform:translate(-50%,-50%);
+  width:66px;height:66px;border-radius:50%;background:rgba(16,9,6,.48);
+  border:1.5px solid rgba(255,255,255,.92);display:grid;place-items:center;
+  pointer-events:none;transition:opacity .25s,transform .25s;
+  -webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);
+  box-shadow:0 6px 22px rgba(0,0,0,.45)}
+.playb::before{content:'';border-style:solid;border-width:11px 0 11px 19px;
+  border-color:transparent transparent transparent #fff;margin-left:5px}
+.proj-video.playing .playb{opacity:0;transform:translate(-50%,-50%) scale(.82)}
+@media (max-width:720px){.playb{width:52px;height:52px;top:calc(50% - 14px)}
+  .playb::before{border-width:9px 0 9px 15px;margin-left:4px}}
 </style>
 </head>
 <body>
@@ -258,7 +272,8 @@ footer::before{content:'';position:absolute;left:0;top:0;width:100%;height:3px;b
       <figure class="shot"><img src="assets/qz_2x2_4.jpg" data-gallery="g1" loading="lazy" alt="教堂废墟 · 外景废墟"></figure>
     </div>
     <div class="proj-video">
-      <video src="assets/qz_showcase_1080p.mp4" poster="assets/qz_video_poster.jpg" controls preload="none" playsinline></video>
+      <video src="assets/qz_showcase_1080p.mp4" poster="assets/qz_video_poster.jpg?v=2" controls preload="none" playsinline></video>
+      <span class="playb" aria-hidden="true"></span>
       <div class="vnote">实机演示 · 26 秒</div>
     </div>
   </article>
@@ -290,7 +305,8 @@ footer::before{content:'';position:absolute;left:0;top:0;width:100%;height:3px;b
       <figure class="shot"><img src="assets/xdcj_2x2_4.jpg" data-gallery="g5" loading="lazy" alt="场景 · 通道"></figure>
     </div>
     <div class="proj-video">
-      <video src="assets/xdcj_1440.mp4" poster="assets/xdcj_poster.jpg" controls preload="none" playsinline></video>
+      <video src="assets/xdcj_1440.mp4" poster="assets/xdcj_poster.jpg?v=2" controls preload="none" playsinline></video>
+      <span class="playb" aria-hidden="true"></span>
       <div class="vnote">场景片段 · 43 秒</div>
     </div>
   </article>
@@ -335,6 +351,7 @@ footer::before{content:'';position:absolute;left:0;top:0;width:100%;height:3px;b
     </div>
     <div class="proj-video">
       <video src="assets/msm_1080.mp4" poster="assets/msm_poster.jpg" controls preload="none" playsinline></video>
+      <span class="playb" aria-hidden="true"></span>
       <div class="vnote">《明神门》· 场景演示 · 11 秒</div>
     </div>
     <div class="stack auto nocap">
@@ -417,6 +434,12 @@ document.addEventListener('keydown', function(e){
   window.addEventListener('scroll', upd, {passive:true}); upd();
   if (t) t.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
 })();
+
+document.querySelectorAll('.proj-video video').forEach(function(v){
+  var box = v.closest('.proj-video');
+  v.addEventListener('play', function(){ if(box) box.classList.add('playing'); });
+  v.addEventListener('ended', function(){ if(box) box.classList.remove('playing'); });
+});
 </script>
 </body>
 </html>
