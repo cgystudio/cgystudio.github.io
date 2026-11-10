@@ -1,0 +1,247 @@
+:root {
+  --ink: #0b0d10;
+  --ink-2: #12151a;
+  --line: rgba(255, 255, 255, .12);
+  --fg: #e8e6e1;
+  --fg-dim: #a7a49d;
+  --gold: #d9b26a;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--ink);
+  color: var(--fg);
+  font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ---------- 顶部导航 ---------- */
+.nav {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px clamp(16px, 4vw, 48px);
+  background: linear-gradient(to bottom, rgba(6, 8, 10, .78), rgba(6, 8, 10, 0));
+  backdrop-filter: blur(6px);
+}
+.brand {
+  font-family: Georgia, "Songti SC", serif;
+  font-size: 20px;
+  letter-spacing: .28em;
+  color: var(--gold);
+}
+.nav nav { display: flex; gap: clamp(10px, 2.2vw, 28px); font-size: 14px; }
+.nav nav a { color: var(--fg-dim); transition: color .2s; }
+.nav nav a:hover { color: var(--fg); }
+
+/* ---------- 首屏 ---------- */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.04);
+  filter: saturate(1.02) contrast(1.02);
+}
+.hero-mask {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(120% 80% at 50% 30%, rgba(0, 0, 0, .10), rgba(0, 0, 0, .62) 78%),
+    linear-gradient(to bottom, rgba(6, 8, 10, .55), rgba(6, 8, 10, .25) 40%, var(--ink) 100%);
+}
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  width: min(920px, 90vw);
+  padding: 96px 0 64px;
+  text-align: center;
+}
+.eyebrow {
+  margin: 0 0 10px;
+  font-size: 13px;
+  letter-spacing: .32em;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+.hero h1 {
+  margin: 0;
+  font-family: Georgia, "Songti SC", serif;
+  font-size: clamp(54px, 12vw, 148px);
+  line-height: .95;
+  letter-spacing: .08em;
+  text-shadow: 0 12px 48px rgba(0, 0, 0, .75);
+}
+.sub {
+  margin: 18px auto 0;
+  max-width: 30em;
+  font-size: clamp(14px, 1.6vw, 18px);
+  color: #ded9cf;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, .8);
+}
+.cta { margin-top: 34px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 13px 30px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 15px;
+  letter-spacing: .06em;
+  transition: transform .18s, background .18s, border-color .18s, color .18s;
+}
+.btn.primary {
+  background: linear-gradient(180deg, #e3bd76, #c9994a);
+  color: #241a08;
+  border-color: transparent;
+  font-weight: 700;
+  box-shadow: 0 10px 30px rgba(201, 153, 74, .28);
+}
+.btn.primary:hover { transform: translateY(-2px); }
+.btn.ghost { color: var(--fg); background: rgba(255, 255, 255, .06); }
+.btn.ghost:hover { background: rgba(255, 255, 255, .12); }
+.btn.big { padding: 16px 46px; font-size: 17px; }
+.hint { margin-top: 16px; font-size: 13px; color: var(--fg-dim); }
+.scroll-tip {
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  color: rgba(255, 255, 255, .45);
+  letter-spacing: .2em;
+}
+
+/* ---------- 内容块 ---------- */
+main { background: var(--ink); }
+.block {
+  width: min(1080px, 90vw);
+  margin: 0 auto;
+  padding: clamp(56px, 8vw, 104px) 0;
+  border-bottom: 1px solid var(--line);
+}
+.block:last-of-type { border-bottom: 0; }
+h2 {
+  margin: 0 0 22px;
+  font-family: Georgia, "Songti SC", serif;
+  font-size: clamp(24px, 3vw, 34px);
+  letter-spacing: .12em;
+  font-weight: 400;
+}
+h3 { margin: 0 0 8px; font-size: 17px; color: var(--gold); letter-spacing: .04em; }
+.lead { margin: 0; max-width: 46em; color: #cfcbc3; }
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin-top: 30px;
+}
+.facts div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--ink-2);
+}
+.facts span { font-size: 12px; letter-spacing: .18em; color: var(--fg-dim); }
+.facts b { font-weight: 500; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+.grid article {
+  padding: 22px 22px 24px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, .035), rgba(255, 255, 255, 0));
+  transition: border-color .2s, transform .2s;
+}
+.grid article:hover { border-color: rgba(217, 178, 106, .45); transform: translateY(-2px); }
+.grid article p { margin: 0; font-size: 14px; color: #b9b5ad; }
+
+/* ---------- 下载 ---------- */
+.download .dlbox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  padding: 26px clamp(18px, 3vw, 34px);
+  border: 1px solid rgba(217, 178, 106, .32);
+  border-radius: 16px;
+  background:
+    radial-gradient(80% 140% at 0% 0%, rgba(217, 178, 106, .12), rgba(217, 178, 106, 0) 60%),
+    var(--ink-2);
+}
+.filename { margin: 0; font-family: Georgia, serif; font-size: 22px; letter-spacing: .04em; }
+.meta { margin: 6px 0 0; font-size: 13px; color: var(--fg-dim); }
+.steps { margin: 26px 0 0; padding-left: 20px; color: #cfcbc3; font-size: 15px; }
+.steps li { margin-bottom: 8px; }
+code {
+  padding: 2px 7px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, .08);
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: .92em;
+}
+
+/* ---------- 配置表 ---------- */
+table.spec { width: 100%; border-collapse: collapse; font-size: 15px; }
+table.spec th, table.spec td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+}
+table.spec thead th { color: var(--gold); font-weight: 500; font-size: 13px; letter-spacing: .14em; }
+table.spec td:first-child { color: var(--fg-dim); width: 22%; }
+.note { margin: 16px 0 0; font-size: 13px; color: var(--fg-dim); }
+
+/* ---------- FAQ ---------- */
+details {
+  border-bottom: 1px solid var(--line);
+  padding: 14px 0;
+}
+summary { cursor: pointer; font-size: 15px; }
+summary::marker { color: var(--gold); }
+details p { margin: 10px 0 0; color: #b9b5ad; font-size: 14px; }
+
+/* ---------- 页脚 ---------- */
+footer {
+  padding: 44px 0 60px;
+  text-align: center;
+  color: var(--fg-dim);
+  font-size: 13px;
+  border-top: 1px solid var(--line);
+}
+footer p { margin: 4px 0; }
+footer a { color: var(--gold); }
+
+@media (max-width: 620px) {
+  .nav nav { gap: 12px; font-size: 13px; }
+  .brand { font-size: 17px; letter-spacing: .2em; }
+  .download .dlbox { flex-direction: column; align-items: flex-start; }
+  .btn.big { width: 100%; }
+}
