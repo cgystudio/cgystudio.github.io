@@ -73,6 +73,8 @@ a { color: inherit; text-decoration: none; }
   width: min(920px, 90vw);
   padding: 96px 0 64px;
   text-align: center;
+  /* 内容整体上移一点，别贴到底部按钮区 */
+  transform: translateY(-4.5vh);
 }
 .eyebrow {
   margin: 0 0 10px;
