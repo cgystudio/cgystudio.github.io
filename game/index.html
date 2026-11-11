@@ -95,10 +95,12 @@
     <div class="dlinfo">
       <p class="filename">1102.zip</p>
       <p class="meta">约 6.6 GB · 解压即玩 · 无需安装 Unreal 或额外运行库</p>
+      <p class="meta pan" id="pan-code" hidden>百度网盘 · 提取码：<b id="pan-code-v"></b></p>
     </div>
     <a class="btn primary big" id="dl-box" href="#" rel="noopener">点击下载</a>
   </div>
   <ol class="steps">
+    <li>点上面的按钮打开<b>百度网盘</b>分享页，按提示输入提取码（有会员的建议用客户端下载，快得多）。</li>
     <li>下载 <code>1102.zip</code>（约 6.6 GB）。</li>
     <li>解压到剩余空间 15 GB 以上的目录，建议路径不带中文和空格。</li>
     <li>双击文件夹里的 <code>1102.exe</code> 启动。</li>
@@ -149,19 +151,27 @@
 </footer>
 
 <script>
-/* 下载地址在这里改：把下面的 DOWNLOAD_URL 换成你的直链或网盘地址即可 */
-const DOWNLOAD_URL = "DOWNLOAD_URL_PLACEHOLDER";
+/* ===== 这里填百度网盘分享链接和提取码，保存后整站生效 ===== */
+const PAN_URL  = "";      // 例：https://pan.baidu.com/s/1AbCdEfGhIjK
+const PAN_CODE = "";      // 例：x7k2
+
 document.querySelectorAll('#dl-main, #dl-box').forEach(function (a) {
-  if (DOWNLOAD_URL.indexOf('http') === 0) {
-    a.href = DOWNLOAD_URL;
-    a.setAttribute('download', '');
+  if (PAN_URL.indexOf('http') === 0) {
+    a.href = PAN_URL;
+    a.target = '_blank';
+    a.rel = 'noopener';
   } else {
     a.addEventListener('click', function (e) {
       e.preventDefault();
-      alert('下载地址还没配置，正在上传 1102.zip（约 6.6 GB）到网盘/对象存储，稍后补上直链。');
+      alert('百度网盘链接还没配置好，稍后刷新页面再试。');
     });
   }
 });
+if (PAN_CODE) {
+  var row = document.getElementById('pan-code');
+  document.getElementById('pan-code-v').textContent = PAN_CODE;
+  row.hidden = false;
+}
 </script>
 </body>
 </html>
