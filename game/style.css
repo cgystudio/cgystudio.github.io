@@ -149,7 +149,7 @@ h2 {
   font-weight: 400;
 }
 h3 { margin: 0 0 8px; font-size: 17px; color: var(--gold); letter-spacing: .04em; }
-.lead { margin: 0; max-width: 46em; color: #cfcbc3; }
+.lead { margin: 0; max-width: 46em; color: #cfcbc3; font-size: 15px; line-height: 1.85; }
 
 .facts {
   display: grid;
@@ -182,7 +182,7 @@ h3 { margin: 0 0 8px; font-size: 17px; color: var(--gold); letter-spacing: .04em
   transition: border-color .2s, transform .2s;
 }
 .grid article:hover { border-color: rgba(217, 178, 106, .45); transform: translateY(-2px); }
-.grid article p { margin: 0; font-size: 14px; color: #b9b5ad; }
+.grid article p { margin: 0; font-size: 13.5px; line-height: 1.75; color: #b9b5ad; }
 
 /* ---------- 下载 ---------- */
 .download .dlbox {
@@ -199,8 +199,8 @@ h3 { margin: 0 0 8px; font-size: 17px; color: var(--gold); letter-spacing: .04em
     var(--ink-2);
 }
 .filename { margin: 0; font-family: Georgia, serif; font-size: 22px; letter-spacing: .04em; }
-.meta { margin: 6px 0 0; font-size: 13px; color: var(--fg-dim); }
-.steps { margin: 26px 0 0; padding-left: 20px; color: #cfcbc3; font-size: 15px; }
+.meta { margin: 6px 0 0; font-size: 12.5px; color: var(--fg-dim); }
+.steps { margin: 26px 0 0; padding-left: 20px; color: #cfcbc3; font-size: 14px; line-height: 1.8; }
 .steps li { margin-bottom: 8px; }
 code {
   padding: 2px 7px;
@@ -219,7 +219,7 @@ table.spec th, table.spec td {
 }
 table.spec thead th { color: var(--gold); font-weight: 500; font-size: 13px; letter-spacing: .14em; }
 table.spec td:first-child { color: var(--fg-dim); width: 22%; }
-.note { margin: 16px 0 0; font-size: 13px; color: var(--fg-dim); }
+.note { margin: 16px 0 0; font-size: 12.5px; color: var(--fg-dim); }
 
 /* ---------- FAQ ---------- */
 details {
@@ -228,7 +228,7 @@ details {
 }
 summary { cursor: pointer; font-size: 15px; }
 summary::marker { color: var(--gold); }
-details p { margin: 10px 0 0; color: #b9b5ad; font-size: 14px; }
+details p { margin: 10px 0 0; color: #b9b5ad; font-size: 13.5px; line-height: 1.75; }
 
 /* ---------- 页脚 ---------- */
 footer {
@@ -261,7 +261,7 @@ footer a { color: var(--gold); }
   border: 1px solid rgba(217, 178, 106, .48);
   border-radius: 999px;
   font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 400;
   letter-spacing: .16em;
   line-height: 1.5;
@@ -282,7 +282,7 @@ footer a { color: var(--gold); }
   border: 1px solid rgba(217, 178, 106, .32);
   border-radius: 999px;
   background: rgba(11, 13, 16, .45);
-  font-size: 12.5px;
+  font-size: 11.5px;
   letter-spacing: .2em;
   color: var(--gold);
   backdrop-filter: blur(3px);
@@ -302,8 +302,8 @@ footer a { color: var(--gold); }
   padding: 12px 16px;
   border-left: 2px solid rgba(176, 46, 36, .8);
   background: rgba(176, 46, 36, .07);
-  font-size: 13.5px;
-  line-height: 1.8;
+  font-size: 12.5px;
+  line-height: 1.85;
   color: #cfcbc3;
 }
 .dl-note-beta b { color: var(--fg); font-weight: 600; }
