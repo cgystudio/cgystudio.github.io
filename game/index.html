@@ -37,7 +37,7 @@
     <img class="sub-img" src="tagline.png" alt="问苍茫大地，谁主沉浮">
     <p class="ver"><i></i>测试版 · 内容持续调整中</p>
     <div class="cta">
-      <a class="btn primary" id="dl-main" href="#" rel="noopener">下载测试版</a>
+      <button class="btn primary" id="dl-main" type="button">下载测试版</button>
       <a class="btn ghost" href="#about">先看看内容</a>
     </div>
     <p class="hint" id="dl-note">测试版 · Windows 10 / 11 · 64 位 · 解压即玩 · 约 6.6 GB</p>
@@ -101,10 +101,17 @@
       <p class="meta">约 6.6 GB · 解压即玩 · 无需安装 Unreal 或额外运行库</p>
       <p class="meta pan" id="pan-code" hidden>百度网盘 · 提取码：<b id="pan-code-v"></b></p>
     </div>
-    <a class="btn primary big" id="dl-box" href="#" rel="noopener">点击下载</a>
+    <button class="btn primary big" id="dl-box" type="button">选择下载方式</button>
   </div>
   <p class="dl-note-beta"><b>当前是开发中的测试版。</b>关卡、数值、音效仍在调整，
   部分表现可能还会变；配置不够的机器建议进游戏后把画质切到「中」或「低」。</p>
+  <dialog id="dl-modal" class="dl-modal">
+    <h3>选择下载方式</h3>
+    <p class="dl-modal-sub">1102.zip · 测试版 · 约 6.6 GB · 解压即玩</p>
+    <ul class="dl-list" id="dl-list"></ul>
+    <button class="dl-close" id="dl-close" type="button">关闭</button>
+  </dialog>
+
   <ol class="steps">
     <li>点上面的按钮打开<b>百度网盘</b>分享页，按提示输入提取码（有会员的建议用客户端下载，快得多）。</li>
     <li>下载 <code>1102.zip</code>（约 6.6 GB）。</li>
@@ -157,27 +164,113 @@
 </footer>
 
 <script>
-/* ===== 这里填百度网盘分享链接和提取码，保存后整站生效 ===== */
-const PAN_URL  = "https://pan.baidu.com/s/1w7JBruw2A3SwyoFlVT7F8Q?pwd=wcrk";
-const PAN_CODE = "wcrk";
+/* ===== 下载源列表：以后加新网盘，往这里加一行就行，url 留空 = 显示"即将上线" ===== */
+const DLS = [
+  {
+    name: '百度网盘',
+    note: '需登录，会员建议用客户端下载更快',
+    badge: '推荐',
+    url: 'https://pan.baidu.com/s/1w7JBruw2A3SwyoFlVT7F8Q?pwd=wcrk',
+    code: 'wcrk'
+  },
+  // 有了新链接就取消注释、填 url（和提取码 code，没有就留空字符串）
+  // { name: '123 云盘',  note: '免登录，单线程速度较快', url: '', code: '' },
+  // { name: '夸克网盘',  note: '免登录，建议装夸克客户端', url: '', code: '' },
+  // { name: 'Google Drive', note: '海外用户推荐', url: '', code: '' },
+  // { name: '直链下载', note: '单线程，建议用下载工具', url: '', code: '' },
+];
 
-document.querySelectorAll('#dl-main, #dl-box').forEach(function (a) {
-  if (PAN_URL.indexOf('http') === 0) {
-    a.href = PAN_URL;
-    a.target = '_blank';
-    a.rel = 'noopener';
-  } else {
-    a.addEventListener('click', function (e) {
-      e.preventDefault();
-      alert('百度网盘链接还没配置好，稍后刷新页面再试。');
-    });
+const dlModal = document.getElementById('dl-modal');
+const dlList  = document.getElementById('dl-list');
+
+function copyText(txt, btn) {
+  function done() {
+    const old = btn.textContent;
+    btn.textContent = '已复制';
+    setTimeout(function () { btn.textContent = old; }, 1200);
   }
-});
-if (PAN_CODE) {
-  var row = document.getElementById('pan-code');
-  document.getElementById('pan-code-v').textContent = PAN_CODE;
-  row.hidden = false;
+  function fallback() {
+    const ta = document.createElement('textarea');
+    ta.value = txt;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); done(); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(txt).then(done, fallback);
+  } else {
+    fallback();
+  }
 }
+
+function renderDownloadList() {
+  dlList.innerHTML = '';
+  DLS.forEach(function (src) {
+    const li = document.createElement('li');
+    li.className = 'dl-item' + (src.url ? '' : ' disabled');
+
+    const info = document.createElement('div');
+    info.className = 'dl-item-info';
+    const name = document.createElement('p');
+    name.className = 'dl-item-name';
+    name.textContent = src.name;
+    if (src.badge) {
+      const tag = document.createElement('span');
+      tag.className = 'tag sm';
+      tag.textContent = src.badge;
+      name.appendChild(tag);
+    }
+    const note = document.createElement('p');
+    note.className = 'dl-item-note';
+    note.textContent = src.url ? src.note : '即将上线';
+    info.appendChild(name);
+    info.appendChild(note);
+
+    const acts = document.createElement('div');
+    acts.className = 'dl-item-acts';
+    if (src.url) {
+      const a = document.createElement('a');
+      a.className = 'btn primary sm';
+      a.href = src.url;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.textContent = '打开';
+      acts.appendChild(a);
+    }
+    if (src.code) {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'btn ghost sm';
+      b.textContent = '提取码 ' + src.code;
+      b.title = '点击复制提取码';
+      b.addEventListener('click', function () { copyText(src.code, b); });
+      acts.appendChild(b);
+    }
+
+    li.appendChild(info);
+    li.appendChild(acts);
+    dlList.appendChild(li);
+  });
+}
+
+function openDownloadModal(e) {
+  if (e) e.preventDefault();
+  renderDownloadList();
+  if (dlModal.showModal) { dlModal.showModal(); } else { dlModal.setAttribute('open', ''); }
+}
+function closeDownloadModal() {
+  if (dlModal.close) { dlModal.close(); } else { dlModal.removeAttribute('open'); }
+}
+
+['dl-main', 'dl-box'].forEach(function (id) {
+  const el = document.getElementById(id);
+  if (el) el.addEventListener('click', openDownloadModal);
+});
+document.getElementById('dl-close').addEventListener('click', closeDownloadModal);
+dlModal.addEventListener('click', function (e) { if (e.target === dlModal) closeDownloadModal(); });
 </script>
 </body>
 </html>
