@@ -60,6 +60,18 @@ a { color: inherit; text-decoration: none; }
   transform: scale(1.04);
   filter: saturate(1.02) contrast(1.02);
 }
+
+/* 竖屏封面：默认隐藏。
+   之所以不用 <picture> + <source media>，是因为微信 / QQ / 部分安卓 WebView
+   会忽略 source 的 media 条件，直接拿 <img src> 的横版图，导致手机上看着和电脑一样。
+   用 CSS 媒体查询（宽高比 + 宽度双条件）来切图，兼容性好得多。 */
+.hero-bg-tall { display: none; }
+
+@media (max-aspect-ratio: 1/1), (max-width: 640px) {
+  .hero-bg-wide { display: none; }
+  .hero-bg-tall { display: block; }
+}
+
 .hero-mask {
   position: absolute;
   inset: 0;
